@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--HTML5 doctype-->
+<html>
+
+<head>
+
+    <title>App Framework Kitchen Sink</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="engine/build/icons.css" />
+
+    <link rel="stylesheet" type="text/css" href="engine/build/af.ui.css" />
+
+     <script type="text/javascript" charset="utf-8" src="engine/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/third-party/fastclick.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.shim.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.ui.js"></script>
+
+
+   										   <script src="engine/src/af.desktopBrowsers.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.actionsheet.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.animation.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.touchEvents.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.popup.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.drawer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.toast.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.animateheader.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.splashscreen.js"></script>
+    <script type="text/javascript" charset="utf-8" src="engine/src/af.swipereveal.js"></script>
+
+
+    <script>
+    $.afui.useOSThemes=false;
+    $.afui.loadDefaultHash=true;
+    $.afui.autoLaunch=false;
+
+    //check search
+    var search=document.location.search.toLowerCase().replace("?","");
+    if(search.length>0)
+    {
+
+       $.afui.useOSThemes=true;
+        if(search=="win8")
+            $.os.ie=true;
+        else if(search=="firefox")
+            $.os.fennec="true"
+        $.afui.ready(function(){
+            $(document.body).get(0).className=(search);
+        });
+    }
+
+    $(document).ready(function(){
+        $.afui.launch();
+    });
+
+    //if($.os.ios)
+        $.afui.animateHeader(true);
+
+    </script>
+</head>
+
+<body >
+	<div class="view" id="mainView">
+		<header><h1>My Header</h1></header>
+		<div class="pages">
+			<div class="panel" data-title="main" id="main" selected="true" data-include="content.html">
+				
+				
+			</div>
+		</div>
+		<footer>
+			<a href="#main" class="icon home">Home</a>
+		</footer>
+	</div>
+	<div class="view" id="mainView">
+		<header><h1>Second</h1></header>
+		<div class="pages">
+			<div class="panel" data-title="second" id="second" selected="true">
+				Hello Men
+				<a href="#main" class="button" data-transition="flip">Main</a>
+			</div>
+		</div>
+		<footer>
+			<a href="#main" class="icon home" data-transition="up-reveal">First</a>
+		</footer>
+	</div>
+</body>
+
+</html>
