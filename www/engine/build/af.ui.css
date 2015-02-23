@@ -4314,6 +4314,7 @@ header .menuButton:after {
 /*start hassan*/
 header .contactButton {
 	background:url("img/contact.gif") no-repeat;
+	background-size: 23px 16px;
   position: relative;
   top: 5px;
   right: -8px;
