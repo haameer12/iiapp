@@ -3461,6 +3461,408 @@ li .icon:before {
   border-radius: 30px;
 }
 
+
+
+
+
+
+
+.hassan {
+  font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.hassan .view header {
+  background:url("img/head-bg.gif");
+  height:59px;/*hassan*/
+  color: inherit;
+  border: none;
+  border-bottom: 1px solid #c8c7cc;
+}
+.hassan .view header .button {
+  color: #157dfb;
+  border-color: transparent;
+  font-size: 14px;
+  font-weight: normal;
+}
+.hassan .view header h1 {
+  color: inherit;
+  text-shadow: none;
+}
+.hassan .view header .backButton {
+  background: #f8f8f8;
+  color: #157dfb;
+  display: block;
+  position: absolute;
+  line-height: 44px;
+  left: 25px;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  padding: 0;
+  text-shadow: none;
+  background-color: transparent;
+  border: none;
+  border-color: transparent;
+  height: 44px;
+  top: auto;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  padding-left: 0;
+  text-align: center;
+  width: 50px;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.hassan .view footer {
+  background: #f8f8f8;
+  color: black;
+  border-top: 1px solid #c8c7cc;
+  box-shadow: none;
+}
+.hassan .view footer > a:not(.button) {
+  color: #606060;
+}
+.hassan .view footer > a.pressed:not(.button) {
+  border-radius: 0;
+  background: transparent;
+}
+.hassan .panel {
+  background: #eeeeee;
+}
+.hassan .panel h2 {
+  color: inherit;
+}
+.hassan .menuButton:after {
+  border-color: #157dfb;
+}
+.hassan .list {
+  font-weight: normal;
+}
+.hassan .list li {
+  margin-left: 10px;
+}
+.hassan .list > li > a:after {
+  color: #d9d9d9;
+}
+.hassan .button {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 5px;
+  border-color: #157dfb;
+  color: #157dfb;
+  text-shadow: none;
+}
+.hassan .backButton::before {
+  z-index: -1;
+  font-size: 22px;
+  position: absolute;
+  left: -20px;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+  border-color: transparent;
+  box-shadow: none;
+  -webkit-transform: none;
+  transform: none;
+  font-family: 'chevron';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  content: "\f054";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  background-color: transparent;
+}
+.hassan .backButton::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border: none;
+}
+.hassan .afPopup {
+  border: 1px solid #c8c7cc;
+  border-radius: 10px;
+  padding: 0px;
+  text-align: center;
+  color: inherit;
+  background: #f8f8f8;
+}
+.hassan .afPopup > HEADER {
+  padding: 10px 0;
+}
+.hassan .afPopup > DIV {
+  padding-bottom: 10px;
+}
+.hassan .afPopup > FOOTER {
+  border-top: 1px solid #aaa;
+}
+.hassan .afPopup > FOOTER > A.center {
+  width: 100%!important;
+}
+.hassan .afPopup .button {
+  border: none;
+  width: 50%;
+  margin: 0;
+  background: transparent;
+  color: #157dfb;
+  padding: 12px 0;
+  border-radius: 0;
+}
+.hassan .afPopup .button.pressed {
+  background: transparent;
+}
+.hassan .afPopup a:not(:first-of-type) {
+  border-left: 1px solid #c8c7cc;
+}
+.hassan .button.pressed {
+  font-weight: bold;
+  background: white;
+}
+.hassan #af_actionsheet {
+  background-color: transparent;
+  color: black;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-top: transparent 1px solid;
+  box-shadow: 0px -1px 2px rgba(0, 0, 0, 0);
+}
+.hassan #af_actionsheet a:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.hassan #af_actionsheet a:nth-last-child(2) {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.hassan #af_actionsheet a.cancel {
+  font-weight: bold;
+  margin: 9px 0;
+  border-radius: 5px;
+  background-color: white;
+  color: #157dfb;
+}
+.hassan #af_actionsheet a.red {
+  background-color: white;
+  color: red;
+}
+.hassan .button.previous {
+  border: none;
+}
+.hassan .button.next {
+  border: none;
+}
+.hassan .button.previous::after {
+  color: #157dfb;
+  z-index: -1;
+  font-size: 22px;
+  position: absolute;
+  top: 2px;
+  left: -25px;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+  border-color: transparent;
+  box-shadow: none;
+  -webkit-transform: none;
+  transform: none;
+  font-family: 'chevron';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  content: "\f054";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  background-color: transparent;
+}
+.hassan .button.next::after {
+  color: #157dfb;
+  z-index: -1;
+  font-size: 22px;
+  position: absolute;
+  top: 6px;
+  right: -25px;
+  text-align: center;
+  border-radius: 0;
+  border: none;
+  border-color: transparent;
+  box-shadow: none;
+  -webkit-transform: none;
+  transform: none;
+  font-family: 'chevron';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  content: "\f054";
+  background-color: transparent;
+}
+.hassan .button.gray {
+  color: #999;
+  background-color: transparent;
+}
+.hassan .button.yellow {
+  color: #F1C222;
+  background-color: transparent;
+}
+.hassan .button.red {
+  color: #b20000;
+  background-color: transparent;
+}
+.hassan .button.green {
+  color: #009C0C;
+  background-color: transparent;
+}
+.hassan .button.orange {
+  color: #FF8000;
+  background-color: transparent;
+}
+.hassan .button.black {
+  color: black;
+  background-color: transparent;
+}
+.hassan .button.slate {
+  color: #171F28;
+  background-color: transparent;
+}
+.hassan .af-badge {
+  border: none;
+  box-shadow: none;
+  font-size: 12px;
+}
+.hassan input[type="range"] {
+  -webkit-appearance: none;
+  background-color: #c7c7c7;
+  height: 2px;
+  position: relative;
+  top: -10px;
+  margin-top: 15px;
+  border-radius: 2px;
+}
+.hassan input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  z-index: 1;
+  width: 25px;
+  height: 25px;
+  border-radius: 60px;
+  border: 1px solid #c7c7c7;
+  background: white;
+}
+.hassan input.toggle:checked + label {
+  background: #4cd964;
+  line-height: -1em;
+  -webkit-transition: background 150ms;
+  transition: background 150ms;
+}
+.hassan input.toggle:checked + label > span {
+  transform: translate3d(24px, 0, 0);
+  -webkit-transform: translate3d(24px, 0, 0);
+}
+.hassan input.toggle + label:after {
+  content: '';
+}
+.hassan input.toggle + label {
+  position: relative;
+  margin: 5px;
+  border-radius: 50px;
+  display: block;
+  height: 28px;
+  width: 50px;
+  border: 1px solid #c7c7c7;
+  left: 33%;
+  float: none;
+}
+.hassan input.toggle + label > span {
+  background: white;
+  border: 1px solid #c7c7c7;
+  top: -1px;
+  left: -1px;
+  height: 29px;
+}
+.hassan .button-grouped:not(.vertical) > .button:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.hassan .button-grouped:not(.vertical) > .button:last-child {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.hassan .button-grouped *,
+.hassan .button-grouped  > .button:first-child,
+.hassan .button-grouped.vertical *,
+.hassan .button-grouped.vertical  > .button:last-child,
+.hassan header .button-grouped  > .button {
+  border-color: #157dfb;
+}
+.hassan .button-grouped  > .button {
+  border-radius: 0;
+}
+.hassan .button-grouped  > .button.pressed,
+.hassan header .button-grouped  > .button.pressed {
+  color: white;
+  background: #157dfb;
+}
+.hassan #af_actionsheet a,
+.hassan #af_actionsheet a.cance {
+  background-image: none;
+  text-shadow: none;
+  box-shadow: none;
+  font-weight: normal;
+  border-radius: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  color: #157dfb;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 0px;
+  line-height: 40px;
+  font-size: 20px;
+  margin-bottom: 1px;
+}
+.hassan footer  > a.pressed:not(.button),
+.hassan footer  > a.icon.pressed:not(.button):before {
+  color: #157dfb;
+}
+.hassan input.toggle + label:before,
+.hassan input.toggle:checked + label:before {
+  content: '';
+}
+.hassan input[type="radio"]:checked:not(.toggle) + label:before,
+.hassan input[type="checkbox"]:checked:not(.toggle) + label:before {
+  background: #007aff;
+  color: white;
+}
+.hassan input[type="radio"]:not(.toggle) + label:before,
+.hassan input[type="checkbox"]:not(.toggle) + label:before {
+  background: white;
+  border: 1px solid #c7c7c7;
+  border-radius: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .list {
   margin: 0px;
   padding: 0px;
@@ -3889,6 +4291,7 @@ h2 {
   }
 }
 header .menuButton {
+	background:url("img/menu-button.gif") no-repeat;
   position: relative;
   top: 5px;
   right: -8px;
@@ -3902,11 +4305,33 @@ header .menuButton:after {
   border-top: 3px solid white;
   top: 9px;
   left: 3px;
-  content: "";
+  /*content: "";*//*hassan*/
   height: 15px;
   position: absolute;
   width: 15px;
 }
+
+/*start hassan*/
+header .contactButton {
+	background:url("img/contact.gif") no-repeat;
+  position: relative;
+  top: 5px;
+  right: -8px;
+  height: 36px;
+  width: 36px;
+  z-index: 2;
+  float: right;
+}
+header .contactButton:after {
+  border-bottom: 9px double white;
+  border-top: 3px solid white;
+  top: 9px;
+  left: 3px;
+  height: 15px;
+  position: absolute;
+  width: 15px;
+}
+/*end hassan*/
 
 .tizen,
 .tizen .view,
