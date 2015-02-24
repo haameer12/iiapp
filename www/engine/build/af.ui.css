@@ -4153,6 +4153,7 @@ nav {
 /*start hassan code*/
 nav#right{
 	 background:url("img/nav-bg.png");
+	 box-shadow: 0 0 5px 0 #303343;
 	
 }
 nav#left{
