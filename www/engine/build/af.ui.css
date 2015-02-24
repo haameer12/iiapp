@@ -4150,6 +4150,16 @@ nav {
   box-shadow: 0 0 8px 0 black;
   z-index: 30;
 }
+/*start hassan code*/
+nav#right{
+	 background:url("img/nav-bg.png");
+	
+}
+nav#left{
+	 background:#12131a;
+	 box-shadow:none;
+}
+/*end hassan code*/
 nav.right {
   height: 100%;
   width: 200px;
