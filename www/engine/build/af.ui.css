@@ -2886,6 +2886,8 @@ button {
   position: relative;
   font-size: 1em;
   left: -3px;
+  left:auto;/*hassan code*/
+  right: -6px;/*hassan code*/
   top: 2px;
 }
 li .icon:before {
@@ -3536,9 +3538,13 @@ li .icon:before {
 }
 .hassan .list {
   font-weight: normal;
+  margin:0;/*hassan code*/
 }
 .hassan .list li {
   margin-left: 10px;
+  margin-left:0;/*hassan code*/
+  border-bottom:1px solid #353545;/*hassan code*/
+  border-top:1px solid #212126;/*hassan code*/
 }
 .hassan .list > li > a:after {
   color: #d9d9d9;
@@ -3873,6 +3879,7 @@ li .icon:before {
   -webkit-box-sizing: border-box;
 }
 .list li {
+	direction:rtl;/*hassan code*/
   display: block;
   list-style: none;
   position: relative;
@@ -3887,6 +3894,7 @@ li .icon:before {
   position: relative;
   display: block;
   color: inherit;
+  color:#FFF;/*hassan code*/
   margin: -20px -20px -20px -10px;
   text-decoration: none;
   padding: 20px 20px 20px 10px;
@@ -3895,6 +3903,8 @@ li .icon:before {
 .list > li .chevron:after {
   position: absolute;
   right: 8px;
+  right:auto;/*hassan code*/
+  left:12px;right:auto;/*hassan code*/
   font-family: 'chevron';
   speak: none;
   font-style: normal;
@@ -3904,6 +3914,18 @@ li .icon:before {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   content: "\f054";
+  content: "\f054";
+  /*start hassan code*/
+	-webkit-transform:rotateY(180deg);
+	-moz-transform:rotateY(180deg);
+	-o-transform:rotateY(180deg);
+	-ms-transform:rotateY(180deg);
+	transform:rotateY(180deg);
+	unicode-bidi:bidi-override;
+	direction:rtl;
+  /*end hassan code*/
+  
+  
   top: 50%;
   margin-top: -0.5em;
   color: inherit;
@@ -4152,13 +4174,14 @@ nav {
 }
 /*start hassan code*/
 nav#right{
-	 background:url("img/nav-bg.png");
-	 box-shadow: 0 0 5px 0 #303343;
+	background:url("img/nav-bg.png");
+	box-shadow: 0 0 5px 0 #303343;
 	width:285px;
 }
 nav#left{
-	 background:#12131a;
-	 box-shadow:none;
+	background:url("img/nav-bg.png");
+	box-shadow: 0 0 5px 0 #303343;
+	width:285px;
 }
 /*end hassan code*/
 nav.right {
