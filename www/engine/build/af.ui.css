@@ -4154,7 +4154,7 @@ nav {
 nav#right{
 	 background:url("img/nav-bg.png");
 	 box-shadow: 0 0 5px 0 #303343;
-	
+	width:285px;
 }
 nav#left{
 	 background:#12131a;
@@ -4303,6 +4303,7 @@ h2 {
 }
 header .menuButton {
 	background:url("img/menu-button.gif") no-repeat;
+	background-size: 23px 16px;
   position: relative;
   top: 5px;
   right: -8px;
