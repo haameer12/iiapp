@@ -3569,14 +3569,14 @@ li .icon:before {
 .hassan .list {
   font-weight: normal;
   margin:0;/*hassan code*/
-  border-top:1px solid #2d2d36;/*hassan code*/
-  border-bottom:1px solid #1b1b21;/*hassan code*/
+  border-top:1px solid #202022;/*hassan code*/
+  border-bottom:1px solid #141415;/*hassan code*/
 }
 .hassan .list li {
   margin-left: 10px;
   margin-left:0;/*hassan code*/
-  border-bottom:1px solid #2d2d36;/*hassan code*/
-  border-top:1px solid #1b1b21;/*hassan code*/
+  border-bottom:1px solid #2b2b2e;/*hassan code*/
+  border-top:1px solid #141415;/*hassan code*/
   text-align:right;/*hassan code*/
   font-family:"hacen_xxl";/*hassan code*/
   font-size:15px;/*hassan code*/
