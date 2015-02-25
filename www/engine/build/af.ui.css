@@ -4047,6 +4047,7 @@ p {
   margin: 6px 0;
   font-size: 14px;
   line-height: 20px;
+  line-height: 25px;/*hassan code*/
   color: inherit;
 }
 .view {
