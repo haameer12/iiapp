@@ -120,49 +120,7 @@
 				</a>
 			</div>
 			<div data-left-drawer="left" class="panel" id="esdarat" data-title="الإصدارات" >
-			 	
-				<script>
-				$(document).ready(function(){
-					$("#taptest").bind("tap",function(){
-						alert("I was tapped");
-					})
-					$("#singletaptest").bind("singleTap",function(){
-						alert("I was single tapped");
-					})
-					$("#longtaptest").bind("longTap",function(){
-						alert("I was a long tap");
-					})
-					$("#doubletaptest").bind("doubleTap",function(){
-						alert("I was a double tap");
-					})
-					$("#swipetest").bind("swipe",function(){
-						alert("I was a swiped");
-					});
-				
-				});
-				function showMoreSheet(){
-				   $.afui.actionsheet(
-						[{
-							text: 'Stuff',
-							cssClasses: ''
-						}]);
-				}
-				</script>
-				<ul class="list">
-					<li><a id='taptest' >Tap <br>Test</a></li>
-					<li><a id='longtaptest' >Long Tap Test</a></li>
-					<li><a id='singletaptest' >Single Tap Test</a></li>
-					<li><a id='doubletaptest' >Double Tap Test</a></li>
-					<li class="swipe-x swipe-y"><a id='swipetest' >Swipe Test</a></li>
-					<li class="swipe-reveal">
-						<div class="swipe-content">Swipe to reveal options </div>
-						<div class="swipe-hidden">
-							<a class="button more" onclick="showMoreSheet()">More</a>
-							<a class="button archive" onclick="$(this).closest('.swipe-reveal').remove()">Archive</a>
-						</div>
-					</li>
-				</ul>
-				
+				الإصدارات
             </div>
 			<div data-left-drawer="left" class="panel" id="ch-aqida" data-title="قناة العقيدة" >
 				قناة العقيدة
@@ -173,6 +131,16 @@
 <!--		<footer>
 			
 		</footer>-->
+		<script>
+			$(document).ready(function(){
+				$("nav#right").bind("swipeRight",function(){
+					$.afui.drawer.hide('#right','right');
+				});
+				$("nav#left").bind("swipeLeft",function(){
+					$.afui.drawer.hide('#left','left');
+				});
+			});
+		</script>
 		 <nav id="right">
 		 	<div style="background:#09090b;height:59px;text-align:center;opacity:0.7;">
 				<img src="engine/build/img/logo.png" style="margin:8px 0 0 2px;" onload="this.width/=1.9;this.onload=null;" />
