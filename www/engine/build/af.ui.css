@@ -3558,7 +3558,7 @@ li .icon:before {
   background: transparent;
 }
 .hassan .panel {
-  background: #eeeeee;
+  background: #f2f4f8;
 }
 .hassan .panel h2 {
   color: inherit;
@@ -4181,6 +4181,7 @@ p {
   left: 0px;
   display: none;
   padding: 10px;
+  padding: 9px;/*hassan code*/
   padding-top: 0px;
   overflow-x: hidden;
   overflow-y: auto;
