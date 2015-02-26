@@ -54,6 +54,14 @@
 
     $(document).ready(function(){
         $.afui.launch();
+		$("nav#left").bind("swipeLeft",function(){
+			navigator.notification.alert(
+				'good!',  // message
+				'',         // callback
+				'ok',            // title
+				'Done'                  // buttonName
+			);	
+		});
     });
 
     //if($.os.ios)
@@ -86,35 +94,36 @@
 						background:#fcfdfe;
 						border:1px solid #eaeef1;
 						margin:8px 0 0 0;
-						height:82px;
+						height:84px;
 						box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+						text-decoration:none;
 					}
 				</style>
-				<a class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
-				<a class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
 			</div>
