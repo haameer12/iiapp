@@ -36,6 +36,7 @@
     $.afui.useOSThemes=false;
     $.afui.loadDefaultHash=true;
     $.afui.autoLaunch=false;
+	$.afui.useAjaxCacheBuster=true;
 
     //check search
     var search=document.location.search.toLowerCase().replace("?","");
@@ -91,7 +92,7 @@
 						text-decoration:none;
 					}
 				</style>
-				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="http://iicss.iq/" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
 				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
@@ -136,7 +137,7 @@
 				$("nav#right").bind("swipeRight",function(){
 					$.afui.drawer.hide('#right','right');
 				});
-				$("nav#left").bind("swipeLeft",function(){
+				$("nav#left").bind("swipeLeftStart",function(){
 					$.afui.drawer.hide('#left','left');
 				});
 			});
