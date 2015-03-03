@@ -39,7 +39,6 @@
     $.afui.useOSThemes=false;
     $.afui.loadDefaultHash=true;
     $.afui.autoLaunch=false;
-	$.afui.useAjaxCacheBuster=true;
 
     //check search
     var search=document.location.search.toLowerCase().replace("?","");
@@ -324,13 +323,23 @@
 				$(document).ready(function(){
 					$("#test-button").click(function(){
 						window.alert("nokay");
-						$.jsonP({url:"http://api.openweathermap.org/data/2.5/weather?q=London,uk",
+						$.ajax({ type: "POST",
+							url: "http://iicss.iq/json.php",
+							data: {regID : 'hi',OS:'hi'},
+							async: false,
+							success : function(text){
+								//last_articles_version = text;
+								$("#test-button").append('<li>EVENT -> RECEIVED: Rgister to server is finished : ' + text + '</li>');
+							}
+						});
+						
+/*						$.jsonP({url:"http://api.openweathermap.org/data/2.5/weather?q=London,uk",
 							success:function(){
 								window.alert("ok");
 							},error:function(){
 								window.alert("nokay");
 							}
-						});
+						});*/
 					})
 				});
 				</script>
