@@ -82,13 +82,13 @@
 		switch(e.event){
 		case 'registered':
 			if( e.regid.length > 0){
-			///          هذا الكود للاندرويد
+			///Android
 				$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 				// Your GCM push server needs to know the regID before it can push to this device
 				// here is where you might want to send it the regID for later use.
 				$.ajax({ type: "POST",
-					url: "http://192.168.1.141/set_phone_key.php", //رابط السيرفر الخاص بي
-					data: {regID : e.regid,user:device.uuid,OS:device.platform},                   //لاستقبال البيانات في ال ASP استعمل request.form["regID"]
+					url: "http://192.168.1.141/set_phone_key.php",
+					data: {regID : e.regid,user:device.uuid,OS:device.platform},
 					async: false,
 					success : function(text){
 						//last_articles_version = text;
@@ -121,9 +121,9 @@
 			//alert(e.payload.message);
 			navigator.notification.alert(
 				e.payload.message,  // message
-				"",         // callback
-				'اطلاعیه',            // title
-				'تائید'                  // buttonName
+				"",                 // callback
+				'اشعار',            // title
+				'موافق'             // buttonName
 			);
 			//alert(e.payload.msgcnt);
 			
@@ -157,9 +157,7 @@
 	
 	
 	
-	
 	/*----------------------------------------------------------------------------------------*/
-	
 
 
 
@@ -185,7 +183,7 @@
 		}
 		
 		
-		//للايفون
+		//iPhone
 		function tokenHandler(result){
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
 			$.ajax({ type: "POST",
