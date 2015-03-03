@@ -322,18 +322,20 @@
 				
 				<script>
 				$(document).ready(function(){
-					function testjson(){
+					$("#test-button").click(function(){
+						window.alert("nokay");
 						$.jsonP({url:"http://api.openweathermap.org/data/2.5/weather?q=London,uk",
-						success:function(){
-							window.alert("ok");
-						},error:function(){
-							window.alert("nokay");
-						}});
-					}
+							success:function(){
+								window.alert("ok");
+							},error:function(){
+								window.alert("nokay");
+							}
+						});
+					})
 				});
 				</script>
 				
-				<div onClick="testjson()">sfasd</div>
+				<div id="test-button">sfasd</div>
 				
 				
 				
