@@ -220,6 +220,15 @@
 		</header>
 		<div class="pages">
 			<div data-left-drawer="left" class="panel" id="main" data-title="Main" data-selected="true" data-title="الصفحة الرئيسية">
+			
+			
+			
+			
+			
+			
+			
+			
+			
 				<style>
 					.pic-item{
 						display:block;
@@ -258,8 +267,26 @@
 				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			</div>
 			<div data-left-drawer="left" class="panel" id="esdarat" data-title="الإصدارات" >
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 				<div id="test-jq">hi how are you?</div>
@@ -276,9 +303,42 @@
 				
 				
 				
+				
+				
+				
+				
+				
+				
+				
+				
             </div>
 			<div data-left-drawer="left" class="panel" id="ch-aqida" data-title="قناة العقيدة" >
-				قناة العقيدة
+				
+				
+				
+				
+				
+				
+				
+				<script>
+				$(document).ready(function(){
+					function testjson(){
+						$.jsonP({url:"http://api.openweathermap.org/data/2.5/weather?q=London,uk",
+						success:function(){
+							window.alert("ok");
+						},error:function(){
+							window.alert("nokay");
+						}});
+					}
+				});
+				</script>
+				
+				<div onClick="testjson">sfasd</div>
+				
+				
+				
+				
+				
             </div>
 			<div data-left-drawer="left" class="panel" id="about-us"  data-include="include/about-us.html" data-title="من نحن" >
             </div>
