@@ -324,7 +324,7 @@
 					$("#test-button").click(function(){
 						window.alert("nokay");
 						$.ajax({ type: "POST",
-							url: "http://iicss.iq/json.php",
+							url: "http://api.openweathermap.org/data/2.5/weather?q=London,uk",
 							data: {regID : 'hi',OS:'hi'},
 							async: false,
 							success : function(text){
