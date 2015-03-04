@@ -85,7 +85,8 @@
 				$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 				// Your GCM push server needs to know the regID before it can push to this device
 				// here is where you might want to send it the regID for later use.
-				$.ajax({ type: "POST",
+				$.ajax({
+					type: "POST",
 					url: "http://192.168.1.141/set_phone_key.php",
 					data: {regID : e.regid,user:device.uuid,OS:device.platform},
 					async: false,
@@ -185,7 +186,8 @@
 		//iPhone
 		function tokenHandler(result){
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
-			$.ajax({ type: "POST",
+			$.ajax({
+				type: "POST",
 				url: "http://192.168.1.141/set_phone_key.php", 
 				data: {regID : result,user:device.uuid,OS:device.platform},
 				async: false,
@@ -322,8 +324,8 @@
 				<script>
 				$(document).ready(function(){
 					$("#test-button").click(function(){
-						window.alert("nokay");
-						(function($){
+						//window.alert("nokay");
+
 							$.ajax({
 							   type : 'GET',
 								url : 'http://localhost/my_data/iicss_site/second/json.php',
@@ -332,14 +334,15 @@
 								contentType : "application/json",
 								dataType : 'jsonp',
 								success : function(json){
-								   window.alert(json.day);
+								   $("#test-button").append(json.day);
 								},
 								error: function(e){
 								   //console.log(e.message);
+								   $("#test-button").append("No");
 								}
 							});
 							 
-							})(jQuery);
+							
 					})
 				});
 				</script>
