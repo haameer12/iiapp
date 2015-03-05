@@ -327,14 +327,17 @@
 						//window.alert("nokay");
 
 							$.ajax({
-							   type : 'get',
+								type : 'get',
 								url : 'http://192.168.1.141/my_data/iicss_site/second/json.php',
 								async : false,
 								jsonpCallback : 'aaa',
 								contentType : "application/json",
 								dataType : 'jsonp',
 								success : function(json){
-								   $("#test-button").append(json.day);
+									//$("#test-button").append(json[0].name);
+									$.each(json, function(key, val){
+										$("#test-button").append(' - ' + val.name);
+									});
 								},
 								error: function(e){
 								   //console.log(e.message);
