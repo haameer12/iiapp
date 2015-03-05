@@ -336,7 +336,7 @@
 								success : function(json){
 									$("#test-button").append(json[0].name);
 									$.each(json, function(key, val){
-										$("#test-button").append(val.name);
+										$("#test-button").append(val.name +" - ");
 									});
 								},
 								error: function(e){
