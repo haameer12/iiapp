@@ -373,7 +373,7 @@
 		</footer>-->
 		<script>
 			$(document).ready(function(){
-				$("#right_nav_for_close").bind("swipeRight",function(){
+				$("nav#right").bind("swipeRight",function(){
 					$.afui.drawer.hide('#right','right');
 				});
 				$("nav#left").bind("swipeLeft",function(){
@@ -400,9 +400,9 @@
 					<img src="engine/build/img/logo.png" style="margin:8px 0 0 2px;" onload="this.width/=1.9;this.onload=null;" />
 				</div>
                 <div class="pages" style="background:none">
-                    <div class="panel active" style="background:none;padding:0;"><div style="height:100%;background:#930;">
+                    <div class="panel active" style="background:none;padding:0;">
                        
-					   <ul class="list" style="background:#C00" id="right_nav_for_close">
+					   <ul class="list">
 							<li><a href="#main" class="icon home" onClick="$.afui.drawer.hide('#right','right')">الرئيسية</a></li>
 							<li><a href="#esdarat" class="icon settings" onClick="$.afui.drawer.hide('#right','right')">الإصدارات</a></li>
 							<li><a href="#" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / تقارير وتحقيقات</a></li>
@@ -413,7 +413,7 @@
 							<li><a href="#about-us" class="icon question" onClick="$.afui.drawer.hide('#right','right')">من نحن</a></li>
 						</ul>
 					   
-                    </div></div>
+                    </div>
                 </div>
             </div>
 		 </nav>
