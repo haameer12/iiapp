@@ -323,7 +323,14 @@
 				</div>
 				
 				<div class="colored-win"><div class="c-w-title icon pin">الكتب</div>
-					<div style="background:#C60;width:200px;height:50px;margin:20px auto">
+					<script>
+						$(document).ready(function(){
+							$("div#swiploadbooks").bind("swipeRight",function(){
+								window.alert('hi');
+							});
+						});
+					</script>
+					<div style="background:#C60;width:200px;height:50px;margin:20px auto" id="swiploadbooks">
 						&nbsp;
 					</div>
 				</div>
