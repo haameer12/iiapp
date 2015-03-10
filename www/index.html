@@ -336,6 +336,14 @@
 						margin:3px;
 						padding:3px
 					}
+					.loading{
+						position:absolute;
+						top:0;
+						bottom:0;
+						left:0;
+						right:0;
+						background:url("img/loading.gif") no-repeat center center #FFF;
+					}
 				</style>
 				
 				<div class="white-item">
@@ -347,7 +355,8 @@
 						$(document).ready(function(){
 							$("#esdarat_books_first_load").bind("doubleTap",function(){
 								
-								alert("start json");
+								//alert("start json");
+								$("#esdarat_books_contaner").append('<span class="loading">&nbsp;</span>');
 								$.ajax({
 									type : 'get',
 									url : 'http://192.168.1.141/my_data/iicss_site/second/json.php',
@@ -364,6 +373,7 @@
 									error: function(e){
 									   //console.log(e.message);
 									   alert("Loading Error");
+									   $("#esdarat_books_contaner .loading").remove();
 									}
 								});
 				
@@ -371,7 +381,7 @@
 						
 						});
 					</script>
-					<div id="esdarat_books_contaner">
+					<div id="esdarat_books_contaner" style="position:relative">
 						<!--<div style="text-align:center;font-size:0;padding:3px;">
 							<span class="book-item">
 								<div class="in">
