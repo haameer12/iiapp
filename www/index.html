@@ -351,6 +351,7 @@
 				</div>
 				
 				<div class="colored-win"><div class="c-w-title icon pin">الكتب</div>
+				
 					<script>
 						$(document).ready(function(){
 							$("#esdarat_books_first_load").bind("doubleTap",function(){
@@ -367,7 +368,7 @@
 									success : function(json){
 										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in"><img src="' +val['pic_name'] +'" width="100%" /></div></span></div>');
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in"><img src="' +val['pic'] +'" width="100%" /></div></span></div>');
 										});
 									},
 									error: function(e){
@@ -393,21 +394,57 @@
 							<a id='esdarat_books_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 						</div>
 					</div>
+					
 				</div>
 				
+				
 				<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#177bbb">مجلة العقيدة</div>
+				
 					<script>
 						$(document).ready(function(){
-							$("#swipetest1").bind("doubleTap",function(){
-								alert("جاري التحميل");
+							$("#esdarat_aqida_mag_first_load").bind("doubleTap",function(){
+								
+								//alert("start json");
+								$("#esdarat_aqida_mag_contaner").append('<span class="loading">&nbsp;</span>');
+								$.ajax({
+									type : 'get',
+									url : 'http://iicss.iq/app/esdarat/json_aqida_mag.php',
+									async : false,
+									jsonpCallback : 'aqidaMagCallBack',
+									contentType : "application/json",
+									dataType : 'jsonp',
+									success : function(json){
+										$("#esdarat_aqida_mag_contaner").html('<div id="esdarat_aqida_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$.each(json, function(key, val){
+											$("#esdarat_aqida_mag_contaner #esdarat_aqida_mag_contaner_in").append('<span class="book-item"><div class="in"><img src="' +val['pic'] +'" width="100%" /></div></span></div>');
+										});
+									},
+									error: function(e){
+									   //console.log(e.message);
+									   alert("Loading Error");
+									   $("#esdarat_aqida_mag_contaner .loading").remove();
+									}
+								});
+				
 							});
 						
 						});
 					</script>
-					<div style="text-align:center">
-						<a id='swipetest1' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+					<div id="esdarat_aqida_mag_contaner" style="position:relative">
+						<!--<div style="text-align:center;font-size:0;padding:3px;">
+							<span class="book-item">
+								<div class="in">
+									<img src="b1.jpg" width="100%" />
+								</div>
+							</span>
+						</div>-->
+						<div style="text-align:center">
+							<a id='esdarat_aqida_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+						</div>
 					</div>
+					
 				</div>
+				
 				
 				<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#1aae88">مجلة دراسات إستشراقية</div>
 					<script>
