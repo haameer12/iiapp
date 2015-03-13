@@ -447,45 +447,147 @@
 				
 				
 				<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#1aae88">مجلة دراسات إستشراقية</div>
+					
 					<script>
 						$(document).ready(function(){
-							$("#swipetest2").bind("doubleTap",function(){
-								alert("جاري التحميل");
+							$("#esdarat_estishraq_mag_first_load").bind("doubleTap",function(){
+								
+								//alert("start json");
+								$("#esdarat_estishraq_mag_contaner").append('<span class="loading">&nbsp;</span>');
+								$.ajax({
+									type : 'get',
+									url : 'http://iicss.iq/app/esdarat/json_estishraq_mag.php',
+									async : false,
+									jsonpCallback : 'estishraqMagCallBack',
+									contentType : "application/json",
+									dataType : 'jsonp',
+									success : function(json){
+										$("#esdarat_estishraq_mag_contaner").html('<div id="esdarat_estishraq_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$.each(json, function(key, val){
+											$("#esdarat_estishraq_mag_contaner #esdarat_estishraq_mag_contaner_in").append('<span class="book-item"><div class="in"><img src="' +val['pic'] +'" width="100%" /></div></span></div>');
+										});
+									},
+									error: function(e){
+									   //console.log(e.message);
+									   alert("Loading Error");
+									   $("#esdarat_estishraq_mag_contaner .loading").remove();
+									}
+								});
+				
 							});
 						
 						});
 					</script>
-					<div style="text-align:center">
-						<a id='swipetest2' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+					<div id="esdarat_estishraq_mag_contaner" style="position:relative">
+						<!--<div style="text-align:center;font-size:0;padding:3px;">
+							<span class="book-item">
+								<div class="in">
+									<img src="b1.jpg" width="100%" />
+								</div>
+							</span>
+						</div>-->
+						<div style="text-align:center">
+							<a id='esdarat_estishraq_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+						</div>
 					</div>
+					
 				</div>
+				
 				
 				<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#948fb2">نشرة الرصد</div>
+					
 					<script>
 						$(document).ready(function(){
-							$("#swipetest3").bind("doubleTap",function(){
-								alert("جاري التحميل");
+							$("#esdarat_rasad_mag_first_load").bind("doubleTap",function(){
+								
+								//alert("start json");
+								$("#esdarat_rasad_mag_contaner").append('<span class="loading">&nbsp;</span>');
+								$.ajax({
+									type : 'get',
+									url : 'http://iicss.iq/app/esdarat/json_rasad_mag.php',
+									async : false,
+									jsonpCallback : 'rasadMagCallBack',
+									contentType : "application/json",
+									dataType : 'jsonp',
+									success : function(json){
+										$("#esdarat_rasad_mag_contaner").html('<div id="esdarat_rasad_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$.each(json, function(key, val){
+											$("#esdarat_rasad_mag_contaner #esdarat_rasad_mag_contaner_in").append('<span class="book-item"><div class="in"><img src="' +val['pic'] +'" width="100%" /></div></span></div>');
+										});
+									},
+									error: function(e){
+									   //console.log(e.message);
+									   alert("Loading Error");
+									   $("#esdarat_rasad_mag_contaner .loading").remove();
+									}
+								});
+				
 							});
 						
 						});
 					</script>
-					<div style="text-align:center">
-						<a id='swipetest3' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+					<div id="esdarat_rasad_mag_contaner" style="position:relative">
+						<!--<div style="text-align:center;font-size:0;padding:3px;">
+							<span class="book-item">
+								<div class="in">
+									<img src="b1.jpg" width="100%" />
+								</div>
+							</span>
+						</div>-->
+						<div style="text-align:center">
+							<a id='esdarat_rasad_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+						</div>
 					</div>
+					
 				</div>
 				
+				
 				<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#b37c96">ملحق الرصد</div>
+
 					<script>
 						$(document).ready(function(){
-							$("#swipetest4").bind("doubleTap",function(){
-								alert("جاري التحميل");
+							$("#esdarat_molhaq_rasad_mag_first_load").bind("doubleTap",function(){
+								
+								//alert("start json");
+								$("#esdarat_molhaq_rasad_mag_contaner").append('<span class="loading">&nbsp;</span>');
+								$.ajax({
+									type : 'get',
+									url : 'http://iicss.iq/app/esdarat/json_molhaq_rasad_mag.php',
+									async : false,
+									jsonpCallback : 'molhaqRasadMagCallBack',
+									contentType : "application/json",
+									dataType : 'jsonp',
+									success : function(json){
+										$("#esdarat_molhaq_rasad_mag_contaner").html('<div id="esdarat_molhaq_rasad_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$.each(json, function(key, val){
+											$("#esdarat_molhaq_rasad_mag_contaner #esdarat_molhaq_rasad_mag_contaner_in").append('<span class="book-item"><div class="in"><img src="' +val['pic'] +'" width="100%" /></div></span></div>');
+										});
+									},
+									error: function(e){
+									   //console.log(e.message);
+									   alert("Loading Error");
+									   $("#esdarat_molhaq_rasad_mag_contaner .loading").remove();
+									}
+								});
+				
 							});
 						
 						});
 					</script>
-					<div style="text-align:center">
-						<a id='swipetest4' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+					<div id="esdarat_molhaq_rasad_mag_contaner" style="position:relative">
+						<!--<div style="text-align:center;font-size:0;padding:3px;">
+							<span class="book-item">
+								<div class="in">
+									<img src="b1.jpg" width="100%" />
+								</div>
+							</span>
+						</div>-->
+						<div style="text-align:center">
+							<a id='esdarat_molhaq_rasad_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+						</div>
 					</div>
+
+
 				</div>
 				
 				
