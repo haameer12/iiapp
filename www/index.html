@@ -373,9 +373,38 @@
 										
 
 
+
+
+
+
 										$(".open-esdar").bind("tap",function(){
-											alert($(this).attr("sec-id") );
+											//alert($(this).attr("sec-id") )
+											$.ajax({
+												type : 'get',
+												url : 'http://iicss.iq/app/esdarat/json_books.php',
+												async : false,
+												jsonpCallback : 'booksCallBack',
+												contentType : "application/json",
+												dataType : 'jsonp',
+												success : function(json){
+													$.each(json, function(key, val){
+														$("#esdarat-inside-content").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
+													});
+													$.afui.loadContent("#esdarat-inside-content",false,false,"pop");
+												},
+												error: function(e){
+												   //console.log(e.message);
+												   alert("Loading Error");
+												   $("#esdarat_books_contaner .loading").remove();
+												}
+											});
+							
 										});
+											
+											
+											
+											
+	
 
 
 
@@ -609,6 +638,7 @@
 				</ul>-->
 
             </div>
+			<div data-left-drawer="left" class="panel" id="esdarat-inside-content" data-title="مشاهدة الإصدار" ></div>
 			<div data-left-drawer="left" class="panel" id="ch-aqida" data-title="قناة العقيدة" >
 				
 				
@@ -693,7 +723,7 @@
 					   <ul class="list">
 							<li><a href="#main" class="icon home" onClick="$.afui.drawer.hide('#right','right')">الرئيسية</a></li>
 							<li><a href="#esdarat" class="icon settings" onClick="$.afui.drawer.hide('#right','right')">الإصدارات</a></li>
-							<li><a href="#" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / تقارير وتحقيقات</a></li>
+							<li><a href="#esdarat-inside-content" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / تقارير وتحقيقات</a></li>
 							<li><a href="#ch-aqida" class="icon tv" onClick="$.afui.drawer.hide('#right','right')">قناة العقيدة</a></li>
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=1');return false;">قسم الكلام والعقيدة</a></li>
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=2');return false;">قسم الإستشراق</a></li>
