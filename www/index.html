@@ -390,7 +390,7 @@
 													$.each(json, function(key, val){
 														$("#esdarat-inside-content").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
 													});
-													$.afui.loadContent("#esdarat-inside-content",false,false,"pop");
+													$.afui.loadContent("#esdarat-inside-content",false,false,"fade");
 												},
 												error: function(e){
 												   //console.log(e.message);
