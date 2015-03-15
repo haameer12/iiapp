@@ -368,7 +368,7 @@
 									success : function(json){
 										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in"><a href="include/esdarat-inside.html" data-transition="invoke" data-persist-ajax="true"><img src="' +val['pic'] +'" width="100%" /></a></div></span>');
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in"><a href="include/esdarat-inside.html" data-transition="down" data-persist-ajax="true"><img src="' +val['pic'] +'" width="100%" /></a></div></span>');
 										});
 									},
 									error: function(e){
