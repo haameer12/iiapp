@@ -368,8 +368,17 @@
 									success : function(json){
 										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in"><a href="include/esdarat-inside.html" data-transition="fade" data-persist-ajax="true"><img src="' +val['pic'] +'" width="100%" /></a></div></span>');
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
 										});
+										
+
+
+										$(".open-esdar").bind("tap",function(){
+											alert($(this).attr("sec-id") );
+										});
+
+
+
 									},
 									error: function(e){
 									   //console.log(e.message);
@@ -379,7 +388,6 @@
 								});
 				
 							});
-						
 						});
 					</script>
 					<div id="esdarat_books_contaner" style="position:relative">
