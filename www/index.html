@@ -352,8 +352,8 @@
 						left:0;
 						right:0;
 						background:url("img/loading2.gif") no-repeat center center #FFF;
-						background-size:40px;
-						opacity:0.7;
+						background-size:35px;
+						opacity:0.4;
 					}
 				</style>
 				
@@ -379,7 +379,7 @@
 									success : function(json){
 										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><span class="loading2">&nbsp;</span><img src="' +val['pic'] +'" width="100%" /></div></span>');
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
 										});
 										
 
@@ -390,6 +390,8 @@
 
 										$(".open-esdar").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
+											var this_element = $(this);
+											this_element.append('<span class="loading2">&nbsp;</span>');
 											$.ajax({
 												type : 'get',
 												url : 'http://iicss.iq/app/esdarat/json_books.php',
@@ -399,14 +401,15 @@
 												dataType : 'jsonp',
 												success : function(json){
 													$.each(json, function(key, val){
-														$("#esdarat-inside-content").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
+														//$("#esdarat-inside-content").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
 													});
+													this_element.children(".loading2").remove();
 													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
 												},
 												error: function(e){
-												   //console.log(e.message);
-												   alert("Loading Error");
-												   $("#esdarat_books_contaner .loading").remove();
+													//console.log(e.message);
+													alert("Loading Error");
+													this_element.children(".loading2").remove();
 												}
 											});
 							
