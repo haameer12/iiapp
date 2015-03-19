@@ -394,14 +394,14 @@
 											this_element.append('<span class="loading2">&nbsp;</span>');
 											$.ajax({
 												type : 'get',
-												url : 'http://iicss.iq/app/esdarat/json_books.php',
+												url : 'http://iicss.iq/app/esdarat/get_esdar.php',
 												async : false,
-												jsonpCallback : 'booksCallBack',
+												jsonpCallback : 'esdarTextCallBack',
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
 													$.each(json, function(key, val){
-														//$("#esdarat-inside-content").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
+														$("#esdarat-inside-content #esdar-text").append(val['text']);
 													});
 													this_element.children(".loading2").remove();
 													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
@@ -652,7 +652,11 @@
 				</ul>-->
 
             </div>
-			<div data-left-drawer="left" class="panel" id="esdarat-inside-content" data-title="مشاهدة الإصدار" ></div>
+			<div data-left-drawer="left" class="panel" id="esdarat-inside-content" data-title="مشاهدة الإصدار" >
+				<div id="esdar-text" style="direction:rtl;font-family:hacen_xxl;text-align:justify;color:#797979;line-height:25px;padding:10px 0 0 0;">
+					
+				</div>
+			</div>
 			<div data-left-drawer="left" class="panel" id="ch-aqida" data-title="قناة العقيدة" >
 				
 				
