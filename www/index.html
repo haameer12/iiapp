@@ -396,14 +396,14 @@
 											this_element.append('<span class="loading2">&nbsp;</span>');
 											$.ajax({
 												type : 'get',
-												url : 'http://iicss.iq/app/esdarat/get_esdar.php',
+												url : 'http://iicss.iq/app/esdarat/get_esdar.php?id='+this_element.attr("sec-id"),
 												async : false,
 												jsonpCallback : 'esdarTextCallBack',
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
 													$.each(json, function(key, val){
-														$("#esdarat-inside-content #esdar-text").append(val['text']);
+														$("#esdarat-inside-content #esdar-text").html(val['text']);
 													});
 													this_element.children(".loading2").remove();
 													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
