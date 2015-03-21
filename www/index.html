@@ -290,17 +290,6 @@
 			<div data-left-drawer="left" class="panel" id="esdarat" data-title="الإصدارات" >
 				
 				<style>
-					@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
-					#esdarat-inside-content #esdar-text a{
-						display:block;
-						background:#d06975;
-						margin:10px 0;
-						padding:10px;
-						text-decoration:none;
-						color:#FFF;
-						border-radius:5px;
-						font-size:18px;
-					}
 					.white-item{
 						background:#fcfdfe;
 						border:1px solid #eaeef1;
@@ -665,6 +654,17 @@
             </div>
 			<div data-left-drawer="left" class="panel" id="esdarat-inside-content" data-title="مشاهدة الإصدار" >
 				<style>
+					@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
+					#esdarat-inside-content #esdar-text a{
+						display:block;
+						background:#d06975;
+						margin:10px 0;
+						padding:10px;
+						text-decoration:none;
+						color:#FFF;
+						border-radius:5px;
+						font-size:18px;
+					}
 					.app-text{
 						direction:rtl;
 						font-family:Droid Arabic Naskh;
@@ -677,6 +677,15 @@
 						line-height:28px;
 						color:#3a3c3f;
 						font-size:14px;
+					}
+					@media screen and (min-width: 14cm){
+						.app-text{
+							padding:10px 10px 0 10px;
+						}
+						.app-text p{
+							font-size:18px;
+							line-height:35px;
+						}
 					}
 				</style>
 				<div class="colored-win"><div class="c-w-title icon pin">الكتب</div>
