@@ -379,7 +379,7 @@
 									success : function(json){
 										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /></div></span>');
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><p>' +val['name'] +'</p></div></span>');
 										});
 										
 
@@ -400,9 +400,10 @@
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
-													$.each(json, function(key, val){
-														$("#esdarat-inside-content #esdar-text").html(val['text']);
-													});
+													//$("#esdarat-inside-content #esdar-title").css({backgroundColor : "red"});
+													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
+													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
+													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("p").text() +'</div>');
 													this_element.children(".loading2").remove();
 													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
 												},
@@ -655,6 +656,11 @@
 			<div data-left-drawer="left" class="panel" id="esdarat-inside-content" data-title="مشاهدة الإصدار" >
 				<style>
 					@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
+					#esdarat-inside-content .esdar-title{
+						font-family:"hacen_screen";
+						font-size:20px;
+						text-align:center;
+					}
 					#esdarat-inside-content #esdar-text a{
 						display:block;
 						background:#d06975;
@@ -697,7 +703,7 @@
 						}
 					}*/
 				</style>
-				<div class="colored-win"><div class="c-w-title icon pin">الكتب</div>
+				<div class="colored-win"><div class="c-w-title icon pin" id="esdar-win-title">&nbsp;</div>
 					<div id="esdar-text" class="app-text">
 						
 					</div>
