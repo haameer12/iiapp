@@ -339,11 +339,15 @@
 						padding:3px
 					}
 					span.book-item div.in h3.title{
-						font-size:12px;
+						border-top:1px solid #eaeef1;
+						font-size:13px;
 						font-family:"hacen_light";
 						font-weight:normal;
-						padding:10px 5px;
+						padding:1px 5px 0 5px;
 						color:#6d7077;
+						max-height:55px;
+						overflow:hidden;
+						line-height:24px;
 					}
 					.loading{
 						position:absolute;
@@ -411,7 +415,7 @@
 													//$("#esdarat-inside-content #esdar-title").css({backgroundColor : "red"});
 													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
 													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
-													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("p").text() +'</div>');
+													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
 													this_element.children(".loading2").remove();
 													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
 												},
