@@ -66,8 +66,9 @@
 	
 	
 	//my func
-	function openUrl(url) {
-		window.open(url, '_system', 'location=yes');
+	function openUrl(url, name) {
+		//window.open(url, '_system', 'location=yes');
+		window.open(url, '_'+name, 'location=yes');
 	}
 
     </script>
@@ -416,7 +417,7 @@
 													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
 													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
 													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"');return false;");
+													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"', 'system');return false;");
 													$("#esdarat-inside-content #esdar-text a").attr("href", "#");
 													window.alert($("#esdarat-inside-content #esdar-text a").attr("onClick"));
 													this_element.children(".loading2").remove();
@@ -814,9 +815,9 @@
 							<li><a href="#esdarat-inside-content" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / مراكز الدراسات والبحوث</a></li>
 							<li><a href="#esdarat-inside-content" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / تقارير وتحقيقات</a></li>
 							<li><a href="#ch-aqida" class="icon tv" onClick="$.afui.drawer.hide('#right','right')">قناة العقيدة</a></li>
-							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=1');return false;">قسم الكلام والعقيدة</a></li>
-							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=2');return false;">قسم الإستشراق</a></li>
-							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=3');return false;">قسم الفكر المعاصر</a></li>
+							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=1', 'blank');return false;">قسم الكلام والعقيدة</a></li>
+							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=2', 'blank');return false;">قسم الإستشراق</a></li>
+							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=3', 'blank');return false;">قسم الفكر المعاصر</a></li>
 							<li><a href="#about-us" class="icon question" onClick="$.afui.drawer.hide('#right','right')">من نحن</a></li>
 						</ul>
 					   
