@@ -416,7 +416,7 @@
 													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
 													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
 													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +")");
+													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"');return false;");
 													$("#esdarat-inside-content #esdar-text a").attr("href", "#");
 													window.alert($("#esdarat-inside-content #esdar-text a").attr("onClick"));
 													this_element.children(".loading2").remove();
