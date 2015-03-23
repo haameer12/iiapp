@@ -416,6 +416,9 @@
 													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
 													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
 													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +")");
+													$("#esdarat-inside-content #esdar-text a").attr("href", "#");
+													window.alert($("#esdarat-inside-content #esdar-text a").attr("onClick"));
 													this_element.children(".loading2").remove();
 													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
 												},
@@ -673,7 +676,8 @@
 						font-size:20px;
 						text-align:center;
 						line-height:30px;
-						margin:15px 0;
+						margin:8px 0;
+						color:#5d6066;
 					}
 					#esdarat-inside-content #esdar-text a{
 						display:block;
