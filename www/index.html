@@ -436,11 +436,6 @@
 										});
 										
 
-
-
-
-
-
 										$(".not-open-esdar").bind("tap",function(){
 											//close_notify("all");
 											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
@@ -469,7 +464,7 @@
 												},
 												error: function(e){
 													//console.log(e.message);
-													alert("Loading Error");
+													notify('لم يتحمل التحميل بنجاح، تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
 													this_element.children(".loading2").remove();
 												}
 											});
@@ -477,16 +472,10 @@
 										});
 											
 											
-											
-											
-	
-
-
-
 									},
 									error: function(e){
 									   //console.log(e.message);
-									   alert("Loading Error");
+									   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
 									   $("#esdarat_books_contaner .loading").remove();
 									}
 								});
