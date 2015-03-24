@@ -33,6 +33,19 @@
     <script type="text/javascript" charset="utf-8" src="engine/src/af.animateheader.js"></script>
     <script type="text/javascript" charset="utf-8" src="engine/src/af.splashscreen.js"></script>
     <script type="text/javascript" charset="utf-8" src="engine/src/af.swipereveal.js"></script>
+	
+	
+	
+	
+	<script type="text/javascript" src="noti/jquery.noty.js"></script>
+	<script type="text/javascript" src="noti/layouts/top.js"></script>
+	<script type="text/javascript" src="noti/layouts/topLeft.js"></script>
+	<script type="text/javascript" src="noti/layouts/topRight.js"></script>
+	<script type="text/javascript" src="noti/layouts/center.js"></script>
+	<script type="text/javascript" src="noti/layouts/topCenter.js"></script>
+	<script type="text/javascript" src="noti/themes/default.js"></script>
+	
+	
 
 
     <script>
@@ -65,10 +78,37 @@
 	
 	
 	
-	//my func
+	/*---------------my func--------------*/
 	function openUrl(url, name) {
 		//window.open(url, '_system', 'location=yes');
 		window.open(url, '_'+name, 'location=yes');
+	}
+	
+	//show notification
+	function notify(text, type, duration, pos){
+		var n = noty({
+			text: text,
+			type: type,
+			dismissQueue: true,
+			layout: pos,
+			theme: 'defaultTheme',
+			animation: {
+			open: {opacity: 'toggle'},
+			close: {opacity: 'toggle'},
+			easing: 'swing',
+			speed: 700
+			},
+			timeout: duration,
+			modal: false
+		});
+		return n;
+	}
+	
+	//close notification
+	function close_notify(witch){
+		if(witch == "all"){
+			$.noty.closeAll();
+		}else{}
 	}
 
     </script>
@@ -392,7 +432,7 @@
 									success : function(json){
 										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in open-esdar" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar' : 'not-open-esdar') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 										});
 										
 
@@ -401,6 +441,10 @@
 
 
 
+										$(".not-open-esdar").bind("tap",function(){
+											//close_notify("all");
+											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
+										});
 										$(".open-esdar").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
 											var this_element = $(this);
