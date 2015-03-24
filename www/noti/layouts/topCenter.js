@@ -10,7 +10,7 @@
 			selector: 'ul#noty_topCenter_layout_container',
 			style: function() {
 				$(this).css({
-					top: 140,
+					top: 73,
 					left: 0,
 					position: 'fixed',
 					width: '310px',
