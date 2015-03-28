@@ -452,7 +452,7 @@
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
-													//$("#esdarat-inside-content #esdar-title").css({backgroundColor : "red"});
+													$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#1ccacc"});
 													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
 													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
 													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
@@ -693,8 +693,8 @@
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
-													//$("#esdarat-inside-content #esdar-title").css({backgroundColor : "red"});
-													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
+													$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#b37c96"});
+													$("#esdarat-inside-content #esdar-win-title").text("ملحق الرصد");
 													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
 													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
 													$("#esdarat-inside-content #esdar-text img").attr("src",  this_element.children("img").attr("src"));
