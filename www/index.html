@@ -86,7 +86,22 @@
 	
 	//show notification
 	function notify(text, type, duration, pos){
-		window.alert("hi");
+		var n = noty({
+			text: text,
+			type: type,
+			dismissQueue: true,
+			layout: pos,
+			theme: 'defaultTheme',
+			animation: {
+			open: {opacity: 'toggle'},
+			close: {opacity: 'toggle'},
+			easing: 'swing',
+			speed: 700
+			},
+			timeout: duration,
+			modal: false
+		});
+		return n;
 	}
 	
 	//close notification
@@ -417,15 +432,15 @@
 									success : function(json){
 										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar' : 'not-open-esdar') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 										});
 										
 
-										$(".not-open-esdar").bind("tap",function(){
+										$(".not-open-esdar-book").bind("tap",function(){
 											//close_notify("all");
 											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
 										});
-										$(".open-esdar").bind("tap",function(){
+										$(".open-esdar-book").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
 											var this_element = $(this);
 											this_element.append('<span class="loading2">&nbsp;</span>');
@@ -502,15 +517,15 @@
 									success : function(json){
 										$("#esdarat_aqida_mag_contaner").html('<div id="esdarat_aqida_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_aqida_mag_contaner #esdarat_aqida_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar' : 'not-open-esdar') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+											$("#esdarat_aqida_mag_contaner #esdarat_aqida_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_aqida_mag' : 'not-open-esdar_aqida_mag') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 										});
 										
 
-										$(".not-open-esdar").bind("tap",function(){
+										$(".not-open-esdar_aqida_mag").bind("tap",function(){
 											//close_notify("all");
 											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
 										});
-										$(".open-esdar").bind("tap",function(){
+										$(".open-esdar_aqida_mag").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
 											var this_element = $(this);
 											this_element.append('<span class="loading2">&nbsp;</span>');
@@ -580,15 +595,15 @@
 									success : function(json){
 										$("#esdarat_estishraq_mag_contaner").html('<div id="esdarat_estishraq_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_estishraq_mag_contaner #esdarat_estishraq_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar' : 'not-open-esdar') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+											$("#esdarat_estishraq_mag_contaner #esdarat_estishraq_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_estishraq_mag' : 'not-open-esdar_estishraq_mag') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 										});
 										
 
-										$(".not-open-esdar").bind("tap",function(){
+										$(".not-open-esdar_estishraq_mag").bind("tap",function(){
 											//close_notify("all");
 											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
 										});
-										$(".open-esdar").bind("tap",function(){
+										$(".open-esdar_estishraq_mag").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
 											var this_element = $(this);
 											this_element.append('<span class="loading2">&nbsp;</span>');
@@ -658,15 +673,15 @@
 									success : function(json){
 										$("#esdarat_molhaq_rasad_mag_contaner").html('<div id="esdarat_molhaq_rasad_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_molhaq_rasad_mag_contaner #esdarat_molhaq_rasad_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar' : 'not-open-esdar') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+											$("#esdarat_molhaq_rasad_mag_contaner #esdarat_molhaq_rasad_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_molhaq_rasad_mag' : 'not-open-esdar_molhaq_rasad_mag') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 										});
 										
 
-										$(".not-open-esdar").bind("tap",function(){
+										$(".not-open-esdar_molhaq_rasad_mag").bind("tap",function(){
 											//close_notify("all");
 											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
 										});
-										$(".open-esdar").bind("tap",function(){
+										$(".open-esdar_molhaq_rasad_mag").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
 											var this_element = $(this);
 											this_element.append('<span class="loading2">&nbsp;</span>');
