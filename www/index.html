@@ -86,22 +86,7 @@
 	
 	//show notification
 	function notify(text, type, duration, pos){
-		var n = noty({
-			text: text,
-			type: type,
-			dismissQueue: true,
-			layout: pos,
-			theme: 'defaultTheme',
-			animation: {
-			open: {opacity: 'toggle'},
-			close: {opacity: 'toggle'},
-			easing: 'swing',
-			speed: 700
-			},
-			timeout: duration,
-			modal: false
-		});
-		return n;
+		window.alert("hi");
 	}
 	
 	//close notification
