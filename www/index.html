@@ -338,6 +338,13 @@
 						box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 						text-decoration:none;
 					}
+					.white-item .panel-subject{
+						padding:10px;
+						text-align:center;
+						font-family:hacen_xxl;
+						font-size:17px;
+						color:#838282;
+					}
 					div.colored-win{
 						border:1px solid #eaeef1;
 						border-radius:3px;
@@ -411,7 +418,7 @@
 				</style>
 				
 				<div class="white-item">
-					<div style="padding:10px;text-align:center;font-family:hacen_xxl;font-size:17px;color:#838282">إصدارات المركز</div>
+					<div class="panel-subject">إصدارات المركز</div>
 				</div>
 				
 				<div class="colored-win"><div class="c-w-title icon pin">الكتب</div>
@@ -808,6 +815,20 @@
 					</div>
 				</div>
 			</div>
+			<div data-left-drawer="left" class="panel" id="alrasad-marakiz" data-title="الرصد / مراكز الدراسات والبحوث" >
+				
+				<div class="white-item">
+					<div class="panel-subject">الرصد / مراكز الدراسات والبحوث</div>
+				</div>
+				
+			</div>
+			<div data-left-drawer="left" class="panel" id="alrasad-taqarir" data-title="الرصد / تقارير وتحقيقات" >
+				
+				<div class="white-item">
+					<div class="panel-subject">الرصد / تقارير وتحقيقات</div>
+				</div>
+				
+			</div>
 			<div data-left-drawer="left" class="panel" id="ch-aqida" data-title="قناة العقيدة" >
 				
 				
@@ -892,8 +913,8 @@
 					   <ul class="list">
 							<li><a href="#main" class="icon home" onClick="$.afui.drawer.hide('#right','right')">الرئيسية</a></li>
 							<li><a href="#esdarat" class="icon settings" onClick="$.afui.drawer.hide('#right','right')">الإصدارات</a></li>
-							<li><a href="#esdarat-inside-content" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / مراكز الدراسات والبحوث</a></li>
-							<li><a href="#esdarat-inside-content" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / تقارير وتحقيقات</a></li>
+							<li><a href="#alrasad-marakiz" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / مراكز الدراسات والبحوث</a></li>
+							<li><a href="#alrasad-taqarir" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / تقارير وتحقيقات</a></li>
 							<li><a href="#ch-aqida" class="icon tv" onClick="$.afui.drawer.hide('#right','right')">قناة العقيدة</a></li>
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=1', 'blank');return false;">قسم الكلام والعقيدة</a></li>
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=2', 'blank');return false;">قسم الإستشراق</a></li>
