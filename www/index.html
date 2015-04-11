@@ -508,7 +508,7 @@
 				<div class="white-item">
 					<div class="panel-subject">الرصد / مراكز الدراسات والبحوث</div>
 				</div>
-				<div class="colored-win"><div class="c-w-title icon camera" id="esdar-win-title">تمهيد</div>
+				<div class="colored-win"><div class="c-w-title icon camera">تمهيد</div>
 					<div class="app-text">
 						<script>
 							$(document).ready(function() {
@@ -590,37 +590,37 @@
 				
 					<script>
 						$(document).ready(function(){
-							$("#esdarat_estishraq_mag_first_load").bind("doubleTap",function(){
+							$("#alrasad_marakiz_first_load").bind("doubleTap",function(){
 								
 								//alert("start json");
-								$("#esdarat_estishraq_mag_contaner").append('<span class="loading">&nbsp;</span>');
+								$("#alrasad_marakiz_contaner").append('<span class="loading">&nbsp;</span>');
 								$.ajax({
 									type : 'get',
-									url : 'http://iicss.iq/app/rasad/json_marakiz.php',
+									url : 'http://iicss.iq/app/rasad/marakiz/json_marakiz.php',
 									async : false,
 									jsonpCallback : 'rasadMarakizCallBack',
 									contentType : "application/json",
 									dataType : 'jsonp',
 									success : function(json){
-										$("#esdarat_estishraq_mag_contaner").html('<div id="esdarat_estishraq_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$("#alrasad_marakiz_contaner").html('<div id="alrasad_marakiz_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_estishraq_mag_contaner #esdarat_estishraq_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_estishraq_mag' : 'not-open-esdar_estishraq_mag') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+											$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 										});
 										
 				
-										$(".not-open-esdar_estishraq_mag").bind("tap",function(){
+										$(".not-open-alrasad_marakiz").bind("tap",function(){
 											//close_notify("all");
 											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
 										});
-										$(".open-esdar_estishraq_mag").bind("tap",function(){
+										$(".open-alrasad_marakiz").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
 											var this_element = $(this);
 											this_element.append('<span class="loading2">&nbsp;</span>');
 											$.ajax({
 												type : 'get',
-												url : 'http://iicss.iq/app/esdarat/get_esdar.php?id='+this_element.attr("sec-id"),
+												url : 'http://iicss.iq/app/rasad/marakiz/json_get_markaz_data.php?id='+this_element.attr("sec-id"),
 												async : false,
-												jsonpCallback : 'esdarTextCallBack',
+												jsonpCallback : 'alrasadMarkazTextCallBack',
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
@@ -648,16 +648,16 @@
 									error: function(e){
 									   //console.log(e.message);
 									   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
-									   $("#esdarat_estishraq_mag_contaner .loading").remove();
+									   $("#alrasad_marakiz_contaner .loading").remove();
 									}
 								});
 				
 							});
 						});
 					</script>
-					<div id="esdarat_estishraq_mag_contaner" style="position:relative">
+					<div id="alrasad_marakiz_contaner" style="position:relative">
 						<div style="text-align:center">
-							<a id='esdarat_estishraq_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+							<a id='alrasad_marakiz_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 						</div>
 					</div>
 					
