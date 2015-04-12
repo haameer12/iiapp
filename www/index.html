@@ -340,7 +340,7 @@
 	<style>
 	/*مشاهدة الإصدار - esdarat-inside-content*/
 	@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
-	#esdarat-inside-content .esdar-title{
+	#esdarat-inside-content .esdar-title, #alrasad_marakiz-inside-content .esdar-title{
 		font-family:"hacen_screen";
 		font-size:20px;
 		text-align:center;
@@ -624,15 +624,16 @@
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
-													$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#1aae88"});
-													$("#esdarat-inside-content #esdar-win-title").text("مجلة دراسات إستشراقية");
-													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
-													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-													$("#esdarat-inside-content #esdar-text img").attr("src",  this_element.children("img").attr("src"));
-													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"', 'system');return false;");
-													$("#esdarat-inside-content #esdar-text a").attr("href", "#");
+													$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").css({backgroundColor : "#1aae88"});
+													$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").text("الرصد / مراكز الدراسات والبحوث");
+													$("#alrasad_marakiz-inside-content #alrasad_markaz-text").html(json[0]['text']);
+													$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<img src="' +this_element.children("img").attr("src") +'" style="float:left;border:1px solid #cfcece;margin:0 15px 0 0;padding:1px" />');
+													$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+													//$("#alrasad_marakiz-inside-content #alrasad_markaz-text img").attr("src",  this_element.children("img").attr("src"));
+													//$("#alrasad_marakiz-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"', 'system');return false;");
+													//$("#alrasad_marakiz-inside-content #esdar-text a").attr("href", "#");
 													this_element.children(".loading2").remove();
-													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+													$.afui.loadContent("#alrasad_marakiz-inside-content",false,false,"up");
 												},
 												error: function(e){
 													//console.log(e.message);
