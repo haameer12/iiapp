@@ -318,6 +318,33 @@
 		overflow:hidden;
 		line-height:24px;
 	}
+	
+	
+	span.markaz-item{
+		display:inline-block;
+		width:100%;
+		vertical-align:top;
+	}
+	span.markaz-item div.in{
+		position:relative;
+		border: 1px solid #eaeef1;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+		margin:3px;
+		padding:3px
+	}
+	span.markaz-item div.in h3.title{
+		border-top:1px solid #eaeef1;
+		font-size:13px;
+		font-family:"hacen_light";
+		font-weight:normal;
+		padding:3px 5px 0 5px;
+		color:#6d7077;
+		max-height:55px;
+		overflow:hidden;
+		line-height:24px;
+	}
+	
+	
 	.loading{
 		position:absolute;
 		top:0;
@@ -604,13 +631,13 @@
 									success : function(json){
 										$("#alrasad_marakiz_contaner").html('<div id="alrasad_marakiz_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+											$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="markaz-item"><div class="in ' +((val['type'] == 2)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +val['id'] +'"><img src="' +val['pic'] +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 										});
 										
 				
 										$(".not-open-alrasad_marakiz").bind("tap",function(){
 											//close_notify("all");
-											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
+											notify('لا يمكن مشاهدة هذه البيانات', 'warning', 4000, 'topCenter');
 										});
 										$(".open-alrasad_marakiz").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
@@ -629,9 +656,6 @@
 													$("#alrasad_marakiz-inside-content #alrasad_markaz-text").html(json[0]['text']);
 													$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div style="text-align:center"><img src="' +this_element.children("img").attr("src") +'" style="border:1px solid #cfcece;padding:1px" />');
 													$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-													//$("#alrasad_marakiz-inside-content #alrasad_markaz-text img").attr("src",  this_element.children("img").attr("src"));
-													//$("#alrasad_marakiz-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"', 'system');return false;");
-													//$("#alrasad_marakiz-inside-content #esdar-text a").attr("href", "#");
 													this_element.children(".loading2").remove();
 													$.afui.loadContent("#alrasad_marakiz-inside-content",false,false,"up");
 												},
