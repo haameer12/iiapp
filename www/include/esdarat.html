@@ -20,7 +20,7 @@
 					success : function(json){
 						$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 						$.each(json, function(key, val){
-							$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+							$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 						});
 						
 
@@ -73,7 +73,7 @@
 	</script>
 	<div id="esdarat_books_contaner" style="position:relative">
 		<!--<div style="text-align:center;font-size:0;padding:3px;">
-			<span class="book-item">
+			<span class="grid-item">
 				<div class="in">
 					<img src="b1.jpg" width="100%" />
 				</div>
@@ -105,7 +105,7 @@
 					success : function(json){
 						$("#esdarat_aqida_mag_contaner").html('<div id="esdarat_aqida_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 						$.each(json, function(key, val){
-							$("#esdarat_aqida_mag_contaner #esdarat_aqida_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_aqida_mag' : 'not-open-esdar_aqida_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+							$("#esdarat_aqida_mag_contaner #esdarat_aqida_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_aqida_mag' : 'not-open-esdar_aqida_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 						});
 						
 
@@ -183,7 +183,7 @@
 					success : function(json){
 						$("#esdarat_estishraq_mag_contaner").html('<div id="esdarat_estishraq_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 						$.each(json, function(key, val){
-							$("#esdarat_estishraq_mag_contaner #esdarat_estishraq_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_estishraq_mag' : 'not-open-esdar_estishraq_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+							$("#esdarat_estishraq_mag_contaner #esdarat_estishraq_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_estishraq_mag' : 'not-open-esdar_estishraq_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 						});
 						
 
@@ -261,7 +261,7 @@
 					success : function(json){
 						$("#esdarat_molhaq_rasad_mag_contaner").html('<div id="esdarat_molhaq_rasad_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 						$.each(json, function(key, val){
-							$("#esdarat_molhaq_rasad_mag_contaner #esdarat_molhaq_rasad_mag_contaner_in").append('<span class="book-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_molhaq_rasad_mag' : 'not-open-esdar_molhaq_rasad_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+							$("#esdarat_molhaq_rasad_mag_contaner #esdarat_molhaq_rasad_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2)? 'open-esdar_molhaq_rasad_mag' : 'not-open-esdar_molhaq_rasad_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 						});
 						
 
