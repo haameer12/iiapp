@@ -525,10 +525,10 @@
 				
 					<script>
 						$(document).ready(function(){
-							$("#esdarat_books_first_load").bind("doubleTap",function(){
+							$("#rasad_taqarir_first_load").bind("doubleTap",function(){
 								
 								//alert("start json");
-								$("#esdarat_books_contaner").append('<span class="loading">&nbsp;</span>');
+								$("#rasad_taqarir_contaner").append('<span class="loading">&nbsp;</span>');
 								$.ajax({
 									type : 'get',
 									url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir.php',
@@ -537,9 +537,9 @@
 									contentType : "application/json",
 									dataType : 'jsonp',
 									success : function(json){
-										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="list-pic-item"><div class="in ' +((val['type'] == 2)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" /><h3 class="title">' +val['text'] +'</h3></div></span>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<span class="list-pic-item"><div class="in ' +((val['type'] == 2)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" /><h3 class="title">' +val['text'] +'</h3></div></span>');
 										});
 										
 				
@@ -629,9 +629,9 @@
 							line-height:24px;
 						}
 					</style>
-					<div id="esdarat_books_contaner" style="position:relative">
+					<div id="rasad_taqarir_contaner" style="position:relative">
 						<div style="text-align:center">
-							<a id='esdarat_books_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+							<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 						</div>
 					</div>
 					
