@@ -521,6 +521,136 @@
 				<div class="white-item">
 					<div class="panel-subject">الرصد / تقارير وتحقيقات</div>
 				</div>
+				<div class="colored-win"><div class="c-w-title icon pin">تقارير وتحقيقات</div>
+				
+					<script>
+						$(document).ready(function(){
+							$("#esdarat_books_first_load").bind("doubleTap",function(){
+								
+								//alert("start json");
+								$("#esdarat_books_contaner").append('<span class="loading">&nbsp;</span>');
+								$.ajax({
+									type : 'get',
+									url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir.php',
+									async : false,
+									jsonpCallback : 'rasadTaqarirCallBack',
+									contentType : "application/json",
+									dataType : 'jsonp',
+									success : function(json){
+										$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$.each(json, function(key, val){
+											$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="list-pic-item"><div class="in ' +((val['type'] == 2)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" /><h3 class="title">' +val['text'] +'</h3></div></span>');
+										});
+										
+				
+										$(".not-open-esdar-book").bind("tap",function(){
+											//close_notify("all");
+											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
+										});
+										$(".open-esdar-book").bind("tap",function(){
+											//alert($(this).attr("sec-id") )
+											var this_element = $(this);
+											this_element.append('<span class="loading2">&nbsp;</span>');
+											$.ajax({
+												type : 'get',
+												url : 'http://iicss.iq/app/esdarat/get_esdar.php?id='+this_element.attr("sec-id"),
+												async : false,
+												jsonpCallback : 'esdarTextCallBack',
+												contentType : "application/json",
+												dataType : 'jsonp',
+												success : function(json){
+													$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#1ccacc"});
+													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
+													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
+													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+													$("#esdarat-inside-content #esdar-text img").attr("src",  this_element.children("img").attr("src"));
+													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"', 'system');return false;");
+													$("#esdarat-inside-content #esdar-text a").attr("href", "#");
+													this_element.children(".loading2").remove();
+													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+												},
+												error: function(e){
+													//console.log(e.message);
+													notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
+													this_element.children(".loading2").remove();
+												}
+											});
+							
+										});
+											
+											
+									},
+									error: function(e){
+									   //console.log(e.message);
+									   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
+									   $("#esdarat_books_contaner .loading").remove();
+									}
+								});
+				
+							});
+						});
+					</script>
+					<style>
+						span.list-pic-item{
+							display:inline-block;
+							vertical-align:top;
+							
+							background:#fbfbfb;
+							position:relative;
+							border: 1px solid #eaeef1;
+							box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+							margin:3px;
+							padding:3px;
+						}
+						/*@media screen and (orientation : portrait){
+							span.grid-item{
+								width:33.3333333333333333%;
+							}
+						}
+						@media screen and (max-width: 14cm) and (orientation : portrait){
+							span.grid-item{
+								width:50%;
+							}
+						}*/
+						span.list-pic-item div.in img{
+							float:right;
+							border-left: 1px solid #eaeef1;
+							padding:1px;
+							max-height:100%;
+							width:auto;
+						}
+						span.list-pic-item div.in h3.title{
+							font-size:13px;
+							font-family:"hacen_light";
+							font-weight:normal;
+							padding:3px 5px 0 5px;
+							color:#6d7077;
+							overflow:hidden;
+							line-height:24px;
+						}
+					</style>
+					<div id="esdarat_books_contaner" style="position:relative">
+						<div style="text-align:center">
+							<a id='esdarat_books_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
+						</div>
+					</div>
+					
+				</div>
+
+
+
+
+
+
+				
+			</div>
+			<div data-left-drawer="left" class="panel" id="alrasad_taqarir-inside-content" data-title="مشاهدة بيانات المركز" >
+				
+				<div class="colored-win"><div class="c-w-title icon pin" id="alrasad_taqarir-win-title">&nbsp;</div>
+					<div id="alrasad_taqarir-text" class="app-text">
+						
+					</div>
+				</div>
 				
 			</div>
 			
