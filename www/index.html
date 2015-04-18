@@ -539,7 +539,7 @@
 									success : function(json){
 										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">&nbsp;</a>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="pic.jpg" /><table class="text"><td>إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد</td></table></div>');
 										});
 										
 				
@@ -594,7 +594,6 @@
 						span.list-pic-item{
 							display:inline-block;
 							vertical-align:top;
-							
 							background:#fbfbfb;
 							position:relative;
 							border: 1px solid #eaeef1;
@@ -629,7 +628,48 @@
 							line-height:24px;
 						}
 					</style>
-					<div id="rasad_taqarir_contaner" style="position:relative">
+						<style>
+							.list-pic_item{
+								position:relative;
+								display:block;
+								background:#fcfdfe;
+								border:1px solid #eaeef1;
+								margin:8px 0 0 0;
+								height:84px;
+								box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+								text-decoration:none;
+								direction:rtl;
+								white-space:nowrap;
+							}
+							.list-pic_item img{
+								padding:1px;
+								vertical-align:middle;
+								position:absolute;
+								top:0;
+								right:0;
+								/*border:1px solid #eaeef1;*/
+							}
+							.list-pic_item table.text{
+								vertical-align:middle;
+								width:100%;
+								
+							}
+							.list-pic_item table.text td{
+								height:78px;
+								padding:0 80px 0 0;
+								margin:0;
+								white-space:normal;
+								font-family:"hacen_xxl";
+								font-size:14px;
+								color:#6d7077;
+								text-align:right;
+							}
+						</style>
+					<div id="rasad_taqarir_contaner" style="position:relative;  text-align:right;">
+						<!--<div class="list-pic_item">
+							<img src="pic.jpg" />
+							<table class="text"><td>إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد</td></table>
+						</div>-->
 						<div style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;">
 							<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 						</div>
