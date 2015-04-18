@@ -521,7 +521,7 @@
 				<div class="white-item">
 					<div class="panel-subject">الرصد / تقارير وتحقيقات</div>
 				</div>
-				<div class="colored-win"><div class="c-w-title icon pin">تقارير وتحقيقات</div>
+				<div>
 				
 					<script>
 						$(document).ready(function(){
@@ -539,7 +539,7 @@
 									success : function(json){
 										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<span class="list-pic-item"><div class="in ' +((val['type'] == 2)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" /><h3 class="title">' +val['text'] +'</h3></div></span>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">&nbsp;</a>');
 										});
 										
 				
@@ -630,7 +630,7 @@
 						}
 					</style>
 					<div id="rasad_taqarir_contaner" style="position:relative">
-						<div style="text-align:center">
+						<div style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;">
 							<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 						</div>
 					</div>
