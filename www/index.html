@@ -539,35 +539,31 @@
 									success : function(json){
 										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td>' +val['title'] +'</td></table></div>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'">' +val['title'] +'</td></table></div>');
 										});
 										
-				
-										$(".not-open-esdar-book").bind("tap",function(){
-											//close_notify("all");
-											notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'topCenter');
-										});
-										$(".open-esdar-book").bind("tap",function(){
+
+										$(".open-rasad-taqrir").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
 											var this_element = $(this);
 											this_element.append('<span class="loading2">&nbsp;</span>');
 											$.ajax({
 												type : 'get',
-												url : 'http://iicss.iq/app/esdarat/get_esdar.php?id='+this_element.attr("sec-id"),
+												url : 'http://iicss.iq/app/rasad/taqarir/json_get_taqrir_data.php?id='+this_element.attr("rasad-taqrir-id"),
 												async : false,
-												jsonpCallback : 'esdarTextCallBack',
+												jsonpCallback : 'alrasadTaqrirTextCallBack',
 												contentType : "application/json",
 												dataType : 'jsonp',
 												success : function(json){
-													$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#1ccacc"});
-													$("#esdarat-inside-content #esdar-win-title").text("الكتب");
-													$("#esdarat-inside-content #esdar-text").html(json[0]['text']);
-													$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-													$("#esdarat-inside-content #esdar-text img").attr("src",  this_element.children("img").attr("src"));
-													$("#esdarat-inside-content #esdar-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#esdarat-inside-content #esdar-text a").attr("href") +"', 'system');return false;");
-													$("#esdarat-inside-content #esdar-text a").attr("href", "#");
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json[0]['text']);
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
+													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
+													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
 													this_element.children(".loading2").remove();
-													$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+													$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
 												},
 												error: function(e){
 													//console.log(e.message);
@@ -684,7 +680,7 @@
 
 				
 			</div>
-			<div data-left-drawer="left" class="panel" id="alrasad_taqarir-inside-content" data-title="مشاهدة بيانات المركز" >
+			<div data-left-drawer="left" class="panel" id="alrasad_taqarir-inside-content" data-title="مشاهدة بيانات التقرير" >
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="alrasad_taqarir-win-title">&nbsp;</div>
 					<div id="alrasad_taqarir-text" class="app-text">
