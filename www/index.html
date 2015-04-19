@@ -539,7 +539,7 @@
 									success : function(json){
 										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="pic.jpg" /><table class="text"><td>إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد</td></table></div>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td>' +val['title'] +'</td></table></div>');
 										});
 										
 				
@@ -647,7 +647,7 @@
 								position:absolute;
 								top:0;
 								right:0;
-								/*border:1px solid #eaeef1;*/
+								border:1px solid #eaeef1;
 							}
 							.list-pic_item table.text{
 								vertical-align:middle;
@@ -656,7 +656,7 @@
 							}
 							.list-pic_item table.text td{
 								height:78px;
-								padding:0 80px 0 0;
+								padding:0 80px 0 8px;
 								margin:0;
 								white-space:normal;
 								font-family:"hacen_xxl";
