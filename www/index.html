@@ -340,12 +340,12 @@
 	<style>
 	/*مشاهدة الإصدار - esdarat-inside-content*/
 	@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
-	#esdarat-inside-content .esdar-title, #alrasad_marakiz-inside-content .esdar-title{
+	#esdarat-inside-content .esdar-title, #alrasad_marakiz-inside-content .markaz-title, #alrasad_taqarir-inside-content .taqrir-title{
 		font-family:"hacen_screen";
 		font-size:20px;
 		text-align:center;
 		line-height:30px;
-		margin:8px 0;
+		padding:8px 0;
 		color:#5d6066;
 	}
 	#esdarat-inside-content #esdar-text img{
@@ -539,7 +539,7 @@
 									success : function(json){
 										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'">' +val['title'] +'</td></table></div>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">' +val['title'] +'</span></td></table></div>');
 										});
 										
 
@@ -558,7 +558,7 @@
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json[0]['text']);
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="taqrir-title">' +this_element.children("span.title").text() +'</div><div class="p-item"><img src="img/pen-icon.png" onload="this.width/=2;this.onload=null;" /><span>حيدر محمد الكعبي</span></div><div class="p-item" style="padding-right:13px"><img src="img/reference-icon.png" onload="this.width/=2;this.onload=null;" /><span>المركز الإسلامي للدراسات الإستراتيجية</span></div>						<div class="p-item"><img src="img/calendar-icon.png" onload="this.width/=2;this.onload=null;" /><span>آذار 2015</span></div></div>');
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
@@ -683,7 +683,38 @@
 			<div data-left-drawer="left" class="panel" id="alrasad_taqarir-inside-content" data-title="مشاهدة بيانات التقرير" >
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="alrasad_taqarir-win-title">&nbsp;</div>
+										<style>
+							#alrasad_taqarir-inside-content .details{
+								background:#f8f9f9;
+								margin:-6px -10px 0 -10px;
+								padding:5px 0;
+							}
+							#alrasad_taqarir-inside-content .details .p-item{
+								padding:9px 10px;
+							}
+							#alrasad_taqarir-inside-content .details .p-item img{
+								vertical-align:middle;
+							}
+							#alrasad_taqarir-inside-content .details .p-item span{
+								font-family:"hacen_light";
+								padding:0 10px 0 0;
+								font-size:16px;
+								color:#5a5e64;
+							}
+						</style>
 					<div id="alrasad_taqarir-text" class="app-text">
+						
+						
+						
+
+<!--						<div class="details">
+							<div class="taqrir-title">أمريكا في مأزق (دلائل خطاب نتنياهو في الكونغرس)</div>
+							<div class="p-item"><img src="img/pen-icon.png" onload="this.width/=2;this.onload=null;" /><span>حيدر محمد الكعبي</span></div>
+							<div class="p-item" style="padding-right:13px"><img src="img/reference-icon.png" onload="this.width/=2;this.onload=null;" /><span>المركز الإسلامي للدراسات الإستراتيجية</span></div>
+							<div class="p-item"><img src="img/calendar-icon.png" onload="this.width/=2;this.onload=null;" /><span>آذار 2015</span></div>
+						</div>-->
+						
+						
 						
 					</div>
 				</div>

@@ -122,7 +122,7 @@
 									$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").text("الرصد / مراكز الدراسات والبحوث");
 									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").html(json[0]['text']);
 									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div style="text-align:center"><img src="' +this_element.children("img").attr("src") +'" style="border:1px solid #cfcece;padding:1px" />');
-									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div class="markaz-title">' +this_element.children("h3.title").text() +'</div>');
 									this_element.children(".loading2").remove();
 									$.afui.loadContent("#alrasad_marakiz-inside-content",false,false,"up");
 								},
