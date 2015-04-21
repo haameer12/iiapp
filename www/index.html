@@ -558,7 +558,8 @@
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json[0]['text']);
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="taqrir-title">' +this_element.children("span.title").text() +'</div><div class="p-item"><img src="img/pen-icon.png" onload="this.width/=2;this.onload=null;" /><span>حيدر محمد الكعبي</span></div><div class="p-item" style="padding-right:13px"><img src="img/reference-icon.png" onload="this.width/=2;this.onload=null;" /><span>المركز الإسلامي للدراسات الإستراتيجية</span></div>						<div class="p-item"><img src="img/calendar-icon.png" onload="this.width/=2;this.onload=null;" /><span>آذار 2015</span></div></div>');
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera">حيدر محمد الكعبي</span></div><div class="p-item"><span class="icon paper">المركز الإسلامي للدراسات الإستراتيجية</span></div>						<div class="p-item"><span class="icon calendar">آذار 2015</span></div></div>');
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
@@ -683,37 +684,39 @@
 			<div data-left-drawer="left" class="panel" id="alrasad_taqarir-inside-content" data-title="مشاهدة بيانات التقرير" >
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="alrasad_taqarir-win-title">&nbsp;</div>
-										<style>
-							#alrasad_taqarir-inside-content .details{
-								background:#f8f9f9;
-								margin:-6px -10px 0 -10px;
-								padding:5px 0;
-							}
-							#alrasad_taqarir-inside-content .details .p-item{
-								padding:9px 10px;
-							}
-							#alrasad_taqarir-inside-content .details .p-item img{
-								vertical-align:middle;
-							}
-							#alrasad_taqarir-inside-content .details .p-item span{
-								font-family:"hacen_light";
-								padding:0 10px 0 0;
-								font-size:16px;
-								color:#5a5e64;
-							}
-						</style>
+<style>
+	#alrasad_taqarir-inside-content .details{
+		background:#f8f9f9;
+		margin:0 -10px 0 -10px;
+		padding:5px 0;
+		border-top:1px solid #f1f3f5;
+		border-bottom:1px solid #f1f3f5;
+	}
+	#alrasad_taqarir-inside-content .details .p-item{
+		padding:9px 10px;
+	}
+	#alrasad_taqarir-inside-content .details .p-item img{
+		vertical-align:middle;
+	}
+	#alrasad_taqarir-inside-content .details .p-item span{
+		font-family:"hacen_light";
+		padding:0 10px 0 0;
+		font-size:15px;
+		color:#5a5e64;
+	}
+</style>
 					<div id="alrasad_taqarir-text" class="app-text">
 						
 						
 						
 
-<!--						<div class="details">
-							<div class="taqrir-title">أمريكا في مأزق (دلائل خطاب نتنياهو في الكونغرس)</div>
-							<div class="p-item"><img src="img/pen-icon.png" onload="this.width/=2;this.onload=null;" /><span>حيدر محمد الكعبي</span></div>
-							<div class="p-item" style="padding-right:13px"><img src="img/reference-icon.png" onload="this.width/=2;this.onload=null;" /><span>المركز الإسلامي للدراسات الإستراتيجية</span></div>
-							<div class="p-item"><img src="img/calendar-icon.png" onload="this.width/=2;this.onload=null;" /><span>آذار 2015</span></div>
-						</div>-->
-						
+<!--						<div class="taqrir-title">أمريكا في مأزق (دلائل خطاب نتنياهو في الكونغرس)</div>
+						<div class="details">
+							<div class="p-item"><span class="icon camera">حيدر محمد الكعبي</span></div>
+							<div class="p-item"><span class="icon paper">المركز الإسلامي للدراسات الإستراتيجية</span></div>
+							<div class="p-item"><span class="icon calendar">آذار 2015</span></div>
+						</div>
+						as-->
 						
 						
 					</div>
