@@ -539,7 +539,7 @@
 									success : function(json){
 										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">' +val['title'] +'</span></td></table></div>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">' +val['title'] +'</span></td></table><div class="details">aalksd</div></div>');
 										});
 										
 
@@ -632,26 +632,29 @@
 								background:#fcfdfe;
 								border:1px solid #eaeef1;
 								margin:8px 0 0 0;
-								height:84px;
+								/*height:84px;*/
 								box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 								text-decoration:none;
 								direction:rtl;
 								white-space:nowrap;
 							}
-							.list-pic_item img{
+							.list-pic_item .pic-text{
+								height:84px;
+							}
+							.list-pic_item .pic-text img{
 								padding:1px;
 								vertical-align:middle;
 								position:absolute;
 								top:0;
 								right:0;
-								border:1px solid #eaeef1;
+								/*border-left:1px solid #eaeef1;*/
 							}
-							.list-pic_item table.text{
+							.list-pic_item .pic-text table.text{
 								vertical-align:middle;
 								width:100%;
 								
 							}
-							.list-pic_item table.text td{
+							.list-pic_item .pic-text table.text td{
 								height:78px;
 								padding:0 80px 0 8px;
 								margin:0;
@@ -661,12 +664,30 @@
 								color:#6d7077;
 								text-align:right;
 							}
+							.list-pic_item div.details{
+								border-top:1px solid #eaeef1;
+								font-size:15px;
+								background:#fafbfb;
+							}
 						</style>
 					<div id="rasad_taqarir_contaner" style="position:relative;  text-align:right">
-						<!--<div class="list-pic_item">
-							<img src="pic.jpg" />
-							<table class="text"><td>إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد إحراق "داعش" للطيار الأردني منعطف إرهابي جديد</td></table>
-						</div>-->
+						
+						
+						<div class="list-pic_item">
+							<div class="pic-text">
+								<img src="pic.jpg" />
+								<table class="text">
+									<td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">العدوان السعودي على اليمن وتداعيات الازمة</span></td>
+								</table>
+							</div>
+							<div class="details">
+								<br />
+								<br /><br /><br /><br /><br /><br /><br /><br />
+							</div>
+						</div>
+						
+						<br /><br /><br />
+						
 						<div style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;">
 							<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 						</div>
