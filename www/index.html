@@ -78,9 +78,7 @@
 	
 	
 	
-	$(function() {
-		FastClick.attach(document.body);
-	});
+
 	/*---------------my func--------------*/
 	function openUrl(url, name) {
 		//window.open(url, '_system', 'location=yes');
@@ -219,7 +217,7 @@
 	}
 
 	function onDeviceReady() {
-		//FastClick.attach(document.body);   
+		FastClick.attach(document.body);   
 		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			
 	////////////////////////////////////////////////////////////////////////////////////////////
@@ -252,6 +250,7 @@
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 	}
+	
 	</script>
 	<style>
 	/*الإصدارات - esdarat*/
