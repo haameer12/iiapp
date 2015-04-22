@@ -78,7 +78,10 @@
 	
 	
 	
-
+	$(document).on('pageinit', '.ui-page', function (event, data){
+	   FastClick.attach(activePage);
+	});
+	
 	/*---------------my func--------------*/
 	function openUrl(url, name) {
 		//window.open(url, '_system', 'location=yes');
@@ -217,7 +220,8 @@
 	}
 
 	function onDeviceReady() {
-		FastClick.attach(document.body);   
+		//FastClick.attach(document.body);
+		  
 		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			
 	////////////////////////////////////////////////////////////////////////////////////////////
@@ -547,7 +551,7 @@
 										
 										
 										$(".list-pic_item .pic-text").bind("tap",function(){
-											$(".list-pic_item .details").fadeToggle();
+											$(this).children(".list-pic_item .details").fadeToggle();
 										});
 										$(".open-rasad-taqrir").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
