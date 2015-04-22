@@ -537,9 +537,9 @@
 									contentType : "application/json",
 									dataType : 'jsonp',
 									success : function(json){
-										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
+										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="font-size:0;padding:3px;">&nbsp;</div>')
 										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><img src="' +val['pic'] +'" /><table class="text"><td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">' +val['title'] +'</span></td></table><div class="details">aalksd</div></div>');
+											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><div class="pic-text"><img src="' +val['pic'] +'" /><table class="text"><td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">' +val['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera">' +val['investigator'] +'</span></div><div class="p-item"><span class="icon paper">' +val['source'] +'</span></div><div class="p-item"><span class="icon calendar">' +val['t_date'] +'</span></div><div class="text">' +val['text'] +'</div></div></div>');
 										});
 										
 
@@ -647,7 +647,7 @@
 								position:absolute;
 								top:0;
 								right:0;
-								/*border-left:1px solid #eaeef1;*/
+								border-left:1px solid #eaeef1;
 							}
 							.list-pic_item .pic-text table.text{
 								vertical-align:middle;
@@ -669,9 +669,10 @@
 								font-size:15px;
 								background:#fdfdfd;
 								padding:2px;
+								/*display:none;*/
 							}
 							.list-pic_item .details .p-item{
-								padding:9px 10px;
+								padding:5px 10px;
 							}
 							.list-pic_item .details .p-item img{
 								vertical-align:middle;
@@ -685,7 +686,8 @@
 							.list-pic_item .details .text{
 								border-top:1px solid #F5F5F5;
 								white-space:normal;
-								padding:10px;
+								padding:10px 10px 4px 10px;
+								margin:4px 0 0 0;
 								font-family:"Droid Arabic Naskh";
 								font-size:12px;
 								line-height:27px;
@@ -696,7 +698,7 @@
 					<div id="rasad_taqarir_contaner" style="position:relative;  text-align:right">
 						
 						
-						<div class="list-pic_item">
+<!--						<div class="list-pic_item">
 							<div class="pic-text">
 								<img src="pic.jpg" />
 								<table class="text">
@@ -711,42 +713,8 @@
 								في سلسلة الحوادث الغريبة المتتالية التي باتت ترسم على المشهد العالمي العديد من المتغيرات السياسية، شهد يوم 3/3/2015 حادثا مهما في تاريخ الولايات المتحدة الامريكية، وبخاصة في ما يتعلق بسياساتها الخارجية ورسمها لخارطة السياسة العالمية التي طالما تبجحت بأنها صاحبة الكلمة الأولى والأخيرة فيها.
 								</div>
 							</div>
-						</div>
-						<div class="list-pic_item">
-							<div class="pic-text">
-								<img src="pic.jpg" />
-								<table class="text">
-									<td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">العدوان السعودي على اليمن وتداعيات الازمة</span></td>
-								</table>
-							</div>
-							<div class="details">
-								<div class="p-item"><span class="icon camera">حيدر محمد الكعبي</span></div>
-								<div class="p-item"><span class="icon paper">المركز الإسلامي للدراسات الإستراتيجية</span></div>
-								<div class="p-item"><span class="icon calendar">آذار 2015</span></div>
-								<div class="text">
-								في سلسلة الحوادث الغريبة المتتالية التي باتت ترسم على المشهد العالمي العديد من المتغيرات السياسية، شهد يوم 3/3/2015 حادثا مهما في تاريخ الولايات المتحدة الامريكية، وبخاصة في ما يتعلق بسياساتها الخارجية ورسمها لخارطة السياسة العالمية التي طالما تبجحت بأنها صاحبة الكلمة الأولى والأخيرة فيها.
-								</div>
-							</div>
-						</div>
-						<div class="list-pic_item">
-							<div class="pic-text">
-								<img src="pic.jpg" />
-								<table class="text">
-									<td class="open-rasad-taqrir" rasad-taqrir-id="' +val['id'] +'"><span class="title">العدوان السعودي على اليمن وتداعيات الازمة</span></td>
-								</table>
-							</div>
-							<div class="details">
-								<div class="p-item"><span class="icon camera">حيدر محمد الكعبي</span></div>
-								<div class="p-item"><span class="icon paper">المركز الإسلامي للدراسات الإستراتيجية</span></div>
-								<div class="p-item"><span class="icon calendar">آذار 2015</span></div>
-								<div class="text">
-								في سلسلة الحوادث الغريبة المتتالية التي باتت ترسم على المشهد العالمي العديد من المتغيرات السياسية، شهد يوم 3/3/2015 حادثا مهما في تاريخ الولايات المتحدة الامريكية، وبخاصة في ما يتعلق بسياساتها الخارجية ورسمها لخارطة السياسة العالمية التي طالما تبجحت بأنها صاحبة الكلمة الأولى والأخيرة فيها.
-								</div>
-							</div>
-						</div>
+						</div>-->
 						
-						
-						<br /><br /><br />
 						
 						<div style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;">
 							<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
