@@ -534,7 +534,7 @@
 							$("#rasad_taqarir_first_load").bind("doubleTap",function(){
 								
 								//alert("start json");
-								$("#rasad_taqarir_contaner").append('<span class="loading">&nbsp;</span>');
+								$("#rasad_taqarir_contaner #rasad_taqarir_id_for_loading").append('<span class="loading">&nbsp;</span>');
 								$.ajax({
 									type : 'get',
 									url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir.php',
@@ -569,7 +569,7 @@
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json[0]['text']);
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera">' +this_element.children('span.investigator').text() +'</span></div><div class="p-item"><span class="icon paper">' +this_element.children('span.source').text() +'</span></div>						<div class="p-item"><span class="icon calendar">' +this_element.children('span.t_date').text() +'</span></div></div>');
+													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
 													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
 													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
@@ -723,7 +723,7 @@
 							}
 						</style>
 					<div id="rasad_taqarir_contaner" style="position:relative;  text-align:right">
-						<div style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;">
+						<div id='rasad_taqarir_id_for_loading' style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;position:relative;">
 							<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 						</div>
 					</div>
@@ -743,7 +743,7 @@
 <style>
 	#alrasad_taqarir-inside-content .details{
 		background:#fcfdfd;
-		margin:0 -10px 0 -10px;
+		margin:3px -10px 13px -10px;
 		padding:5px 0;
 		border-top:1px solid #f7f8f9;
 		border-bottom:1px solid #f7f8f9;
