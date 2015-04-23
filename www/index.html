@@ -413,6 +413,140 @@
 			line-height:35px;
 		}
 	}*/
+	
+	
+	
+	span.list-pic-item{
+		display:inline-block;
+		vertical-align:top;
+		background:#fbfbfb;
+		position:relative;
+		border: 1px solid #eaeef1;
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+		margin:3px;
+		padding:3px;
+	}
+	span.list-pic-item div.in img{
+		float:right;
+		border-left: 1px solid #eaeef1;
+		padding:1px;
+		max-height:100%;
+		width:auto;
+	}
+	span.list-pic-item div.in h3.title{
+		font-size:13px;
+		font-family:"hacen_light";
+		font-weight:normal;
+		padding:3px 5px 0 5px;
+		color:#6d7077;
+		overflow:hidden;
+		line-height:24px;
+	}
+	
+	.list-pic_item{
+		position:relative;
+		display:block;
+		background:#fcfdfe;
+		border:1px solid #eaeef1;
+		margin:8px 0 0 0;
+		/*height:84px;*/
+		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+		text-decoration:none;
+		direction:rtl;
+		white-space:nowrap;
+		overflow:hidden;
+	}
+	.list-pic_item .pic-text{
+		height:84px;
+		overflow:hidden;
+	}
+	.list-pic_item .pic-text img{
+		padding:1px;
+		vertical-align:middle;
+		position:absolute;
+		top:0;
+		right:0;
+		border-left:1px solid #eaeef1;
+	}
+	.list-pic_item .pic-text table.text{
+		vertical-align:middle;
+		width:100%;
+		
+	}
+	.list-pic_item .pic-text table.text td{
+		height:78px;
+		padding:0 80px 0 8px;
+		margin:0;
+		white-space:normal;
+		font-family:"hacen_xxl";
+		font-size:14px;
+		color:#6d7077;
+		text-align:right;
+	}
+	.list-pic_item .details{
+		border-top:1px solid #eaeef1;
+		font-size:15px;
+		background:#fdfdfd;
+		padding:2px;
+		display:none;
+	}
+	.list-pic_item .details .p-item{
+		padding:5px 10px;
+	}
+	.list-pic_item .details .p-item img{
+		vertical-align:middle;
+	}
+	.list-pic_item .details .p-item span{
+		font-family:"hacen_light";
+		padding:0 10px 0 0;
+		font-size:14px;
+		color:#5a5e64;
+	}
+	.list-pic_item .details .text{
+		border-top:1px solid #F5F5F5;
+		white-space:normal;
+		padding:10px 10px 4px 10px;
+		margin:4px 0 0 0;
+		font-family:"Droid Arabic Naskh";
+		font-size:12px;
+		line-height:27px;
+		text-align:justify;
+		color:#5a5e64;
+	}
+	.list-pic_item .details .text span.read_more{
+		display:block;
+		background:#d06975;
+		margin:6px 0;
+		padding:5px;
+		color:#FFF;
+		border-radius:5px;
+		font-size:16px;
+		font-family:"hacen_screen";
+		text-align:center;
+	}
+	.list-pic_item .details .text span.read_more span{
+		display:none;
+	}
+	
+	#alrasad_taqarir-inside-content .details{
+		background:#fcfdfd;
+		margin:3px -10px 13px -10px;
+		padding:5px 0;
+		border-top:1px solid #f7f8f9;
+		border-bottom:1px solid #f7f8f9;
+	}
+	#alrasad_taqarir-inside-content .details .p-item{
+		padding:9px 10px;
+	}
+	#alrasad_taqarir-inside-content .details .p-item img{
+		vertical-align:middle;
+	}
+	#alrasad_taqarir-inside-content .details .p-item span{
+		font-family:"hacen_light";
+		padding:0 10px 0 0;
+		font-size:15px;
+		color:#5a5e64;
+	}
 	</style>
 </head>
 
@@ -497,284 +631,39 @@
 			</div>
 			
 			<div data-left-drawer="left" class="panel" id="esdarat" data-include="include/esdarat.html" data-title="الإصدارات" >
-				
+				&nbsp;
             </div>
 			<div data-left-drawer="left" class="panel" id="esdarat-inside-content" data-title="مشاهدة الإصدار" >
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="esdar-win-title">&nbsp;</div>
 					<div id="esdar-text" class="app-text">
-						
+						&nbsp;
 					</div>
 				</div>
 				
 			</div>
 			
 			<div data-left-drawer="left" class="panel" id="alrasad-marakiz" data-include="include/alrasad_marakiz.html" data-title="الرصد / مراكز الدراسات والبحوث" >
-				
+				&nbsp;
 			</div>
 			<div data-left-drawer="left" class="panel" id="alrasad_marakiz-inside-content" data-title="مشاهدة بيانات المركز" >
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="alrasad_markaz-win-title">&nbsp;</div>
 					<div id="alrasad_markaz-text" class="app-text">
-						
+						&nbsp;
 					</div>
 				</div>
 				
 			</div>
 			
-			<div data-left-drawer="left" class="panel" id="alrasad-taqarir" data-title="الرصد / تقارير وتحقيقات" >
-				
-				<div class="white-item">
-					<div class="panel-subject">الرصد / تقارير وتحقيقات</div>
-				</div>
-				<div>
-				
-					<script>
-						$(document).ready(function(){
-							$("#rasad_taqarir_first_load").bind("doubleTap",function(){
-								
-								//alert("start json");
-								$("#rasad_taqarir_contaner #rasad_taqarir_id_for_loading").append('<span class="loading">&nbsp;</span>');
-								$.ajax({
-									type : 'get',
-									url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir.php',
-									async : false,
-									jsonpCallback : 'rasadTaqarirCallBack',
-									contentType : "application/json",
-									dataType : 'jsonp',
-									success : function(json){
-										$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="font-size:0;padding:3px;">&nbsp;</div>')
-										$.each(json, function(key, val){
-											$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><div class="pic-text"><img src="' +val['pic'] +'" /><table class="text"><td><span class="title">' +val['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +val['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +val['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +val['t_date'] +'</bdi></span></div><div class="text">' +val['text'] +'<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +val['id'] +'"><span class="title">' +val['title'] +'</span><span class="investigator">' +val['investigator'] +'</span><span class="source">' +val['source'] +'</span><span class="t_date">' +val['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
-										});
-										
-										
-										
-										$(".list-pic_item .pic-text").bind("tap",function(){
-											$(this).siblings(".list-pic_item .details").fadeToggle(1);
-										});
-										
-										$(".open-rasad-taqrir").bind("tap",function(){
-											//alert($(this).attr("sec-id") )
-											var this_element = $(this);
-											this_element.before('<span class="loading2">&nbsp;</span>');
-											$.ajax({
-												type : 'get',
-												url : 'http://iicss.iq/app/rasad/taqarir/json_get_taqrir_data.php?id='+this_element.attr("rasad-taqrir-id"),
-												async : false,
-												jsonpCallback : 'alrasadTaqrirTextCallBack',
-												contentType : "application/json",
-												dataType : 'jsonp',
-												success : function(json){
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json[0]['text']);
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-													$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
-													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
-													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
-													//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
-													this_element.siblings(".loading2").remove();
-													$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
-												},
-												error: function(e){
-													//console.log(e.message);
-													notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
-													this_element.children(".loading2").remove();
-												}
-											});
-							
-										});
-											
-											
-									},
-									error: function(e){
-									   //console.log(e.message);
-									   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
-									   $("#esdarat_books_contaner .loading").remove();
-									}
-								});
-				
-							});
-						});
-					</script>
-					<style>
-						span.list-pic-item{
-							display:inline-block;
-							vertical-align:top;
-							background:#fbfbfb;
-							position:relative;
-							border: 1px solid #eaeef1;
-							box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-							margin:3px;
-							padding:3px;
-						}
-						/*@media screen and (orientation : portrait){
-							span.grid-item{
-								width:33.3333333333333333%;
-							}
-						}
-						@media screen and (max-width: 14cm) and (orientation : portrait){
-							span.grid-item{
-								width:50%;
-							}
-						}*/
-						span.list-pic-item div.in img{
-							float:right;
-							border-left: 1px solid #eaeef1;
-							padding:1px;
-							max-height:100%;
-							width:auto;
-						}
-						span.list-pic-item div.in h3.title{
-							font-size:13px;
-							font-family:"hacen_light";
-							font-weight:normal;
-							padding:3px 5px 0 5px;
-							color:#6d7077;
-							overflow:hidden;
-							line-height:24px;
-						}
-					</style>
-						<style>
-							.list-pic_item{
-								position:relative;
-								display:block;
-								background:#fcfdfe;
-								border:1px solid #eaeef1;
-								margin:8px 0 0 0;
-								/*height:84px;*/
-								box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-								text-decoration:none;
-								direction:rtl;
-								white-space:nowrap;
-								overflow:hidden;
-							}
-							.list-pic_item .pic-text{
-								height:84px;
-								overflow:hidden;
-							}
-							.list-pic_item .pic-text img{
-								padding:1px;
-								vertical-align:middle;
-								position:absolute;
-								top:0;
-								right:0;
-								border-left:1px solid #eaeef1;
-							}
-							.list-pic_item .pic-text table.text{
-								vertical-align:middle;
-								width:100%;
-								
-							}
-							.list-pic_item .pic-text table.text td{
-								height:78px;
-								padding:0 80px 0 8px;
-								margin:0;
-								white-space:normal;
-								font-family:"hacen_xxl";
-								font-size:14px;
-								color:#6d7077;
-								text-align:right;
-							}
-							.list-pic_item .details{
-								border-top:1px solid #eaeef1;
-								font-size:15px;
-								background:#fdfdfd;
-								padding:2px;
-								display:none;
-							}
-							.list-pic_item .details .p-item{
-								padding:5px 10px;
-							}
-							.list-pic_item .details .p-item img{
-								vertical-align:middle;
-							}
-							.list-pic_item .details .p-item span{
-								font-family:"hacen_light";
-								padding:0 10px 0 0;
-								font-size:14px;
-								color:#5a5e64;
-							}
-							.list-pic_item .details .text{
-								border-top:1px solid #F5F5F5;
-								white-space:normal;
-								padding:10px 10px 4px 10px;
-								margin:4px 0 0 0;
-								font-family:"Droid Arabic Naskh";
-								font-size:12px;
-								line-height:27px;
-								text-align:justify;
-								color:#5a5e64;
-							}
-							.list-pic_item .details .text span.read_more{
-								display:block;
-								background:#d06975;
-								margin:6px 0;
-								padding:5px;
-								color:#FFF;
-								border-radius:5px;
-								font-size:16px;
-								font-family:"hacen_screen";
-								text-align:center;
-							}
-							.list-pic_item .details .text span.read_more span{
-								display:none;
-							}
-						</style>
-					<div id="rasad_taqarir_contaner" style="position:relative;  text-align:right">
-						<div id='rasad_taqarir_id_for_loading' style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;position:relative;">
-							<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-						</div>
-					</div>
-					
-				</div>
-
-
-
-
-
-
-				
+			<div data-left-drawer="left" class="panel" id="alrasad-taqarir" data-include="include/alrasad_taqarir.html" data-title="الرصد / تقارير وتحقيقات" >
+				&nbsp;
 			</div>
 			<div data-left-drawer="left" class="panel" id="alrasad_taqarir-inside-content" data-title="مشاهدة بيانات التقرير" >
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="alrasad_taqarir-win-title">&nbsp;</div>
-<style>
-	#alrasad_taqarir-inside-content .details{
-		background:#fcfdfd;
-		margin:3px -10px 13px -10px;
-		padding:5px 0;
-		border-top:1px solid #f7f8f9;
-		border-bottom:1px solid #f7f8f9;
-	}
-	#alrasad_taqarir-inside-content .details .p-item{
-		padding:9px 10px;
-	}
-	#alrasad_taqarir-inside-content .details .p-item img{
-		vertical-align:middle;
-	}
-	#alrasad_taqarir-inside-content .details .p-item span{
-		font-family:"hacen_light";
-		padding:0 10px 0 0;
-		font-size:15px;
-		color:#5a5e64;
-	}
-</style>
 					<div id="alrasad_taqarir-text" class="app-text">
-						
-						
-						
-
-<!--						<div class="taqrir-title">أمريكا في مأزق (دلائل خطاب نتنياهو في الكونغرس)</div>
-						<div class="details">
-							<div class="p-item"><span class="icon camera">حيدر محمد الكعبي</span></div>
-							<div class="p-item"><span class="icon paper">المركز الإسلامي للدراسات الإستراتيجية</span></div>
-							<div class="p-item"><span class="icon calendar">آذار 2015</span></div>
-						</div>
-						as-->
-						
-						
+						&nbsp;
 					</div>
 				</div>
 				
