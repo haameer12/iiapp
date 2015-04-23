@@ -551,7 +551,7 @@
 										
 										
 										$(".list-pic_item .pic-text").bind("tap",function(){
-											$(this).children(".list-pic_item .details").fadeToggle();
+											$(this).siblings(".list-pic_item .details").fadeToggle(1);
 										});
 										$(".open-rasad-taqrir").bind("tap",function(){
 											//alert($(this).attr("sec-id") )
