@@ -129,18 +129,18 @@
 
 			switch (this.options.type) {
 				case 'alert': case 'notification':
-					this.$bar.css({backgroundColor: '#edeede', borderColor: '#CCC', color: '#8c8d7e', fontFamily: 'tahoma'}); break;
+					this.$bar.css({backgroundColor: '#edeede', borderColor: '#CCC', color: '#8c8d7e', fontFamily: 'Droid Arabic Naskh'}); break;
 				case 'warning':
-					this.$bar.css({backgroundColor: '#FFEAA8', borderColor: '#FFC237', color: '#826200', fontFamily: 'tahoma'});
+					this.$bar.css({backgroundColor: '#FFEAA8', borderColor: '#FFC237', color: '#826200', fontFamily: 'Droid Arabic Naskh'});
 					this.$buttons.css({borderTop: '1px solid #FFC237'}); break;
 				case 'error':
-					this.$bar.css({backgroundColor: '#ffcaa8', borderColor: '#ff7937', color: '#823200', fontFamily: 'tahoma'});
+					this.$bar.css({backgroundColor: '#ffcaa8', borderColor: '#ff7937', color: '#823200', fontFamily: 'Droid Arabic Naskh'});
 					this.$buttons.css({borderTop: '1px solid darkred'}); break;
 				case 'information':
-					this.$bar.css({backgroundColor: '#a8daff', borderColor: '#37b6ff', color: '#0a5580', fontFamily: 'tahoma'});
+					this.$bar.css({backgroundColor: '#a8daff', borderColor: '#37b6ff', color: '#0a5580', fontFamily: 'Droid Arabic Naskh'});
 					this.$buttons.css({borderTop: '1px solid #0B90C4'}); break;
 				case 'success':
-					this.$bar.css({backgroundColor: '#cbe476', borderColor: '#a3c21c', color: '#5d7409', fontFamily: 'tahoma'});
+					this.$bar.css({backgroundColor: '#cbe476', borderColor: '#a3c21c', color: '#5d7409', fontFamily: 'Droid Arabic Naskh'});
 					this.$buttons.css({borderTop: '1px solid #50C24E'});break;
 				default:
 					this.$bar.css({backgroundColor: '#FFF', borderColor: '#CCC', color: '#444'}); break;
