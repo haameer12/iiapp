@@ -157,6 +157,7 @@
 			// you might want to play a sound to get the user's attention, throw up a dialog, etc.
 			if(e.foreground){
 				$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+				window.alert('inline');
 
 				// if the notification contains a soundname, play it.
 				//var my_media = new Media("/android_asset/www/"+e.soundname);
@@ -165,15 +166,17 @@
 				
 				if(e.coldstart){
 					$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
+					window.alert('coldstart');
 				}else{
 					$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
+					window.alert('background');
 				}
 				
 			}
 			
 			//alert(e.payload.message);
 			navigator.notification.alert(
-				e.payload.message,  // message
+				e.payload.message +' - ' +e.payload.msgcnt,  // message
 				"",                 // callback
 				'اشعار',            // title
 				'موافق'             // buttonName
