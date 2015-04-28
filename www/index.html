@@ -157,7 +157,8 @@
 			// you might want to play a sound to get the user's attention, throw up a dialog, etc.
 			if(e.foreground){
 				$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-				window.alert('inline');
+				
+				notify(e.payload.message, 'information', 4000, 'topCenter');
 
 				// if the notification contains a soundname, play it.
 				//var my_media = new Media("/android_asset/www/"+e.soundname);
@@ -175,12 +176,12 @@
 			}
 			
 			//alert(e.payload.message);
-			navigator.notification.alert(
+			/*navigator.notification.alert(
 				e.payload.message +' - ' +e.payload.msgcnt,  // message
 				"",                 // callback
 				'اشعار',            // title
 				'موافق'             // buttonName
-			);
+			);*/
 			//alert(e.payload.msgcnt);
 			
 			$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
