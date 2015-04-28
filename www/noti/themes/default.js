@@ -137,7 +137,7 @@
 					this.$bar.css({backgroundColor: '#ffcaa8', borderColor: '#ff7937', color: '#823200', fontFamily: 'Droid Arabic Naskh'});
 					this.$buttons.css({borderTop: '1px solid darkred'}); break;
 				case 'information':
-					this.$bar.css({backgroundColor: '#a8daff', borderColor: '#37b6ff', color: '#0a5580', fontFamily: 'Droid Arabic Naskh'});
+					this.$bar.css({backgroundColor: '#a8daff', borderColor: '#37b6ff', color: '#0a5580', fontFamily: 'Droid Arabic Naskh', fontSize: '13px'});
 					this.$buttons.css({borderTop: '1px solid #0B90C4'}); break;
 				case 'success':
 					this.$bar.css({backgroundColor: '#cbe476', borderColor: '#a3c21c', color: '#5d7409', fontFamily: 'Droid Arabic Naskh'});
