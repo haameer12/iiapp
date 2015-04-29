@@ -37,13 +37,7 @@
 	
 	
 	
-	<script type="text/javascript" src="noti/jquery.noty.js"></script>
-	<script type="text/javascript" src="noti/layouts/top.js"></script>
-	<script type="text/javascript" src="noti/layouts/topLeft.js"></script>
-	<script type="text/javascript" src="noti/layouts/topRight.js"></script>
-	<script type="text/javascript" src="noti/layouts/center.js"></script>
-	<script type="text/javascript" src="noti/layouts/topCenter.js"></script>
-	<script type="text/javascript" src="noti/themes/default.js"></script>
+
 	
 	
 
@@ -89,7 +83,7 @@
 	}
 	
 	//show notification
-	function notify(text, type, duration, pos){
+/*	function notify(text, type, duration, pos){
 		var n = noty({
 			text: text,
 			type: type,
@@ -113,9 +107,73 @@
 		if(witch == "all"){
 			$.noty.closeAll();
 		}else{}
-	}
+	}*/
+    </script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<link rel="stylesheet" type="text/css" href="noty-master/demo/buttons.css"/>
+	<link rel="stylesheet" type="text/css" href="noty-master/demo/animate.css"/>
+	<link rel="stylesheet" href="noty-master/demo/font-awesome/css/font-awesome.min.css"/>
+	
+	<script type="text/javascript" src="noty-master/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+	<script type="text/javascript" src="noty-master/demo/notification_html.js"></script>
+
+	<script type="text/javascript">
+
+
+        function generate(type, text) {
+
+            var n = noty({
+                text        : text,
+                type        : type,
+                dismissQueue: true,
+                layout      : 'topLeft',
+                closeWith   : ['click'],
+                theme       : 'relax',
+                maxVisible  : 10,
+                animation   : {
+                    open  : 'animated bounceInLeft',
+                    close : 'animated bounceOutLeft',
+                    easing: 'swing',
+                    speed : 500
+                }
+            });
+            console.log('html: ' + n.options.id);
+        }
+
+        function generateAll() {
+            generate('warning', notification_html[0]);
+            generate('error', notification_html[1]);
+            generate('information', notification_html[2]);
+            generate('success', notification_html[3]);
+//            generate('notification');
+//            generate('success');
+        }
+
+
 
     </script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
@@ -158,12 +216,13 @@
 			if(e.foreground){
 				
 				$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
+				//must have vibration
 				
 				notify(e.payload.message, 'information', 8000, 'topCenter');
 
 				// if the notification contains a soundname, play it.
-				var my_media = new Media("/android_asset/www/"+e.soundname);
-				my_media.play();
+				//var my_media = new Media("/android_asset/www/"+e.soundname);
+				//my_media.play();
 				
 			}else{  // otherwise we were launched because the user touched a notification in the notification tray.
 				
@@ -260,7 +319,6 @@
 	////////////////////////////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////
 	}
-	
 	</script>
 	<style>
 	/*الإصدارات - esdarat*/
@@ -595,7 +653,7 @@
 						text-decoration:none;
 					}
 				</style>
-				<a href="http://iicss.iq/" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<a href="#" onClick="generateAll()" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
 				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">

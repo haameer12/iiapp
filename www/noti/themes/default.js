@@ -46,7 +46,7 @@
 
 			this.$message.css({
 				fontSize: '12px',
-				lineHeight: '16px',
+				lineHeight: '23px',
 				textAlign: 'center',
 				padding: '8px 10px 9px',
 				width: 'auto',
