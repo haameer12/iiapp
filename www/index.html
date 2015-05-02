@@ -14,8 +14,11 @@
 
     <link rel="stylesheet" type="text/css" href="engine/build/af.ui.css" />
 
-     <script type="text/javascript" charset="utf-8" src="engine/third-party/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="engine/third-party/animate.css" />
+	<link rel="stylesheet" href="engine/third-party/font-awesome/css/font-awesome.min.css" />
+    <script type="text/javascript" charset="utf-8" src="engine/third-party/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="engine/third-party/fastclick.js"></script>
+	<script type="text/javascript" src="engine/third-party/jquery.noty.packaged.js"></script>
 	
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 	
@@ -33,11 +36,6 @@
     <script type="text/javascript" charset="utf-8" src="engine/src/af.animateheader.js"></script>
     <script type="text/javascript" charset="utf-8" src="engine/src/af.splashscreen.js"></script>
     <script type="text/javascript" charset="utf-8" src="engine/src/af.swipereveal.js"></script>
-	
-	
-	
-	
-
 	
 	
 
@@ -82,6 +80,10 @@
 		window.open(url, '_'+name, 'location=yes');
 	}
 	
+	function nlTObr(text){
+		return text.split("\n").join("<br />");
+	}
+	
 	//show notification
 /*	function notify(text, type, duration, pos){
 		var n = noty({
@@ -123,12 +125,10 @@
 	
 	
 	
-	<link rel="stylesheet" type="text/css" href="noty-master/demo/buttons.css"/>
-	<link rel="stylesheet" type="text/css" href="noty-master/demo/animate.css"/>
-	<link rel="stylesheet" href="noty-master/demo/font-awesome/css/font-awesome.min.css"/>
 	
-	<script type="text/javascript" src="noty-master/js/noty/packaged/jquery.noty.packaged.min.js"></script>
-	<script type="text/javascript" src="noty-master/demo/notification_html.js"></script>
+	
+	
+	
 
 	<script type="text/javascript">
 
@@ -139,7 +139,7 @@
                 text        : text,
                 type        : type,
                 dismissQueue: true,
-                layout      : 'topLeft',
+                layout      : 'top',
                 closeWith   : ['click'],
                 theme       : 'relax',
                 maxVisible  : 10,
@@ -154,10 +154,10 @@
         }
 
         function generateAll() {
-            generate('warning', notification_html[0]);
-            generate('error', notification_html[1]);
-            generate('information', notification_html[2]);
-            generate('success', notification_html[3]);
+            generate('warning', 'aa');
+            generate('error', 'bb');
+            generate('information', 'cc');
+            generate('success', 'dd');
 //            generate('notification');
 //            generate('success');
         }
@@ -219,7 +219,7 @@
 				//must have vibration
 				
 				//notify(e.payload.message, 'information', 8000, 'topCenter');
-				generate('information', e.payload.message);
+				generate('information',  nlTobr(e.payload.message) );
 
 				// if the notification contains a soundname, play it.
 				//var my_media = new Media("/android_asset/www/"+e.soundname);

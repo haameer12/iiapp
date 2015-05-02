@@ -1347,10 +1347,10 @@ $.noty.themes.relax = {
         switch(this.options.layout.name) {
             case 'top':
                 this.$bar.css({
-                    borderBottom: '2px solid #eee',
-                    borderLeft  : '2px solid #eee',
-                    borderRight : '2px solid #eee',
-                    borderTop   : '2px solid #eee',
+                    borderBottom: '1px solid #eee',
+                    borderLeft  : '1px solid #eee',
+                    borderRight : '1px solid #eee',
+                    borderTop   : '1px solid #eee',
                     boxShadow   : "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 break;
