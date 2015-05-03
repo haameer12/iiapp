@@ -52,7 +52,7 @@
 								},
 								error: function(e){
 									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
+									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
 									this_element.children(".loading2").remove();
 								}
 							});
@@ -63,7 +63,7 @@
 					},
 					error: function(e){
 					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
+					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
 					   $("#esdarat_books_contaner .loading").remove();
 					}
 				});

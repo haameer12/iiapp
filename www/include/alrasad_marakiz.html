@@ -104,7 +104,7 @@
 
 						$(".not-open-alrasad_marakiz").bind("tap",function(){
 							//close_notify("all");
-							notify('لا يمكن مشاهدة هذه البيانات!', 'warning', 4000, 'topCenter');
+							notify('لا يمكن مشاهدة هذه البيانات!', 'warning', 4000, 'bottom', 'Up', 'Down');
 						});
 						$(".open-alrasad_marakiz").bind("tap",function(){
 							//alert($(this).attr("sec-id") )
@@ -128,7 +128,7 @@
 								},
 								error: function(e){
 									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
+									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
 									this_element.children(".loading2").remove();
 								}
 							});
@@ -139,7 +139,8 @@
 					},
 					error: function(e){
 					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'topCenter');
+					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+					   
 					   $("#alrasad_marakiz_contaner .loading").remove();
 					}
 				});
