@@ -133,75 +133,6 @@
 	}*/
     </script>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	<script type="text/javascript">
-
-
-        function generate(type, text) {
-
-            var n = noty({
-                text        : text,
-                type        : type,
-                dismissQueue: true,
-                layout      : 'top',
-                closeWith   : ['click'],
-                theme       : 'relax',
-                maxVisible  : 10,
-                animation   : {
-                    open  : 'animated bounceInLeft',
-                    close : 'animated bounceOutLeft',
-                    easing: 'swing',
-                    speed : 500
-                }
-            });
-            console.log('html: ' + n.options.id);
-        }
-
-        function generateAll() {
-            generate('warning', 'aa');
-            generate('error', 'bb');
-            generate('information', 'cc');
-            generate('success', 'dd');
-//            generate('notification');
-//            generate('success');
-        }
-
-
-
-    </script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
 
 	<script type="text/javascript" charset="utf-8">
 	////////////////////////////////////////////////////////////////////////////////////////////
@@ -240,7 +171,7 @@
 				//must have vibration
 				
 				//notify(e.payload.message, 'information', 8000, 'topCenter');
-				generate('information',  nlTobr(e.payload.message) );
+				notify(nlTobr(e.payload.message), 'information', 8000, top, 'Down', 'Up');
 
 				// if the notification contains a soundname, play it.
 				//var my_media = new Media("/android_asset/www/"+e.soundname);
