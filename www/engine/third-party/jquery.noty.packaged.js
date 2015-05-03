@@ -551,12 +551,13 @@ $.noty.layouts.bottom = {
         selector: 'ul#noty_bottom_layout_container',
         style   : function() {
             $(this).css({
-                bottom       : 0,
-                left         : '5%',
+				bottom       : 0,
+                left         : 0,
+				right         : 0,
                 position     : 'fixed',
-                width        : '90%',
+                width        : 'auto',
                 height       : 'auto',
-                margin       : 0,
+                margin       : '0 10px 0 10px',
                 padding      : 0,
                 listStyleType: 'none',
                 zIndex       : 9999999
@@ -896,12 +897,13 @@ $.noty.layouts.top = {
         selector: 'ul#noty_top_layout_container',
         style   : function() {
             $(this).css({
-                top          : 0,
-                left         : '5%',
+                top          : '64px',
+                left         : '0',
+				right         : '0',
                 position     : 'fixed',
-                width        : '90%',
+                width        : 'auto',
                 height       : 'auto',
-                margin       : 0,
+                margin       : '0 10px 0 10px',
                 padding      : 0,
                 listStyleType: 'none',
                 zIndex       : 9999999
@@ -1378,10 +1380,10 @@ $.noty.themes.relax = {
                 break;
             case 'bottom':
                 this.$bar.css({
-                    borderTop   : '2px solid #eee',
-                    borderLeft  : '2px solid #eee',
-                    borderRight : '2px solid #eee',
-                    borderBottom: '2px solid #eee',
+                    borderTop   : '1px solid #eee',
+                    borderLeft  : '1px solid #eee',
+                    borderRight : '1px solid #eee',
+                    borderBottom: '1px solid #eee',
                     boxShadow   : "0 -2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 break;
