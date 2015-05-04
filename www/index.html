@@ -566,8 +566,8 @@
 	}
 	
 	.noty_message{
-		font-family:"hacen_xxl" !important;
-		padding:15px 6px 15px 6px !important;
+		font-family:"hacen_light" !important;
+		padding:6px 7px 6px 7px !important;
 	}
 	</style>
 </head>
@@ -638,7 +638,7 @@
 			type         : type,
 			dismissQueue : true,
 			layout       : pos,
-			closeWith    : [''],//'click'
+			closeWith    : ['click'],
 			theme        : 'relax',
 			maxVisible   : 10,
 			timeout      : duration,
@@ -654,9 +654,26 @@
 				
 				
 				
-	var text_a = "<a href='#' onclick='$.afui.loadContent(\"#esdarat\",false,false,\"up\");'>aaaaaa</a>";
+	var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-text'>في الثالث من شهر شباط عام 2015، صدم العالم بمشاهدة فيلم من انتاج تنظيم (داعش) نشره على شبكة الانترنت، يحتوي على مشاهد وحشية لم يعتد الناس مشاهدتها من قبل، اذ اقدم التنظيم على تصوير فيلم تسجيلي يتضمن احراق انسان وهو حي، وهو طيار أردني يدعى (معاذ صافي الكساسبة- 26 عاما) وقع أسيراً بأيدي التنظيم اثر سقوط طائرته</div>";
 				</script>
-				<a href="#" onClick="notifyaa(text_a, 'information', 8000, 'top', 'Left', 'Right')" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<style>
+					.noty_message .noty-text{
+						margin:0 0 0 0;
+						direction:rtl;
+						text-align:justify;
+						line-height:25px;
+						margin:0 50px 0 5px;
+					}
+					.noty_message .noty-icon{
+						float:right;
+						width:45px;
+						text-align:left;
+						font-size:25px;
+						padding:11px 0 0 0;
+						color:#333;
+					}
+				</style>
+				<a href="#" onClick="notifyaa(text_a, 'information', 8000000000, 'top', 'Left', 'Right')" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
 				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
