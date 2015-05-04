@@ -171,7 +171,7 @@
 				//must have vibration
 				
 				//notify(e.payload.message, 'information', 8000, 'topCenter');
-				notify('<div class="activity-item"> <i class="fa fa-shopping-cart text-success"></i> <div class="activity"> <a href="#">Eugene</a> ' +e.payload.message +' <a href="#">OEM license</a> <span>14 minutes ago</span> </div> </div>', 'information', 8000, 'top', 'Left', 'Right')
+				notify('<div class="activity-item"> <i class="fa fa-shopping-cart text-success"></i> <div class="activity"> <a href="#">Eugene</a> ' +e.payload.message +' <a href="#">OEM license</a> <span>14 minutes ago</span> </div> </div>', 'information', 8000, 'top', 'Left', 'Right');
 
 				// if the notification contains a soundname, play it.
 				//var my_media = new Media("/android_asset/www/"+e.soundname);
@@ -611,7 +611,52 @@
 						text-decoration:none;
 					}
 				</style>
-				<a href="#" onClick="" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<script>
+	function notifyaa(text, type, duration, pos, animateIn, animateOut){
+/*		var n = noty({
+			text: text,
+			type: type,
+			dismissQueue: true,
+			layout: pos,
+			theme: 'defaultTheme',
+			animation: {
+			open: {opacity: 'toggle'},
+			close: {opacity: 'toggle'},
+			easing: 'swing',
+			speed: 700
+			},
+			timeout: duration,
+			modal: false
+		});
+		return n;*/
+		
+		
+		
+		
+		var n = noty({
+			text         : text,
+			type         : type,
+			dismissQueue : true,
+			layout       : pos,
+			closeWith    : ['click'],//'click'
+			theme        : 'relax',
+			maxVisible   : 10,
+			timeout      : duration,
+			animation    : {
+				open       : 'animated bounceIn'+animateIn,
+				close      : 'animated bounceOut'+animateOut,
+				easing     : 'swing',
+				speed      : 500,
+			}
+		});
+		return n;
+	}
+				
+				
+				
+	var text_a = "<a href='#esdarat'>aaaaaa</a>";
+				</script>
+				<a href="#" onClick="notifyaa(text_a, 'information', 8000, 'top', 'Left', 'Right')" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
 				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
