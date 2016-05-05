@@ -41,7 +41,7 @@
 								success : function(json){
 									$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 									$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-									$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json[0]['text']);
+									$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
 									$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
 									$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
 									//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));

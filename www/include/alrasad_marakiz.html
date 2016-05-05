@@ -98,7 +98,7 @@
 					success : function(json){
 						$("#alrasad_marakiz_contaner").html('<div id="alrasad_marakiz_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
 						$.each(json, function(key, val){
-							$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/alrasad_marakiz_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+							$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/alrasad_marakiz_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 						});
 						
 
@@ -120,7 +120,7 @@
 								success : function(json){
 									$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").css({backgroundColor : "#1aae88"});
 									$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").text("الرصد / مراكز الدراسات والبحوث");
-									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").html(json[0]['text']);
+									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").html(json['text']);
 									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div style="text-align:center"><img src="' +this_element.children("img").attr("src") +'" style="border:1px solid #cfcece;padding:1px" />');
 									$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div class="markaz-title">' +this_element.children("h3.title").text() +'</div>');
 									this_element.children(".loading2").remove();
