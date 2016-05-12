@@ -184,19 +184,47 @@
 				
 				
 				
-					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
+					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
 					notify(text_a, 'information', 8000000000, 'top', 'Left', 'Right');
 				//notify('<div class="activity-item"> <i class="fa fa-shopping-cart text-success"></i> <div class="activity"> <a href="#">Eugene</a> ' +e.payload.my_name +' <a href="#">OEM license</a> <span>14 minutes ago</span> </div> </div>', 'information', 8000, 'top', 'Left', 'Right');
 				
 				
 				
+				switch(e.payload.noty_sound){
+					case "1" :
+						noty_sound = "notify-sound1.mp3";
+					break;
+					case "2" :
+						noty_sound = "notify-taqarir.mp3";
+					break;
+					case "3" :
+						noty_sound = "notify-new-esdar.mp3";
+					break;
+					case "4" :
+						noty_sound = "notify-aqeeda-mag.mp3";
+					break;
+					case "5" :
+						noty_sound = "notify-estshraq-mag.mp3";
+					break;
+					case "6" :
+						noty_sound = "notify-istighrab-mag.mp3";
+					break;
+				}
+				if(e.payload.noty_sound > 0 && e.payload.noty_sound < 7){
+					// if the notification contains a soundname, play it.
+					var my_media = new Media("/android_asset/www/sound/" +noty_sound);
+					my_media.play();
+				}
 				
 				
 				
-
-				// if the notification contains a soundname, play it.
-				var my_media = new Media("/android_asset/www/sound/notify-sound1.mp3");
-				my_media.play();
+				
+				
+				
+				
+				
+				
+				
 				
 			}else{  // otherwise we were launched because the user touched a notification in the notification tray.
 				
@@ -205,7 +233,7 @@
 					window.alert('coldstart');
 					
 					
-					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
+					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
 					notify(text_a, 'information', 8000000000, 'top', 'Left', 'Right');
 					
 					
@@ -215,7 +243,7 @@
 					window.alert('background');
 					
 					
-					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
+					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
 					notify(text_a, 'information', 8000000000, 'top', 'Left', 'Right');
 					
 					
