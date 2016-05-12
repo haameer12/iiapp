@@ -167,6 +167,31 @@
 		
 		
 			//هنا نعالج الإشعار القادم و نحلله
+			switch(e.payload.noty_sound){
+				case "1" :
+					noty_sound = "notify-sound1.mp3";
+				break;
+				case "2" :
+					noty_sound = "notify-taqarir.mp3";
+				break;
+				case "3" :
+					noty_sound = "notify-new-esdar.mp3";
+				break;
+				case "4" :
+					noty_sound = "notify-aqeeda-mag.mp3";
+				break;
+				case "5" :
+					noty_sound = "notify-estshraq-mag.mp3";
+				break;
+				case "6" :
+					noty_sound = "notify-istighrab-mag.mp3";
+				break;
+			}
+			if(e.payload.noty_sound > 0 && e.payload.noty_sound < 7){
+				// if the notification contains a soundname, play it.
+				var my_media = new Media("/android_asset/www/sound/" +noty_sound);
+				my_media.play();
+			}
 		
 		
 		
@@ -190,39 +215,7 @@
 				
 				
 				
-				switch(e.payload.noty_sound){
-					case "1" :
-						noty_sound = "notify-sound1.mp3";
-					break;
-					case "2" :
-						noty_sound = "notify-taqarir.mp3";
-					break;
-					case "3" :
-						noty_sound = "notify-new-esdar.mp3";
-					break;
-					case "4" :
-						noty_sound = "notify-aqeeda-mag.mp3";
-					break;
-					case "5" :
-						noty_sound = "notify-estshraq-mag.mp3";
-					break;
-					case "6" :
-						noty_sound = "notify-istighrab-mag.mp3";
-					break;
-				}
-				if(e.payload.noty_sound > 0 && e.payload.noty_sound < 7){
-					// if the notification contains a soundname, play it.
-					var my_media = new Media("/android_asset/www/sound/" +noty_sound);
-					my_media.play();
-				}
-				
-				
-				
-				
-				
-				
-				
-				
+
 				
 				
 				
