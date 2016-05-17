@@ -131,6 +131,45 @@
 			$.noty.closeAll();
 		}else{}
 	}*/
+	
+	
+	
+	
+	function get_sec_type_text(site_num, secId, panel_title){
+		$.ajax({
+			type : 'get',
+			url : 'http://iicss.iq/app/get_data/get_sec_type_text.php?site='+site_num +'&id=' +secId,
+			async : false,
+			jsonpCallback : 'secTypeTextCallBack',
+			contentType : "application/json",
+			dataType : 'jsonp',
+			success : function(json){
+				//$("#sec-type-text-content #sec-type-text-win-title").css({backgroundColor : "#177bbb"});
+				$("#sec-type-text-content #sec-type-text-win-title").text(panel_title);
+				$("#sec-type-text-content #sec-type-text-text").html(json['text']);
+				$("#sec-type-text-content #sec-type-text-text").prepend("<div id='sec_type_text_links' style='padding:10px 0'></div>");
+				$.each(json['links'], function(index, value){
+					if(value['type'] == "investigations"){
+						link_color = "background:#7cbcb4";
+					}else{
+						link_color = "";
+					}
+					$("#sec-type-text-content #sec-type-text-text div#sec_type_text_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
+				});
+				$("#sec-type-text-content #sec-type-text-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='sec-type-text-pic' src='' /></div>");
+				$("#sec-type-text-content #sec-type-text-text img#sec-type-text-pic").attr("src", json['pic_name']);
+				$("#sec-type-text-content #sec-type-text-text").prepend('<div class="sec-type-text-title">' +json['name'] +'</div>');
+				//this_element.children(".loading2").remove();
+				$.afui.loadContent("#sec-type-text-content",false,false,"up");
+			},
+			error: function(e){
+				//console.log(e.message);
+				$.afui.goBack();
+				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+				//this_element.children(".loading2").remove();
+			}
+		});
+	}
     </script>
 	
 
@@ -169,10 +208,41 @@
 		
 		
 			//هنا نعالج الإشعار القادم و نحلله
-			e.payload.site;//الموقع المراد منه البيانات
-			e.payload.noty_type;//نوعية الإشعار اي هل جلب من قسم نوعه نص ام من قسم نوعه تقارير وتحقيقات
-			e.payload.sec_id;//ايدي القسم المراد جلب المواد منه
-			e.payload.item_id;// رقم العنصر ان وجد عادتاً ما تحتاجه في التقارير والتحقيقات اي رقم التقرير المراد جلبه
+			if(e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0){
+				e.payload.site;//الموقع المراد منه البيانات
+				//e.payload.noty_type;//نوعية الإشعار اي هل جلب من قسم نوعه نص ام من قسم نوعه تقارير وتحقيقات
+				if(e.payload.noty_type == 2){
+					
+				}else if(e.payload.noty_type == 3){
+					
+				}else{
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				}
+				
+				e.payload.sec_id;//ايدي القسم المراد جلب المواد منه
+				e.payload.item_id;// رقم العنصر ان وجد عادتاً ما تحتاجه في التقارير والتحقيقات اي رقم التقرير المراد جلبه
+			}
 			
 			
 
@@ -198,7 +268,7 @@
 				
 				
 					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
-					notify(text_a, 'information', 5000, 'top', 'Left', 'Right');
+					notify(text_a, 'information', 6000, 'top', 'Left', 'Right');
 				//notify('<div class="activity-item"> <i class="fa fa-shopping-cart text-success"></i> <div class="activity"> <a href="#">Eugene</a> ' +e.payload.my_name +' <a href="#">OEM license</a> <span>14 minutes ago</span> </div> </div>', 'information', 8000, 'top', 'Left', 'Right');
 				
 				
@@ -215,7 +285,7 @@
 					
 					
 					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
-					notify(text_a, 'information', 5000, 'top', 'Left', 'Right');
+					notify(text_a, 'information', 6000, 'top', 'Left', 'Right');
 					
 					
 					
@@ -225,7 +295,7 @@
 					
 					
 					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">متابعة...</a>" : "") +"</div>";
-					notify(text_a, 'information', 5000, 'top', 'Left', 'Right');
+					notify(text_a, 'information', 6000, 'top', 'Left', 'Right');
 					
 					
 					
@@ -245,16 +315,19 @@
 					noty_sound = "notify-new-esdar.mp3";
 				break;
 				case "4" :
-					noty_sound = "notify-aqeeda-mag.mp3";
+					noty_sound = "notify-aqeeda-sec.mp3";
 				break;
 				case "5" :
-					noty_sound = "notify-estshraq-mag.mp3";
+					noty_sound = "notify-estshraq-sec.mp3";
 				break;
 				case "6" :
-					noty_sound = "notify-istighrab-mag.mp3";
+					noty_sound = "notify-istighrab-sec.mp3";
+				break;
+				case "7" :
+					noty_sound = "notify-political-sec.mp3";
 				break;
 			}
-			if(e.payload.noty_sound > 0 && e.payload.noty_sound < 7){
+			if(e.payload.noty_sound > 0 && e.payload.noty_sound < 8){
 				// if the notification contains a soundname, play it.
 				var my_media = new Media("/android_asset/www/sound/" +noty_sound);
 				my_media.play();
@@ -452,7 +525,7 @@
 	<style>
 	/*مشاهدة الإصدار - esdarat-inside-content*/
 	@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
-	#esdarat-inside-content .esdar-title, #alrasad_marakiz-inside-content .markaz-title, #alrasad_taqarir-inside-content .taqrir-title{
+	#esdarat-inside-content .esdar-title, #sec-type-text-content .sec-type-text-title, #alrasad_marakiz-inside-content .markaz-title, #alrasad_taqarir-inside-content .taqrir-title{
 		font-family:"hacen_screen";
 		font-size:16px;
 		text-align:center;
@@ -460,13 +533,13 @@
 		padding:8px 0;
 		color:#5d6066;
 	}
-	#esdarat-inside-content #esdar-text img{
+	#esdarat-inside-content #esdar-text img, #sec-type-text-content #sec-type-text-text img{
 		width:150px;
 		padding:1px;
 		border: 1px solid #eaeef1;
 		box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 	}
-	#esdarat-inside-content #esdar-text a{
+	#esdarat-inside-content #esdar-text a, #sec-type-text-content #sec-type-text-text a{
 		display:block;
 		background:#d06975;
 		margin:10px 0;
@@ -479,6 +552,7 @@
 		text-align:center;
 	}
 	.app-text{
+		position:relative;
 		direction:rtl;
 		font-family:Droid Arabic Naskh;
 		text-align:justify;
@@ -748,7 +822,15 @@
 				
 
 
-				<a href="#" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
+				<script>
+					var textaaaa = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +"السلام عليكم" +"</h4>" +"السلام على الأخوه الأعزاء في المركز الإسلامي" +" <a class='open_content_link' href='#' onclick=\"get_sec_type_text(2, 46, 'قسم نص للفتح');return false;\">متابعة...</a>" +"</div>";
+				</script>
+
+
+
+
+
+				<a href="#" onClick="notify(textaaaa, 'information', 5000, 'top', 'Left', 'Right')" class="pic-item" style=" background-image:url(pic1.jpg); background-position:right top; background-repeat:no-repeat">
 					&nbsp;
 				</a>
 				<a href="#" class="pic-item" style=" background-image:url(pic2.jpg); background-position:right top; background-repeat:no-repeat">
@@ -876,6 +958,16 @@
 			<div data-left-drawer="left" class="panel" id="about-us" data-include="include/about-us.html" data-title="من نحن" >
 			
             </div>
+			
+			<div data-left-drawer="left" class="panel" id="sec-type-text-content" data-title="عرض قسم نص">
+				
+				<div class="colored-win"><div class="c-w-title icon pin" id="sec-type-text-win-title">&nbsp;</div>
+					<div id="sec-type-text-text" class="app-text">
+						
+					</div>
+				</div>
+				
+			</div>
 			
 		</div>
 <!--		<footer>
