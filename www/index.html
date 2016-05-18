@@ -208,8 +208,8 @@
 		
 		
 			//هنا نعالج الإشعار القادم و نحلله
-			if(e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0){
-				e.payload.site;//الموقع المراد منه البيانات
+			if(e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0){
+				//e.payload.site;//الموقع المراد منه البيانات
 				//e.payload.noty_type;//نوعية الإشعار اي هل جلب من قسم نوعه نص ام من قسم نوعه تقارير وتحقيقات
 				if(e.payload.noty_type == 2){
 					noty_button_function = "#";
@@ -246,7 +246,7 @@
 				
 
 					
-					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0)? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
+					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0)? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
 					notify(text_a, 'information', 6000, 'top', 'Left', 'Right');
 				
 				
@@ -263,7 +263,7 @@
 					window.alert('coldstart');
 					
 					
-					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">" +e.payload.button_text +"</a>" : "") +"</div>";
+					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0)? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
 					notify(text_a, 'information', 6000, 'top', 'Left', 'Right');
 					
 					
@@ -273,7 +273,7 @@
 					window.alert('background');
 					
 					
-					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +" - " +e.payload.site +" - " +e.payload.noty_type  +" - " +e.payload.noty_sound  +" - " +e.payload.sec_id +" - " +e.payload.item_id +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0)? " <a class='open_content_link' href='#' onclick=\"openUrl('http://iicss.iq/?id=41', 'blank');return false;\">" +e.payload.button_text +"</a>" : "") +"</div>";
+					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((e.payload.site > 0 && e.payload.noty_type > 0 && e.payload.sec_id > 0)? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
 					notify(text_a, 'information', 6000, 'top', 'Left', 'Right');
 					
 					
@@ -802,7 +802,7 @@
 
 
 				<script>
-					var textaaaa = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +"السلام عليكم" +"</h4>" +"السلام على الأخوه الأعزاء في المركز الإسلامي" +" <a class='open_content_link' href='#' onclick=\"get_sec_type_text(2, 46, 'قسم نص للفتح');return false;\">متابعة...</a>" +"</div>";
+					var textaaaa = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +"العنوان" +"</h4>" +"mesage" +((2 > 0 && 1 > 0 && 46 > 0)? " <a class='open_content_link' href='#' onclick=\"" +"return false;\">" +(("hi" != "")? "hi" : "متابعة...") +"</a>" : "") +"</div>";
 				</script>
 
 
