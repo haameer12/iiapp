@@ -214,7 +214,7 @@
 				if(e.payload.noty_type == 2){
 					noty_button_function = "#";
 				}else if(e.payload.noty_type == 3){
-					noty_button_function = "#";					
+					noty_button_function = "openUrl(" +e.payload.hyperlink +", 'blank');";					
 				}else{
 					noty_button_function = "get_sec_type_text(" +e.payload.site +", " +e.payload.sec_id +", '" +e.payload.page_title +"');";
 				}
