@@ -170,6 +170,35 @@
 			}
 		});
 	}
+	
+	function get_taqrir(site_num, taqrirId, panel_title){
+		$.ajax({
+			type : 'get',
+			url : 'http://iicss.iq/app/get_data/get_taqrir.php?site='+site_num +'&id=' +taqrirId,
+			async : false,
+			jsonpCallback : 'taqrirCallBack',
+			contentType : "application/json",
+			dataType : 'jsonp',
+			success : function(json){
+				//$("#sec-type-text-content #sec-type-text-win-title").css({backgroundColor : "#177bbb"});
+				$("#sec-type-text-content #sec-type-text-win-title").text(panel_title);
+				$("#sec-type-text-content #sec-type-text-text").html(json['text']);
+				$("#sec-type-text-content #sec-type-text-text").prepend("<div id='sec_type_text_links' style='padding:10px 0'></div>");
+				
+				$("#sec-type-text-content #sec-type-text-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='sec-type-text-pic' src='' /></div>");
+				$("#sec-type-text-content #sec-type-text-text img#sec-type-text-pic").attr("src", json['pic']);
+				$("#sec-type-text-content #sec-type-text-text").prepend('<div class="sec-type-text-title">' +json['title'] +'</div>');
+				//this_element.children(".loading2").remove();
+				$.afui.loadContent("#sec-type-text-content",false,false,"up");
+			},
+			error: function(e){
+				//console.log(e.message);
+				$.afui.goBack();
+				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+				//this_element.children(".loading2").remove();
+			}
+		});
+	}
     </script>
 	
 
@@ -215,12 +244,11 @@
 				if(e.payload.noty_type == 1 && e.payload.site > 0 && e.payload.sec_id > 0){
 					noty_button_function = "get_sec_type_text(" +e.payload.site +", " +e.payload.sec_id +", '" +e.payload.page_title +"');";
 				}else if(e.payload.noty_type == 2 && e.payload.site > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0){
-					noty_button_function = "#";
+					noty_button_function = "get_taqrir(" +e.payload.site +", " +e.payload.sec_id +", " +e.payload.item_id +", '" +e.payload.page_title +"');";
 				}else if(e.payload.noty_type == 3 && e.payload.hyperlink != '' && e.payload.hyperlink_target != ''){
 					noty_button_function = "openUrl('" +e.payload.hyperlink +"', '" +e.payload.hyperlink_target +"');";
 				}
 			}
-			
 			
 
 
