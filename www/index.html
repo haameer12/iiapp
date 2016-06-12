@@ -243,7 +243,7 @@
 				noty_button_function = "";
 				if(e.payload.noty_type == 1 && e.payload.site > 0 && e.payload.sec_id > 0){
 					noty_button_function = "get_sec_type_text(" +e.payload.site +", " +e.payload.sec_id +", '" +e.payload.page_title +"');";
-				}else if(e.payload.noty_type == 2 && e.payload.site > 0 && e.payload.sec_id > 0 && e.payload.item_id > 0){
+				}else if(e.payload.noty_type == 2 && e.payload.site > 0 && e.payload.item_id > 0){
 					noty_button_function = "get_taqrir(" +e.payload.site +", " +e.payload.sec_id +", " +e.payload.item_id +", '" +e.payload.page_title +"');";
 				}else if(e.payload.noty_type == 3 && e.payload.hyperlink != '' && e.payload.hyperlink_target != ''){
 					noty_button_function = "openUrl('" +e.payload.hyperlink +"', '" +e.payload.hyperlink_target +"');";
