@@ -226,7 +226,7 @@
 				// here is where you might want to send it the regID for later use.
 				$.ajax({
 					type: "POST",
-					url: "http://192.168.0.5/set_phone_key.php",
+					url: "http://iicss.iq/app/set_phone_key.php",
 					data: {regID : e.regid,user:device.uuid,OS:device.platform},
 					async: false,
 					success : function(text){
