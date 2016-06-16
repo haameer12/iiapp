@@ -1029,7 +1029,7 @@
 					padding:3px 10px;
 				}
 			</style>
-		 	<form class="contact_form">
+		 	<form class="contact_form" style="height:100%">
 				<p>
 					<input class="text" name="name" type="text" value="" placeholder="الإسم" />
 				</p>
@@ -1043,9 +1043,36 @@
 					<textarea name="mailtext" placeholder="نص الرسالة" style="height:170px"></textarea>
 				</p>
 				<p>
-					<button class="submit" style="background:#6b7273;border:none;width:100%;font-weight:bold;">ارسال الرسالة</button>
+					<button onClick="return false;" class="submit" id="contact_form_submit" style="background:#6b7273;border:none;width:100%;font-weight:bold;">ارسال الرسالة</button>
 				</p>
 			</form>
+			<script>
+			$("#contact_form_submit").bind("tap",function(){
+				$(".contact_form").append('<span class="loading2" style="opacity:0.2">&nbsp;</span>');
+				$.ajax({
+					type : 'get',
+					url : 'http://iicss.iq/app/rasad/taqarir/json_get_taqrir_data.php?id='+this_element.attr("rasad-taqrir-id"),
+					async : false,
+					jsonpCallback : 'alrasadTaqrirTextCallBack',
+					contentType : "application/json",
+					dataType : 'jsonp',
+					success : function(json){
+						$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
+						$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
+						$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
+						$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
+						$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
+						this_element.siblings(".loading2").remove();
+						$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
+					},
+					error: function(e){
+						notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+						this_element.children(".loading2").remove();
+					}
+				});
+				
+			});
+			</script>
 		 </nav>
 	</div>
 </div>
