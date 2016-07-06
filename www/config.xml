@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "net.imamali.iicssApp"
+        id        = "iicss.app.iicssApp"
         version   = "1.0.0">
 		
 		
     <name>المركز الإسلامي للدراسات الإستراتيجية</name>
     <description>تطبيق يعكس آخر نشاطات المركز الإسلامي للدراسات الإستراتيجية التابع للعتبة العباسية المقدسة.</description>
-    <author href="http://magicwd.co" email="info@magicwd.co">MWD</author>
+    <author href="http://magicwd.co" email="info@magicwd.co">MWD Hassan Haddad</author>
 		
     <!--
 		ir.smgroup.saveimage
