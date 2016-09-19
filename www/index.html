@@ -807,7 +807,18 @@
 		<header style="text-align:center;">
 			<a id="menubadge" onclick='$.afui.drawer.show("#right","right")' class='menuButton' style="float:right !important;margin:12px 7px 0 0"></a>
 			<a id="menubadge" onclick='$.afui.drawer.show("#left","left")' class='contactButton' style="float:left !important;margin:13px 0 0 7px"></a>
-			<img src="engine/build/img/logo.gif" style="display:inline-block;margin:4px 0 0 0;" onload="this.width/=2;this.onload=null;" />
+			<style>
+			#head-markaz-logo{
+				width:242px;
+			}
+			@media screen and (max-width:330px){
+				#head-markaz-logo{
+					width:230px;
+					padding:1px 0 0 0;
+				}
+			}
+			</style>
+			<img onClick="$.afui.goBack()" id="head-markaz-logo" src="engine/build/img/logo.gif" style="display:inline-block;margin:4px 0 0 0;" />
 		</header>
 		<div class="pages">
 		
