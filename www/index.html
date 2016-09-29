@@ -807,7 +807,16 @@
     <div class="view" id="mainview">
 		<header style="text-align:center;">
 			<a id="menubadge" onclick='$.afui.drawer.show("#right","right")' class='menuButton' style="float:right !important;margin:12px 7px 0 0"></a>
-			<a id="menubadge" onclick='$.afui.drawer.show("#left","left")' class='contactButton' style="float:left !important;margin:13px 0 0 7px"></a>
+			<!--<a id="menubadge" onclick='$.afui.drawer.show("#left","left")' class='contactButton' style="float:left !important;margin:13px 0 0 7px"></a>-->
+			<a id="menubadge" onClick="historyGoBack();return false" class='backaButton' style="float:left !important;margin:13px 0 0 7px"></a>
+			<script>
+				function historyGoBack(step){
+					//window.alert(document.referrer)
+					history.back();
+					//هنا نجیک هل هي الأخيره اذا كانت الأخيره نخفي الدكمه
+				}
+			</script>
+			
 			<style>
 			#head-markaz-logo{
 				width:242px;
@@ -819,7 +828,7 @@
 				}
 			}
 			</style>
-			<img onClick="$.afui.goBack()" id="head-markaz-logo" src="engine/build/img/logo.gif" style="display:inline-block;margin:4px 0 0 0;" />
+			<img id="head-markaz-logo" src="engine/build/img/logo.gif" style="display:inline-block;margin:4px 0 0 0;" />
 		</header>
 		<div class="pages">
 		
@@ -955,6 +964,10 @@
 			
             </div>
 			
+			<div data-left-drawer="left" class="panel" id="contact-us" data-include="include/contact-us.html" data-title="اتصل بنا" >
+			
+            </div>
+			
 			<div data-left-drawer="left" class="panel" id="sec-type-text-content" data-title="عرض قسم نص">
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="sec-type-text-win-title">&nbsp;</div>
@@ -1011,7 +1024,6 @@
                     <div class="panel active" style="background:none;padding:0;">
                        
 					   <ul class="list">
-					   		<li onClick="history.go(-1);">رجوع</li>
 							<li><a href="#main" class="icon home" onClick="$.afui.drawer.hide('#right','right')">الرئيسية</a></li>
 							<li><a href="#esdarat" class="icon settings" onClick="$.afui.drawer.hide('#right','right')">الإصدارات</a></li>
 							<li><a href="#alrasad-marakiz" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / مراكز الدراسات والبحوث</a></li>
@@ -1021,6 +1033,7 @@
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=2', 'blank');return false;">قسم الإستشراق</a></li>
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=3', 'blank');return false;">قسم الفكر المعاصر</a></li>
 							<li><a href="#about-us" class="icon question" onClick="$.afui.drawer.hide('#right','right')">عن المركز</a></li>
+							<li><a href="#contact-us" class="icon chat" onClick="$.afui.drawer.hide('#right','right')">إتصل بنا</a></li>
 						</ul>
 					   
                     </div>
@@ -1028,86 +1041,7 @@
             </div>
 		 </nav>
 		 <nav id="left">
-		 	<style>
-				form.contact_form{
-					direction:rtl;
-					padding:15px;
-				}
-				form.contact_form input.text, form.contact_form textarea, form.contact_form button.submit{
-					padding:0;
-					height:auto;
-					border-radius:2px;
-					border:1px solid #353f40;
-					background:#2d3031;
-					color:#a9a9a9;
-					font-family:"hacen_light";
-					padding:3px 10px;
-				}
-			</style>
-		 	<form class="contact_form" style="height:100%">
-				<p>
-					<input class="text" name="name" type="text" value="" placeholder="الإسم" />
-				</p>
-				<p>
-					<input class="text" name="email" type="text" dir="ltr" value="" placeholder="Email" />
-				</p>
-				<p>
-					<input class="text" name="subject" type="text" value="" placeholder="موضوع الرسالة" />
-				</p>
-				<p>
-					<textarea name="mailtext" placeholder="نص الرسالة" style="height:170px"></textarea>
-				</p>
-				<p>
-					<button onClick="return false;" class="submit" id="contact_form_submit" style="background:#6b7273;border:none;width:100%;font-weight:bold;">ارسال الرسالة</button>
-				</p>
-			</form>
-			<script>
-			$("#contact_form_submit").bind("tap",function(){
-				
-				if($(".contact_form input[name=name]").val() != "" && $(".contact_form input[name=email]").val() != "" && $(".contact_form textarea[name=mailtext]").val() != ""){
-					$(".contact_form").append('<span class="loading2" style="opacity:0.1">&nbsp;</span>');
-					$.ajax({
-						method: "get",
-						url : 'http://iicss.iq/app/contact_form.php',
-						data: {
-							name : $(".contact_form input[name=name]").val(),
-							email : $(".contact_form input[name=email]").val(),
-							subject : $(".contact_form input[name=subject]").val(),
-							mailtext : $(".contact_form textarea[name=mailtext]").val()
-						},
-						async : false,
-						jsonpCallback : 'mailSentResultCallBack',
-						contentType : "application/json",
-						dataType : 'jsonp',
-						success : function(json){
-							if(json['result'] == '1'){
-								$(".contact_form").children(".loading2").remove();
-								notify('شكراً، تم استلام رسالتكم بنجاح', 'success', 4000, 'bottom', 'Up', 'Down');	
-								$(".contact_form input[name=name]").val("");
-								$(".contact_form input[name=email]").val("");
-								$(".contact_form input[name=subject]").val("");
-								$(".contact_form textarea[name=mailtext]").val("")
-							}else if(json['result'] == '0'){
-								notify('لم تتم عملية إستلام الرسالة بنجاح', 'error', 4000, 'bottom', 'Up', 'Down');
-								$(".contact_form").children(".loading2").remove();
-							}else if(json['result'] == '2'){
-								notify('لم تمليء الحقول بصورة صحيحة', 'error', 4000, 'bottom', 'Up', 'Down');
-								$(".contact_form").children(".loading2").remove();
-							}else if(json['result'] == '3'){
-								notify('بريدك الالكتروني غير صحيح', 'error', 4000, 'bottom', 'Up', 'Down');
-								$(".contact_form").children(".loading2").remove();
-							}
-						},
-						error: function(e){
-							notify('لم تتم عملية إرسال الرسالة بنجاح', 'error', 4000, 'bottom', 'Up', 'Down');
-							$(".contact_form").children(".loading2").remove();
-						}
-					});
-				}else{
-					notify('لم تمليء الحقول بصورة صحيحة', 'error', 4000, 'bottom', 'Up', 'Down');
-				}
-			});
-			</script>
+		 	//قائمة يساريةغير مستخدمه
 		 </nav>
 	</div>
 </div>

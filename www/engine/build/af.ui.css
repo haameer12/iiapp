@@ -4406,6 +4406,26 @@ header .contactButton:after {
   position: absolute;
   width: 15px;
 }
+header .backaButton {
+	background:url("img/back-button.gif") no-repeat;
+	background-size: 22px 20px;
+  position: relative;
+  top: 5px;
+  right: -8px;
+  height: 36px;
+  width: 28px;
+  z-index: 2;
+  float: right;
+}
+header .backaButton:after {
+  border-bottom: 9px double white;
+  border-top: 3px solid white;
+  top: 9px;
+  left: 3px;
+  height: 15px;
+  position: absolute;
+  width: 15px;
+}
 /*end hassan*/
 
 .tizen,
