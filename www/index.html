@@ -438,7 +438,7 @@
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
 			$.ajax({
 				type: "POST",
-				url: "http://192.168.1.141/set_phone_key.php", 
+				url: "http://iicss.iq/app/set_phone_key.php", 
 				data: {regID : result,user:device.uuid,OS:device.platform},
 				async: false,
 				success : function(text){
