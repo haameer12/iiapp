@@ -403,6 +403,19 @@
 			
 			
 			
+			//هنا نعالج الإشعار القادم و نحلله
+			noty_button_function = "";
+			if(event.noty_type > 0){
+				//e.payload.site;//الموقع المراد منه البيانات
+				//e.payload.noty_type;//نوعية الإشعار اي هل جلب من قسم نوعه نص ام من قسم نوعه تقارير وتحقيقات
+				if(event.noty_type == 1 && event.site > 0 && event.sec_id > 0){
+					noty_button_function = "get_sec_type_text(" +event.site +", " +event.sec_id +", '" +event.page_title +"');";
+				}else if(event.noty_type == 2 && event.site > 0 && event.item_id > 0){
+					noty_button_function = "get_taqrir(" +event.site +", " +event.item_id +", '" +event.page_title +"');";
+				}else if(event.noty_type == 3 && event.hyperlink != '' && event.hyperlink_target != ''){
+					noty_button_function = "openUrl('" +event.hyperlink +"', '" +event.hyperlink_target +"');";
+				}
+			}
 			
 			
 			
