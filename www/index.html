@@ -390,6 +390,32 @@
 		break;
 	  }
 	}
+	function onNotificationAPN(event) {
+		var pushNotification = window.plugins.pushNotification;
+		console.log("Received a notification! " + event.alert);
+		console.log("event sound " + event.sound);
+		console.log("event badge " + event.badge);
+		console.log("event " + event);
+		if (event.alert) {
+			// navigator.notification.alert(event.alert);
+			navigator.notification.alert(
+				event.alert,  // message
+				successHandler,         // callback
+				'اعلان',            // title
+				'نعم'                  // buttonName
+			);
+		}
+		/*
+		if (event.badge) {
+			console.log("Set badge on  " + pushNotification);
+			pushNotification.setApplicationIconBadgeNumber(this.successHandler, event.badge);
+		}
+		if (event.sound) {
+			var snd = new Media(event.sound);
+			snd.play();
+		}
+		*/
+	}
 	function successHandler(result){
 		//alert('result = ' + result);
 		$("#app-status-ul").append('<li>REGISTERED -> result = ' + result + "</li>");
@@ -429,7 +455,7 @@
 		if(device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos"){
 			pushNotification.register(successHandler,errorHandler,{"senderID":"1069136326484","ecb":"onNotificationGCM"});
 		}else{
-			pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationGCM"});//"onNotificationAPN"});
+			pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});//"onNotificationAPN"});
 		}
 		
 		
