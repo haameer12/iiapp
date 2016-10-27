@@ -391,11 +391,11 @@
 	  }
 	}
 	function onNotificationAPN(event) {
-		var pushNotification = window.plugins.pushNotification;
+		/*var pushNotification = window.plugins.pushNotification;
 		console.log("Received a notification! " + event.alert);
 		console.log("event sound " + event.sound);
 		console.log("event badge " + event.badge);
-		console.log("event " + event);
+		console.log("event " + event);*/
 		if (event.alert) {
 			// navigator.notification.alert(event.alert);
 			
@@ -406,7 +406,7 @@
 			var notyMassage = event.alert;
 			
 			
-			//هنا نعالج الإشعار القادم و نحلله
+/*			//هنا نعالج الإشعار القادم و نحلله
 			noty_button_function = "";
 			if(event.noty_type > 0){
 				//e.payload.site;//الموقع المراد منه البيانات
@@ -418,7 +418,7 @@
 				}else if(event.noty_type == 3 && event.hyperlink != '' && event.hyperlink_target != ''){
 					noty_button_function = "openUrl('" +event.hyperlink +"', '" +event.hyperlink_target +"');";
 				}
-			}
+			}*/
 			
 			
 			
@@ -426,8 +426,6 @@
 			notify(text_a, 'information', 11000, 'top', 'Left', 'Right');
 			
 				
-			navigator.notification.alert(event.alert);
-			window.alert(event.alert);
 			
 			
 			
