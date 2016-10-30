@@ -1137,6 +1137,8 @@
 }
 .flip-out {
   -webkit-animation: flip-outAnimation 300ms forwards;
+
+
   animation: flip-outAnimation 300ms forwards;
   z-index: 4;
   backface-visibility: hidden;
@@ -2436,6 +2438,7 @@ input[type="checkbox"]:checked + label:before {
 }
 .firefox .button-grouped.vertical * {
   border-left: 1px solid rgba(255, 255, 255, 0.25);
+
   border-bottom-width: 0;
 }
 .firefox .button-grouped.vertical .button:last-child {
@@ -3186,6 +3189,7 @@ li .icon:before {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   content: "\f054";
+
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
   background-color: transparent;
@@ -3378,6 +3382,7 @@ li .icon:before {
   -webkit-transition: background 150ms;
   transition: background 150ms;
 }
+
 .ios7 input.toggle:checked + label > span {
   transform: translate3d(24px, 0, 0);
   -webkit-transform: translate3d(24px, 0, 0);
@@ -4366,11 +4371,12 @@ h2 {
 header .menuButton {
 	background:url("img/menu-button.gif") no-repeat;
 	background-size: 23px 16px;
+	background-position:4px 13px;
   position: relative;
   top: 5px;
-  right: -8px;
-  height: 36px;
-  width: 36px;
+  right: 0;
+  height: 40px;
+  width: 40px;
   z-index: 2;
   float: right;
 }
@@ -4408,20 +4414,21 @@ header .contactButton:after {
 }
 header .backaButton {
 	background:url("img/back-button.gif") no-repeat;
-	background-size: 22px 20px;
+	background-size: 24px 21px;
+	background-position:14px 11px;
   position: relative;
   top: 5px;
-  right: -8px;
-  height: 36px;
-  width: 28px;
+  right: 0;
+  height: 40px;
+  width: 40px;
   z-index: 2;
-  float: right;
+  float: left;
 }
 header .backaButton:after {
   border-bottom: 9px double white;
   border-top: 3px solid white;
   top: 9px;
-  left: 3px;
+  left: 0;
   height: 15px;
   position: absolute;
   width: 15px;
@@ -4566,6 +4573,7 @@ header .backaButton:after {
   border-color: #fff;
 }
 .tizen.light .view footer > a:not(.button) {
+
   border-top: 4px solid #dedcd5;
   background: #dedcd5;
 }
