@@ -15,8 +15,17 @@
         following tag to your config.xml; you will still have the INTERNET
         permission on your app, which PhoneGap requires. 
     -->
-	
-	<access origin="http://iicss.iq"/> <!-- allow local pages -->
+
+	<access origin="*" /><!-- allow local pages -->
+	<allow-intent href="http://*/*" />
+	<allow-intent href="https://*/*" />
+	<allow-intent href="tel:*" />
+	<allow-intent href="sms:*" />
+	<allow-intent href="mailto:*" />
+	<allow-intent href="geo:*" />
+	<platform name="android">
+		<allow-intent href="market:*" />
+	</platform>
 	
 	
     <preference name="permissions"                value="none"/>
@@ -45,6 +54,9 @@
 	
 	
     <!-- Plugins -->
+	
+	<plugin name="cordova-plugin-whitelist" source="npm"/>
+	
 
     <!-- Core plugins -->
     <gap:plugin name="org.apache.cordova.battery-status" />
