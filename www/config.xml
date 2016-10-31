@@ -15,7 +15,12 @@
         following tag to your config.xml; you will still have the INTERNET
         permission on your app, which PhoneGap requires. 
     -->
+	
+	<access origin="http://iicss.iq"/> <!-- allow local pages -->
+	
+	
     <preference name="permissions"                value="none"/>
+	
 
     <!-- Customize your app and platform with the preference element. -->
     <preference name="phonegap-version"           value="cli-5.4.1" />          <!-- all: current version of PhoneGap-->
@@ -119,19 +124,6 @@
     <gap:splash src="img/splash/screen-iphone-landscape-568h-2x.png"	gap:platform="ios"		width="640"		height="1136" />
     <gap:splash src="img/splash/screen-ipad-landscape.png"			gap:platform="ios"		width="768"		height="1024" />
     <gap:splash src="img/splash/screen-ipad-landscape-2x.png"		gap:platform="ios"		width="1536"	height="2048" />
-
-
-
-	
-	<access origin="*"/> <!-- allow local pages -->
-	
-	
-	
-	<allow-navigation href="http://*/*" />
-	<allow-navigation href="https://*/*" />
-	<allow-navigation href="data:*" />
-	
-	<allow-intent href="*" />
 	
 
 </widget>
