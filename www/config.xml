@@ -16,11 +16,84 @@
         permission on your app, which PhoneGap requires. 
     -->
 
-	<access origin="*" /><!-- allow local pages -->
+	<!--<access origin="*" /> allow local pages -->
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	<!-- Allow links to example.com -->
+<allow-navigation href="http://iicss.iq/*" />
+
+<!-- Wildcards are allowed for the protocol, as a prefix
+     to the host, or as a suffix to the path -->
+<allow-navigation href="*://*.iicss.iq/*" />
+
+<!-- A wildcard can be used to whitelist the entire network,
+     over HTTP and HTTPS.
+     *NOT RECOMMENDED* -->
+<allow-navigation href="*" />
+
+<!-- The above is equivalent to these three declarations -->
+<allow-navigation href="http://*/*" />
+<allow-navigation href="https://*/*" />
+<allow-navigation href="data:*" />
+
+
+
+<!-- Allow links to web pages to open in a browser -->
+<allow-intent href="http://*/*" />
+<allow-intent href="https://*/*" />
+
+<!-- Allow links to example.com to open in a browser -->
+<allow-intent href="http://iicss.iq/*" />
+
+<!-- Wildcards are allowed for the protocol, as a prefix
+     to the host, or as a suffix to the path -->
+<allow-intent href="*://*.iicss.iq/*" />
+
+<!-- Allow SMS links to open messaging app -->
+<allow-intent href="sms:*" />
+
+<!-- Allow tel: links to open the dialer -->
+<allow-intent href="tel:*" />
+
+<!-- Allow geo: links to open maps -->
+<allow-intent href="geo:*" />
+
+<!-- Allow all unrecognized URLs to open installed apps
+     *NOT RECOMMENDED* -->
+<allow-intent href="*" />
+
+
+
+<!-- Allow images, xhrs, etc. to google.com -->
+<access origin="http://iicss.iq" />
+<access origin="https://iicss.iq" />
+
+<!-- Access to the subdomain maps.google.com -->
+<access origin="http://maps.iicss.iq" />
+
+<!-- Access to all the subdomains on google.com -->
+<access origin="http://*.iicss.iq" />
+
+<!-- Enable requests to content: URLs -->
+<access origin="content:///*" />
+
+<!-- Don't block any requests -->
+<access origin="*" />
+
+
+
+
+
+
+
 
 	
 	
