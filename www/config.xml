@@ -73,7 +73,7 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
     -->	
-    <gap:plugin name="com.phonegap.plugins.pushplugin" source="npm" />
+    <gap:plugin name="phonegap.plugins.pushplugin" source="npm" />
 	<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" />
 	
 	
