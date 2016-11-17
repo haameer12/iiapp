@@ -49,7 +49,7 @@
 	<plugin name="cordova-plugin-whitelist" source="npm"/>
 
     <!-- Core plugins -->
-    <gap:plugin name="org.apache.cordova.battery-status" />
+    <!--<gap:plugin name="org.apache.cordova.battery-status" />-->
 	<!--<gap:plugin name="cordova-plugin-camera" source="npm" />-->
     <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="org.apache.cordova.device" />
