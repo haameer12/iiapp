@@ -81,8 +81,9 @@
     <!-- 
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
-    -->	
-    <gap:plugin name="phonegap.plugins.pushplugin" source="npm" />
+    -->
+	<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />
+    <!--<gap:plugin name="phonegap.plugins.pushplugin" source="npm" />-->
 	<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />
 	
 	
