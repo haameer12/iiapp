@@ -84,10 +84,11 @@
     -->
 	<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />
     <!--<gap:plugin name="phonegap.plugins.pushplugin" source="npm" />-->
-	<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />
+	<plugin spec="https://github.com/Paldom/UniqueDeviceID.git" source="git" />
+	<!--<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />-->
 	
-	
-	<gap:plugin name="phonegap.plugin.statusbar" source="npm" />
+	<plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
+	<!--<gap:plugin name="phonegap.plugin.statusbar" source="npm" />-->
 	<gap:config-file platform="ios" parent="UIStatusBarHidden">
 		<true/>
 	</gap:config-file>
