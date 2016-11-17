@@ -51,11 +51,11 @@
     <!-- Core plugins -->
     <gap:plugin name="cordova.battery-status" source="npm" />
 	<!--<gap:plugin name="cordova-plugin-camera" source="npm" />-->
-    <gap:plugin name="org.apache.cordova.console" />
-    <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="org.apache.cordova.device-motion" />
-    <gap:plugin name="org.apache.cordova.device-orientation" />
-    <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="cordova.console" source="npm" />
+    <gap:plugin name="cordova.device" source="npm" />
+    <gap:plugin name="cordova.device-motion" source="npm" />
+    <gap:plugin name="cordova.device-orientation" source="npm" />
+    <gap:plugin name="cordova.dialogs" source="npm" />
     <!--<gap:plugin name="org.apache.cordova.file" />-->
     <!--<gap:plugin name="org.apache.cordova.file-transfer" />-->
     <!--<gap:plugin name="org.apache.cordova.geolocation" />-->
