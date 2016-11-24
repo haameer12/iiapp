@@ -84,11 +84,8 @@
 		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
     -->
 	<!--<plugin spec="https://github.com/phonegap/phonegap-plugin-push.git" source="git" />-->
-	<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />
-	<feature name="PushPlugin">
-	  <param name="ios-package" value="PushPlugin" />
-	</feature>
-    <!--<gap:plugin name="phonegap.plugins.pushplugin" source="npm" />-->
+	<!--<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />-->
+    <!--<gap:plugin name="phonegap-plugin-push-deprecated" source="npm" />-->
 	<plugin spec="https://github.com/Paldom/UniqueDeviceID.git" source="git" />
 	<!--<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />-->
 	
