@@ -556,7 +556,7 @@
 		push.on('registration', function(data) {
 			// data.registrationId
 			
-			
+			window.alert(data.registrationId);
 			
 			/*if( data.registrationId.length > 0){*/
 				///Android
@@ -568,7 +568,7 @@
 					data: {regID : data.registrationId,user:device.uuid,OS:device.platform},
 					async: false,
 					success : function(text){
-						
+						window.alert("setted");
 					}
 				});
 			/*}*/
