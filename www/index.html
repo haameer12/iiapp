@@ -551,7 +551,7 @@
 		
 		push.on('registration', function(data) {
 			// data.registrationId
-			window.alert(data.registrationId);
+			window.alert("ok");
 		});
 		
 		push.on('notification', function(data) {
@@ -565,6 +565,7 @@
 		
 		push.on('error', function(e) {
 			// e.message
+			window.alert("error");
 		});	
 	
 	
