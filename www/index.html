@@ -504,40 +504,122 @@
 		document.addEventListener("deviceready", onDeviceReady, false);
 	}
 
-	function onDeviceReady() {
-		//FastClick.attach(document.body);
-		  
-		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
-			
-	////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////
-	// START push Notification :////////////////////////////////////////////////////////////////
-		pushNotification = window.plugins.pushNotification;
 
-		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notifs : no // ' + device.platform);
-		if(device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos"){
-			pushNotification.register(successHandler,errorHandler,{"senderID":"1069136326484","ecb":"onNotificationGCM"});
-		}else{
-			pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});//"onNotificationAPN"});
-		}
+
+
+
+
+
+
+
+	function onDeviceReady() {
 		
 		
-		//iPhone
-		function tokenHandler(result){
-			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
-			$.ajax({
-				type: "POST",
-				url: "http://iicss.iq/app/set_phone_key.php", 
-				data: {regID : result,user:device.uuid,OS:device.platform},
-				async: false,
-				success : function(text){
-					console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
-				}
-			});
-		}
-	// END push Notification ///////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////////////
+		
+		
+		
+		
+		
+		
+		
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		var push = PushNotification.init({
+			android: {
+				senderID: "1069136326484"
+			},
+			browser: {
+				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+			},
+			ios: {
+				alert: "true",
+				badge: "true",
+				sound: "true"
+			},
+			windows: {}
+		});
+		
+		push.on('registration', function(data) {
+			// data.registrationId
+			
+			
+			
+			if( data.registrationId.length > 0){
+				///Android
+				// Your GCM push server needs to know the regID before it can push to this device
+				// here is where you might want to send it the regID for later use.
+				$.ajax({
+					type: "POST",
+					url: "http://iicss.iq/app/set_phone_key.php",
+					data: {regID : data.registrationId,user:device.uuid,OS:device.platform},
+					async: false,
+					success : function(text){
+						
+					}
+				});
+			}
+			
+			
+			
+			
+		});
+		
+		push.on('notification', function(data) {
+			// data.message,
+			// data.title,
+			// data.count,
+			// data.sound,
+			// data.image,
+			// data.additionalData
+		});
+		
+		push.on('error', function(e) {
+			// e.message
+		});
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 	</script>
 	<style>
