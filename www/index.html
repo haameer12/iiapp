@@ -499,22 +499,100 @@
 
 
 
-	document.addEventListener("deviceready",onDeviceReady,false);
-	function onDeviceReady(){
-		window.alert("hi");
-	 var push = PushNotification.init({ "android": {"senderID": "1069136326484"}});
-	 push.on('registration', function(data) {
-	 console.log(data.registrationId);
-	 	window.alert("aa".data.registrationId);
-	 });
+	function init(){           
+		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
+		document.addEventListener("deviceready", onDeviceReady, false);
+	}
+
+
+
+
+
+
+
+
+
+	function onDeviceReady() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 	
-	 push.on('notification', function(data) {
-	 alert(data.title+" Message: " +data.message);
-	 });
 	
-	 push.on('error', function(e) {
-	 alert(e);
-	 });
+	
+		window.alert("DeviceReady");//"1069136326484"
+	
+	
+
+	
+		var push = PushNotification.init({
+			android: {
+				senderID: "1069136326484"
+			},
+			browser: {
+				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+			},
+			ios: {
+				alert: "true",
+				badge: "true",
+				sound: "true"
+			},
+			windows: {}
+		});
+		
+		push.on('registration', function(data) {
+			// data.registrationId
+			window.alert("re : " +data.registrationId);
+		});
+		
+		push.on('notification', function(data) {
+			// data.message,
+			// data.title,
+			// data.count,
+			// data.sound,
+			// data.image,
+			// data.additionalData
+		});
+		
+		push.on('error', function(e) {
+			// e.message
+			window.alert("error");
+		});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 	</script>
 	<style>
