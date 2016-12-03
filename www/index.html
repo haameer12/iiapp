@@ -513,87 +513,39 @@
 
 
 	function onDeviceReady() {
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		//FastClick.attach(document.body);
+		  
+		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
+			
+	////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////
+	// START push Notification :////////////////////////////////////////////////////////////////
+		pushNotification = window.plugins.pushNotification;
 
-	
-	
-	
-		window.alert("DeviceReady");//"1069136326484"
-	
-	
-
-		var push = window.pushNotification.init({
-			android: {
-				senderID: "1069136326484"
-			},
-			browser: {
-				pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-			},
-			ios: {
-				alert: "true",
-				badge: "true",
-				sound: "true"
-			},
-			windows: {}
-		});
+		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    register_for_notifs : no // ' + device.platform);
+		if(device.platform == 'android' || device.platform == 'Android' || device.platform == "amazon-fireos"){
+			pushNotification.register(successHandler,errorHandler,{"senderID":"1069136326484","ecb":"onNotificationGCM"});
+		}else{
+			pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"onNotificationAPN"});//"onNotificationAPN"});
+		}
 		
-		window.alert("hi - " +push);
 		
-		push.on('registration', function(data) {
-			// data.registrationId
-			window.alert("re : " +data.registrationId);
-		});
-		
-		push.on('notification', function(data) {
-			// data.message,
-			// data.title,
-			// data.count,
-			// data.sound,
-			// data.image,
-			// data.additionalData
-		});
-		
-		push.on('error', function(e) {
-			// e.message
-			window.alert("error");
-		});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		//iPhone
+		function tokenHandler(result){
+			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
+			$.ajax({
+				type: "POST",
+				url: "http://iicss.iq/app/set_phone_key.php", 
+				data: {regID : result,user:device.uuid,OS:device.platform},
+				async: false,
+				success : function(text){
+					console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+				}
+			});
+		}
+	// END push Notification ///////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////
 	}
 	</script>
 	<style>
