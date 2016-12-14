@@ -6,12 +6,142 @@
 
 
 <div class="esdarat-button">
-	<div class="esdar-item" style="background-image:url(img/al-aqeeda.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">مجلة العقيدة</h3>
-			<span class="item-des">فصلية تعنى بمسائل العقيدة وعلم الكلام القديم والجديد</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+	$(document).ready(function(){
+		$("#esdarat_aqida_mag_button .esdar-item-in").bind("tap",function(){
+			
+			TapedElement = $(this);
+			TapedElement.parent().append('<span class="loading2">&nbsp;</span>');
+			
+			$.ajax({
+				type : 'get',
+				url : 'http://iicss.iq/app/esdarat/json_aqeeda_mag.php',
+				async : false,
+				jsonpCallback : 'aqeedaMagCallBack',
+				contentType : "application/json",
+				dataType : 'jsonp',
+				success : function(json){
+					
+					$.each(json, function(key, val){
+						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-aqida_mag' : 'not-open-esdar-aqida_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+					});
+					
+					TapedElement.siblings(".loading2").remove();
+					$.afui.loadContent("#esdarat-item-list",false,false,"up");
+					
+					//here------------------------------------------------------
+					
+
+					$(".not-open-esdar-aqida_mag").bind("tap",function(){
+						//close_notify("all");
+						notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
+					});
+					$(".open-esdar-aqida_mag").bind("tap",function(){
+						//alert($(this).attr("sec-id") )
+						var this_element = $(this);
+						this_element.append('<span class="loading2">&nbsp;</span>');
+						$.ajax({
+							type : 'get',
+							url : 'http://iicss.iq/app/esdarat/get_aqeeda_esdar.php?id='+this_element.attr("sec-id"),
+							async : false,
+							jsonpCallback : 'esdarTextCallBack',
+							contentType : "application/json",
+							dataType : 'jsonp',
+							success : function(json){
+								$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#177bbb"});
+								$("#esdarat-inside-content #esdar-win-title").text("مجلة العقيدة");
+								$("#esdarat-inside-content #esdar-text").html(json['text']);
+								$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
+								$.each(json['links'], function(index, value){
+									if(value['type'] == "investigations"){
+										link_color = "background:#7cbcb4";
+									}else{
+										link_color = "";
+									}
+									$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
+								});
+								$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
+								$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
+								$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+								this_element.children(".loading2").remove();
+								$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+							},
+							error: function(e){
+								//console.log(e.message);
+								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+								this_element.children(".loading2").remove();
+							}
+						});
+		
+					});
+						
+						
+				},
+				error: function(e){
+				   //console.log(e.message);
+				   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+				   $("#esdarat_aqida_mag_contaner .loading").remove();
+				}
+			});
+
+		});
+	});
+	</script>
+	<div class="esdar-item" id="esdarat_aqida_mag_button" style="background-image:url(img/al-aqeeda.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">مجلة العقيدة</h3>
+				<span class="item-des">فصلية تعنى بمسائل العقيدة وعلم الكلام القديم والجديد</span>
+			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="esdar-item" style="background-image:url(img/darasat-istishraqia.jpg)">
 		<div class="item-text">
 			<h3 class="item-title">مجلة دراسات إستشراقية</h3>
@@ -162,82 +292,10 @@
 
 <div class="colored-win"><div class="c-w-title icon pin" style="background-color:#177bbb">مجلة العقيدة</div>
 
-	<script>
-		$(document).ready(function(){
-			$("#esdarat_aqida_mag_first_load").bind("doubleTap",function(){
-				
-				//alert("start json");
-				$("#esdarat_aqida_mag_contaner").append('<span class="loading">&nbsp;</span>');
-				$.ajax({
-					type : 'get',
-					url : 'http://iicss.iq/app/esdarat/json_aqeeda_mag.php',
-					async : false,
-					jsonpCallback : 'aqeedaMagCallBack',
-					contentType : "application/json",
-					dataType : 'jsonp',
-					success : function(json){
-						$("#esdarat_aqida_mag_contaner").html('<div id="esdarat_aqida_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
-						$.each(json, function(key, val){
-							$("#esdarat_aqida_mag_contaner #esdarat_aqida_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-aqida_mag' : 'not-open-esdar-aqida_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-						});
-						
-
-						$(".not-open-esdar-aqida_mag").bind("tap",function(){
-							//close_notify("all");
-							notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-						});
-						$(".open-esdar-aqida_mag").bind("tap",function(){
-							//alert($(this).attr("sec-id") )
-							var this_element = $(this);
-							this_element.append('<span class="loading2">&nbsp;</span>');
-							$.ajax({
-								type : 'get',
-								url : 'http://iicss.iq/app/esdarat/get_aqeeda_esdar.php?id='+this_element.attr("sec-id"),
-								async : false,
-								jsonpCallback : 'esdarTextCallBack',
-								contentType : "application/json",
-								dataType : 'jsonp',
-								success : function(json){
-									$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#177bbb"});
-									$("#esdarat-inside-content #esdar-win-title").text("مجلة العقيدة");
-									$("#esdarat-inside-content #esdar-text").html(json['text']);
-									$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-									$.each(json['links'], function(index, value){
-										if(value['type'] == "investigations"){
-											link_color = "background:#7cbcb4";
-										}else{
-											link_color = "";
-										}
-										$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-									});
-									$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-									$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-									$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-									this_element.children(".loading2").remove();
-									$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								},
-								error: function(e){
-									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									this_element.children(".loading2").remove();
-								}
-							});
-			
-						});
-							
-							
-					},
-					error: function(e){
-					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					   $("#esdarat_aqida_mag_contaner .loading").remove();
-					}
-				});
-
-			});
-		});
-	</script>
 	<div id="esdarat_aqida_mag_contaner" style="position:relative">
+		<div id="esdarat_aqida_mag_contaner_in">
+			&nbsp;
+		</div>
 		<div style="text-align:center">
 			<a id='esdarat_aqida_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
 		</div>
