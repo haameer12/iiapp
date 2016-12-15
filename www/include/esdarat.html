@@ -27,48 +27,88 @@
 
 	<script>
 	$(document).ready(function(){
-		$("#esdarat_aqida_mag_button .esdar-item-in").bind("tap",function(){
+		$(".esdarat-button .esdar-item-in").bind("tap",function(){
+			
+			var esdarTypeTools = {
+				aqeedaMag : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_mag.php",
+					itemListCallBack : "aqeedaMagCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_aqeeda_esdar.php",
+					itemTitle : "مجلة العقيدة",
+					itemTitleBgColor : "#177bbb",
+				},
+				estishraqMag : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_mag.php",
+					itemListCallBack : "estishraqMagCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_estishraq_esdar.php",
+					itemTitle : "مجلة دراسات إستشراقية",
+					itemTitleBgColor : "#beb16b",
+				},
+				istighrabMag : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_istighrab_mag.php",
+					itemListCallBack : "istighrabMagCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_istighrab_esdar.php",
+					itemTitle : "مجلة الإستغراب",
+					itemTitleBgColor : "#1aae88",
+				},
+				rayِAkharMag : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_ray_akhar_mag.php",
+					itemListCallBack : "ray_akhar_magCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemTitle : "مجلة رأي آخر",
+					itemTitleBgColor : "#6fa890",
+				},
+				alrasadMag : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_alrasad_mag.php",
+					itemListCallBack : "alrasad_magCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemTitle : "نشرة الرصد",
+					itemTitleBgColor : "#49959e",
+				},
+				molhaqRasadMag : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_molhaq_rasad_mag.php",
+					itemListCallBack : "molhaqRasadMagCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemTitle : "ملحق الرصد",
+					itemTitleBgColor : "#b37c96",
+				},
+			}
 			
 			TapedElement = $(this);
 			TapedElement.parent().append('<span class="loading2">&nbsp;</span>');
 			
 			$.ajax({
 				type : 'get',
-				url : 'http://iicss.iq/app/esdarat/json_aqeeda_mag.php',
+				url : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemListUrl,
 				async : false,
-				jsonpCallback : 'aqeedaMagCallBack',
+				jsonpCallback : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemListCallBack,
 				contentType : "application/json",
 				dataType : 'jsonp',
 				success : function(json){
 					
+					$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").html("");
 					$.each(json, function(key, val){
-						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-aqida_mag' : 'not-open-esdar-aqida_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
+						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-item' : 'not-open-esdar-item') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
 					});
-					
-					TapedElement.siblings(".loading2").remove();
-					$.afui.loadContent("#esdarat-item-list",false,false,"up");
-					
-					//here------------------------------------------------------
-					
 
-					$(".not-open-esdar-aqida_mag").bind("tap",function(){
+					$(".not-open-esdar-item").bind("tap",function(){
 						//close_notify("all");
 						notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
 					});
-					$(".open-esdar-aqida_mag").bind("tap",function(){
+					$(".open-esdar-item").bind("tap",function(){
 						//alert($(this).attr("sec-id") )
 						var this_element = $(this);
 						this_element.append('<span class="loading2">&nbsp;</span>');
 						$.ajax({
 							type : 'get',
-							url : 'http://iicss.iq/app/esdarat/get_aqeeda_esdar.php?id='+this_element.attr("sec-id"),
+							url : esdarTypeTools[TapedElement.parent().attr("esdarName")].singleItemUrl+'?id='+this_element.attr("sec-id"),
 							async : false,
 							jsonpCallback : 'esdarTextCallBack',
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#177bbb"});
-								$("#esdarat-inside-content #esdar-win-title").text("مجلة العقيدة");
+								$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitleBgColor});
+								$("#esdarat-inside-content #esdar-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
 								$("#esdarat-inside-content #esdar-text").html(json['text']);
 								$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
 								$.each(json['links'], function(index, value){
@@ -93,24 +133,74 @@
 						});
 		
 					});
+					
+					TapedElement.siblings(".loading2").remove();
+					$("#esdarat-item-list #esdarat-item-list-win-title").css({backgroundColor : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitleBgColor});
+					$("#esdarat-item-list #esdarat-item-list-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
+					$.afui.loadContent("#esdarat-item-list",false,false,"up");
 						
 						
 				},
 				error: function(e){
-				   //console.log(e.message);
-				   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-				   $("#esdarat_aqida_mag_contaner .loading").remove();
+					//console.log(e.message);
+					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+					TapedElement.siblings(".loading2").remove();
 				}
 			});
 
 		});
 	});
 	</script>
-	<div class="esdar-item" id="esdarat_aqida_mag_button" style="background-image:url(img/al-aqeeda.jpg)">
+	<div class="esdar-item" esdarName="aqeedaMag" style="background-image:url(img/al-aqeeda.jpg)">
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">مجلة العقيدة</h3>
 				<span class="item-des">فصلية تعنى بمسائل العقيدة وعلم الكلام القديم والجديد</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="estishraqMag" style="background-image:url(img/darasat-istishraqia.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">مجلة دراسات إستشراقية</h3>
+				<span class="item-des">فصلية محكمة تعنى بالتراث الإستشراقي عرضاً ونقداً</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="istighrabMag" style="background-image:url(img/istighrab.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">مجلة الإستغراب</h3>
+				<span class="item-des">دورية فكرية تعنى بدراسة الغرب وفهمه معرفياً ونقدياً</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="rayِAkharMag" style="background-image:url(img/ray-akhar.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">مجلة رأي آخر</h3>
+				<span class="item-des">نشرة فصلية محدودة التداول تعنى برصد ما ينشر عن الشيعة والتشيع</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="alrasadMag" style="background-image:url(img/al-rasad.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">نشرة الرصد</h3>
+				<span class="item-des">مجلة محدودة التداول تعكس آخر الأخبار والتقارير السياسية والثقافية</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="esdar-item" esdarName="molhaqRasadMag" style="background-image:url(img/molhaq-al-rasad.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">ملحق الرصد</h3>
+				<span class="item-des">ششش</span>
 			</div>
 		</div>
 	</div>
@@ -122,75 +212,67 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="esdar-item" style="background-image:url(img/darasat-istishraqia.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">مجلة دراسات إستشراقية</h3>
-			<span class="item-des">فصلية محكمة تعنى بالتراث الإستشراقي عرضاً ونقداً</span>
+	<div class="esdar-item" esdarName="" style="background-image:url(img/aqeeda-books.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">كتب الكلام والعقيدة</h3>
+				<span class="item-des">شششش</span>
+			</div>
 		</div>
 	</div>
-	<div class="esdar-item" style="background-image:url(img/istighrab.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">مجلة الإستغراب</h3>
-			<span class="item-des">دورية فكرية تعنى بدراسة الغرب وفهمه معرفياً ونقدياً</span>
+	
+	<div class="esdar-item" esdarName="" style="background-image:url(img/istishraq-books.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">كتب الإستشراق</h3>
+				<span class="item-des">شششش</span>
+			</div>
 		</div>
 	</div>
-	<div class="esdar-item" style="background-image:url(img/ray-akhar.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">مجلة رأي آخر</h3>
-			<span class="item-des">نشرة فصلية محدودة التداول تعنى برصد ما ينشر عن الشيعة والتشيع</span>
+	
+	<div class="esdar-item" esdarName="" style="background-image:url(img/gharbia-books.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">سلسلة دراسات غربية</h3>
+				<span class="item-des">شششش</span>
+			</div>
 		</div>
 	</div>
-	<div class="esdar-item" style="background-image:url(img/al-rasad.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">نشرة الرصد</h3>
-			<span class="item-des">مجلة محدودة التداول تعكس آخر الأخبار والتقارير السياسية والثقافية</span>
-		</div>
-	</div>
-	<div class="esdar-item" style="background-image:url(img/molhaq-al-rasad.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">ملحق الرصد</h3>
-			<span class="item-des">ششش</span>
-		</div>
-	</div>
-	<div class="esdar-item" style="background-image:url(img/aqeeda-books.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">كتب الكلام والعقيدة</h3>
-			<span class="item-des">شششش</span>
-		</div>
-	</div>
-	<div class="esdar-item" style="background-image:url(img/istishraq-books.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">كتب الإستشراق</h3>
-			<span class="item-des">شششش</span>
-		</div>
-	</div>
-	<div class="esdar-item" style="background-image:url(img/gharbia-books.jpg)">
-		<div class="item-text">
-			<h3 class="item-title">سلسلة دراسات غربية</h3>
-			<span class="item-des">شششش</span>
-		</div>
-	</div>
+
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
