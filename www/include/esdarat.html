@@ -10,21 +10,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<script>
 	$(document).ready(function(){
 		$(".esdarat-button .esdar-item-in").bind("tap",function(){
@@ -70,6 +55,27 @@
 					itemListCallBack : "molhaqRasadMagCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
 					itemTitle : "ملحق الرصد",
+					itemTitleBgColor : "#b37c96",
+				},
+				aqeedaBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_books.php",
+					itemListCallBack : "aqeedaBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemTitle : "كتب الكلام والعقيدة",
+					itemTitleBgColor : "#b37c96",
+				},
+				estishraqBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_books.php",
+					itemListCallBack : "estishraqBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemTitle : "كتب الإستشراق",
+					itemTitleBgColor : "#b37c96",
+				},
+				darasatGharbiaBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_darasat_gharbia_books.php",
+					itemListCallBack : "darasatGharbiaBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemTitle : "سلسلة دراسات غربية",
 					itemTitleBgColor : "#b37c96",
 				},
 			}
@@ -204,15 +210,8 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	<div class="esdar-item" esdarName="" style="background-image:url(img/aqeeda-books.jpg)">
+
+	<div class="esdar-item" esdarName="aqeedaBooks" style="background-image:url(img/aqeeda-books.jpg)">
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">كتب الكلام والعقيدة</h3>
@@ -220,8 +219,8 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="esdar-item" esdarName="" style="background-image:url(img/istishraq-books.jpg)">
+
+	<div class="esdar-item" esdarName="estishraqBooks" style="background-image:url(img/istishraq-books.jpg)">
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">كتب الإستشراق</h3>
@@ -230,7 +229,7 @@
 		</div>
 	</div>
 	
-	<div class="esdar-item" esdarName="" style="background-image:url(img/gharbia-books.jpg)">
+	<div class="esdar-item" esdarName="darasatGharbiaBooks" style="background-image:url(img/gharbia-books.jpg)">
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">سلسلة دراسات غربية</h3>
@@ -243,574 +242,5 @@
 
 
 
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-
-
-<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#858f90">الكتب</div>
-
-	<script>
-		$(document).ready(function(){
-			$("#esdarat_books_first_load").bind("doubleTap",function(){
-				
-				//alert("start json");
-				$("#esdarat_books_contaner").append('<span class="loading">&nbsp;</span>');
-				$.ajax({
-					type : 'get',
-					url : 'http://iicss.iq/app/esdarat/json_books.php',
-					async : false,
-					jsonpCallback : 'booksCallBack',
-					contentType : "application/json",
-					dataType : 'jsonp',
-					success : function(json){
-						$("#esdarat_books_contaner").html('<div id="esdarat_books_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
-						$.each(json, function(key, val){
-							$("#esdarat_books_contaner #esdarat_books_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-book' : 'not-open-esdar-book') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-						});
-						
-
-						$(".not-open-esdar-book").bind("tap",function(){
-							//close_notify("all");
-							notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-						});
-						$(".open-esdar-book").bind("tap",function(){
-							//alert($(this).attr("sec-id") )
-							var this_element = $(this);
-							this_element.append('<span class="loading2">&nbsp;</span>');
-							$.ajax({
-								type : 'get',
-								url : 'http://iicss.iq/app/esdarat/get_iicss_esdar.php?id='+this_element.attr("sec-id"),
-								async : false,
-								jsonpCallback : 'esdarTextCallBack',
-								contentType : "application/json",
-								dataType : 'jsonp',
-								success : function(json){
-									$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#858f90"});
-									$("#esdarat-inside-content #esdar-win-title").text("الكتب");
-									$("#esdarat-inside-content #esdar-text").html(json['text']);
-									$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-									$.each(json['links'], function(index, value){
-										if(value['type'] == "investigations"){
-											link_color = "background:#7cbcb4";
-										}else{
-											link_color = "";
-										}
-										$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-									});
-									$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-									$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-									$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-									this_element.children(".loading2").remove();
-									$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								},
-								error: function(e){
-									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									this_element.children(".loading2").remove();
-								}
-							});
-			
-						});
-							
-							
-					},
-					error: function(e){
-					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					   $("#esdarat_books_contaner .loading").remove();
-					}
-				});
-
-			});
-		});
-	</script>
-	<div id="esdarat_books_contaner" style="position:relative">
-		<!--<div style="text-align:center;font-size:0;padding:3px;">
-			<span class="grid-item">
-				<div class="in">
-					<img src="b1.jpg" width="100%" />
-				</div>
-			</span>
-		</div>-->
-		<div style="text-align:center">
-			<a id='esdarat_books_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-		</div>
-	</div>
-	
-</div>
-
-
-<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#177bbb">مجلة العقيدة</div>
-
-	<div id="esdarat_aqida_mag_contaner" style="position:relative">
-		<div id="esdarat_aqida_mag_contaner_in">
-			&nbsp;
-		</div>
-		<div style="text-align:center">
-			<a id='esdarat_aqida_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-		</div>
-	</div>
-
-</div>
-
-
-<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#1aae88">مجلة الاستغراب</div>
-
-	<script>
-		$(document).ready(function(){
-			$("#esdarat_istighrab_mag_first_load").bind("doubleTap",function(){
-				
-				//alert("start json");
-				$("#esdarat_istighrab_mag_contaner").append('<span class="loading">&nbsp;</span>');
-				$.ajax({
-					type : 'get',
-					url : 'http://iicss.iq/app/esdarat/json_istighrab_mag.php',
-					async : false,
-					jsonpCallback : 'istighrabMagCallBack',
-					contentType : "application/json",
-					dataType : 'jsonp',
-					success : function(json){
-						$("#esdarat_istighrab_mag_contaner").html('<div id="esdarat_istighrab_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
-						$.each(json, function(key, val){
-							$("#esdarat_istighrab_mag_contaner #esdarat_istighrab_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-istighrab_mag' : 'not-open-esdar-istighrab_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-						});
-						
-
-						$(".not-open-esdar-istighrab_mag").bind("tap",function(){
-							//close_notify("all");
-							notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-						});
-						$(".open-esdar-istighrab_mag").bind("tap",function(){
-							//alert($(this).attr("sec-id") )
-							var this_element = $(this);
-							this_element.append('<span class="loading2">&nbsp;</span>');
-							$.ajax({
-								type : 'get',
-								url : 'http://iicss.iq/app/esdarat/get_istighrab_esdar.php?id='+this_element.attr("sec-id"),
-								async : false,
-								jsonpCallback : 'esdarTextCallBack',
-								contentType : "application/json",
-								dataType : 'jsonp',
-								success : function(json){
-									$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#1aae88"});
-									$("#esdarat-inside-content #esdar-win-title").text("مجلة الاستغراب");
-									$("#esdarat-inside-content #esdar-text").html(json['text']);
-									$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-									$.each(json['links'], function(index, value){
-										if(value['type'] == "investigations"){
-											link_color = "background:#7cbcb4";
-										}else{
-											link_color = "";
-										}
-										$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-									});
-									$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-									$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-									$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-									this_element.children(".loading2").remove();
-									$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								},
-								error: function(e){
-									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									this_element.children(".loading2").remove();
-								}
-							});
-			
-						});
-							
-							
-					},
-					error: function(e){
-					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					   $("#esdarat_istighrab_mag_contaner .loading").remove();
-					}
-				});
-
-			});
-		});
-	</script>
-	<div id="esdarat_istighrab_mag_contaner" style="position:relative">
-		<div style="text-align:center">
-			<a id='esdarat_istighrab_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-		</div>
-	</div>
-	
-</div>
-
-
-<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#beb16b">مجلة دراسات إستشراقية</div>
-	
-	<script>
-		$(document).ready(function(){
-			$("#esdarat_estishraq_mag_first_load").bind("doubleTap",function(){
-				
-				//alert("start json");
-				$("#esdarat_estishraq_mag_contaner").append('<span class="loading">&nbsp;</span>');
-				$.ajax({
-					type : 'get',
-					url : 'http://iicss.iq/app/esdarat/json_estishraq_mag.php',
-					async : false,
-					jsonpCallback : 'estishraqMagCallBack',
-					contentType : "application/json",
-					dataType : 'jsonp',
-					success : function(json){
-						$("#esdarat_estishraq_mag_contaner").html('<div id="esdarat_estishraq_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
-						$.each(json, function(key, val){
-							$("#esdarat_estishraq_mag_contaner #esdarat_estishraq_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-estishraq_mag' : 'not-open-esdar-estishraq_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-						});
-						
-
-						$(".not-open-esdar-estishraq_mag").bind("tap",function(){
-							//close_notify("all");
-							notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-						});
-						$(".open-esdar-estishraq_mag").bind("tap",function(){
-							//alert($(this).attr("sec-id") )
-							var this_element = $(this);
-							this_element.append('<span class="loading2">&nbsp;</span>');
-							$.ajax({
-								type : 'get',
-								url : 'http://iicss.iq/app/esdarat/get_estishraq_esdar.php?id='+this_element.attr("sec-id"),
-								async : false,
-								jsonpCallback : 'esdarTextCallBack',
-								contentType : "application/json",
-								dataType : 'jsonp',
-								success : function(json){
-									$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#beb16b"});
-									$("#esdarat-inside-content #esdar-win-title").text("مجلة دراسات إستشراقية");
-									$("#esdarat-inside-content #esdar-text").html(json['text']);
-									$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-									$.each(json['links'], function(index, value){
-										if(value['type'] == "investigations"){
-											link_color = "background:#7cbcb4";
-										}else{
-											link_color = "";
-										}
-										$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-									});
-									$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-									$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-									$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-									this_element.children(".loading2").remove();
-									$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								},
-								error: function(e){
-									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									this_element.children(".loading2").remove();
-								}
-							});
-			
-						});
-							
-							
-					},
-					error: function(e){
-					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					   $("#esdarat_estishraq_mag_contaner .loading").remove();
-					}
-				});
-
-			});
-		});
-	</script>
-	<div id="esdarat_estishraq_mag_contaner" style="position:relative">
-		<div style="text-align:center">
-			<a id='esdarat_estishraq_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-		</div>
-	</div>
-	
-</div>
-
-
-<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#6fa890">مجلة رأي آخر</div>
-
-	<script>
-		$(document).ready(function(){
-			$("#esdarat_ray_akhar_mag_first_load").bind("doubleTap",function(){
-				
-				//alert("start json");
-				$("#esdarat_ray_akhar_mag_contaner").append('<span class="loading">&nbsp;</span>');
-				$.ajax({
-					type : 'get',
-					url : 'http://iicss.iq/app/esdarat/json_ray_akhar_mag.php',
-					async : false,
-					jsonpCallback : 'ray_akhar_magCallBack',
-					contentType : "application/json",
-					dataType : 'jsonp',
-					success : function(json){
-						$("#esdarat_ray_akhar_mag_contaner").html('<div id="esdarat_ray_akhar_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
-						$.each(json, function(key, val){
-							$("#esdarat_ray_akhar_mag_contaner #esdarat_ray_akhar_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-ray_akhar_mag' : 'not-open-esdar-ray_akhar_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-						});
-						
-
-						$(".not-open-esdar-ray_akhar_mag").bind("tap",function(){
-							//close_notify("all");
-							notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-						});
-						$(".open-esdar-ray_akhar_mag").bind("tap",function(){
-							//alert($(this).attr("sec-id") )
-							var this_element = $(this);
-							this_element.append('<span class="loading2">&nbsp;</span>');
-							$.ajax({
-								type : 'get',
-								url : 'http://iicss.iq/app/esdarat/get_iicss_esdar.php?id='+this_element.attr("sec-id"),
-								async : false,
-								jsonpCallback : 'esdarTextCallBack',
-								contentType : "application/json",
-								dataType : 'jsonp',
-								success : function(json){
-									$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#858f90"});
-									$("#esdarat-inside-content #esdar-win-title").text("الكتب");
-									$("#esdarat-inside-content #esdar-text").html(json['text']);
-									$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-									$.each(json['links'], function(index, value){
-										if(value['type'] == "investigations"){
-											link_color = "background:#7cbcb4";
-										}else{
-											link_color = "";
-										}
-										$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-									});
-									$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-									$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-									$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-									this_element.children(".loading2").remove();
-									$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								},
-								error: function(e){
-									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									this_element.children(".loading2").remove();
-								}
-							});
-			
-						});
-							
-							
-					},
-					error: function(e){
-					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					   $("#esdarat_ray_akhar_mag_contaner .loading").remove();
-					}
-				});
-
-			});
-		});
-	</script>
-	<div id="esdarat_ray_akhar_mag_contaner" style="position:relative">
-		<div style="text-align:center">
-			<a id='esdarat_ray_akhar_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-		</div>
-	</div>
-	
-</div>
-
-
-<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#49959e">نشرة الرصد</div>
-
-	<script>
-		$(document).ready(function(){
-			$("#esdarat_alrasad_mag_first_load").bind("doubleTap",function(){
-				
-				//alert("start json");
-				$("#esdarat_alrasad_mag_contaner").append('<span class="loading">&nbsp;</span>');
-				$.ajax({
-					type : 'get',
-					url : 'http://iicss.iq/app/esdarat/json_alrasad_mag.php',
-					async : false,
-					jsonpCallback : 'alrasad_magCallBack',
-					contentType : "application/json",
-					dataType : 'jsonp',
-					success : function(json){
-						$("#esdarat_alrasad_mag_contaner").html('<div id="esdarat_alrasad_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
-						$.each(json, function(key, val){
-							$("#esdarat_alrasad_mag_contaner #esdarat_alrasad_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-alrasad_mag' : 'not-open-esdar-alrasad_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-						});
-						
-
-						$(".not-open-esdar-alrasad_mag").bind("tap",function(){
-							//close_notify("all");
-							notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-						});
-						$(".open-esdar-alrasad_mag").bind("tap",function(){
-							//alert($(this).attr("sec-id") )
-							var this_element = $(this);
-							this_element.append('<span class="loading2">&nbsp;</span>');
-							$.ajax({
-								type : 'get',
-								url : 'http://iicss.iq/app/esdarat/get_iicss_esdar.php?id='+this_element.attr("sec-id"),
-								async : false,
-								jsonpCallback : 'esdarTextCallBack',
-								contentType : "application/json",
-								dataType : 'jsonp',
-								success : function(json){
-									$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#858f90"});
-									$("#esdarat-inside-content #esdar-win-title").text("الكتب");
-									$("#esdarat-inside-content #esdar-text").html(json['text']);
-									$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-									$.each(json['links'], function(index, value){
-										if(value['type'] == "investigations"){
-											link_color = "background:#7cbcb4";
-										}else{
-											link_color = "";
-										}
-										$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-									});
-									$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-									$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-									$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-									this_element.children(".loading2").remove();
-									$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								},
-								error: function(e){
-									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									this_element.children(".loading2").remove();
-								}
-							});
-			
-						});
-							
-							
-					},
-					error: function(e){
-					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					   $("#esdarat_alrasad_mag_contaner .loading").remove();
-					}
-				});
-
-			});
-		});
-	</script>
-	<div id="esdarat_alrasad_mag_contaner" style="position:relative">
-		<div style="text-align:center">
-			<a id='esdarat_alrasad_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-		</div>
-	</div>
-	
-</div>
-
-
-<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#b37c96">ملحق الرصد</div>
-
-	<script>
-		$(document).ready(function(){
-			$("#esdarat_molhaq_rasad_mag_first_load").bind("doubleTap",function(){
-				
-				//alert("start json");
-				$("#esdarat_molhaq_rasad_mag_contaner").append('<span class="loading">&nbsp;</span>');
-				$.ajax({
-					type : 'get',
-					url : 'http://iicss.iq/app/esdarat/json_molhaq_rasad_mag.php',
-					async : false,
-					jsonpCallback : 'molhaqRasadMagCallBack',
-					contentType : "application/json",
-					dataType : 'jsonp',
-					success : function(json){
-						$("#esdarat_molhaq_rasad_mag_contaner").html('<div id="esdarat_molhaq_rasad_mag_contaner_in" style="text-align:center;font-size:0;padding:3px;">&nbsp;</div>')
-						$.each(json, function(key, val){
-							$("#esdarat_molhaq_rasad_mag_contaner #esdarat_molhaq_rasad_mag_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-molhaq_rasad_mag' : 'not-open-esdar-molhaq_rasad_mag') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-						});
-						
-
-						$(".not-open-esdar-molhaq_rasad_mag").bind("tap",function(){
-							//close_notify("all");
-							notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-						});
-						$(".open-esdar-molhaq_rasad_mag").bind("tap",function(){
-							//alert($(this).attr("sec-id") )
-							var this_element = $(this);
-							this_element.append('<span class="loading2">&nbsp;</span>');
-							$.ajax({
-								type : 'get',
-								url : 'http://iicss.iq/app/esdarat/get_iicss_esdar.php?id='+this_element.attr("sec-id"),
-								async : false,
-								jsonpCallback : 'esdarTextCallBack',
-								contentType : "application/json",
-								dataType : 'jsonp',
-								success : function(json){
-									$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : "#b37c96"});
-									$("#esdarat-inside-content #esdar-win-title").text("ملحق الرصد");
-									$("#esdarat-inside-content #esdar-text").html(json['text']);
-									$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-									$.each(json['links'], function(index, value){
-										if(value['type'] == "investigations"){
-											link_color = "background:#7cbcb4";
-										}else{
-											link_color = "";
-										}
-										$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-									});
-									$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-									$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-									$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-									this_element.children(".loading2").remove();
-									$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								},
-								error: function(e){
-									//console.log(e.message);
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									this_element.children(".loading2").remove();
-								}
-							});
-			
-						});
-							
-							
-					},
-					error: function(e){
-					   //console.log(e.message);
-					   notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					   $("#esdarat_molhaq_rasad_mag_contaner .loading").remove();
-					}
-				});
-
-			});
-		});
-	</script>
-	<div id="esdarat_molhaq_rasad_mag_contaner" style="position:relative">
-		<div style="text-align:center">
-			<a id='esdarat_molhaq_rasad_mag_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-		</div>
-	</div>
 
 </div>
