@@ -2,9 +2,6 @@
 	<div class="panel-subject">إصدارات المركز</div>
 </div>
 
-
-
-
 <div class="esdarat-button">
 
 
@@ -19,63 +16,81 @@
 					itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_mag.php",
 					itemListCallBack : "aqeedaMagCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_aqeeda_esdar.php",
+					itemHeadBg : "img/al-aqeeda.jpg",
 					itemTitle : "مجلة العقيدة",
+					itemDes : "فصلية تعنى بمسائل العقيدة وعلم الكلام القديم والجديد",
 					itemTitleBgColor : "#177bbb",
 				},
 				estishraqMag : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_mag.php",
 					itemListCallBack : "estishraqMagCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_estishraq_esdar.php",
+					itemHeadBg : "img/darasat-istishraqia.jpg",
 					itemTitle : "مجلة دراسات إستشراقية",
+					itemDes : "فصلية محكمة تعنى بالتراث الإستشراقي عرضاً ونقداً",
 					itemTitleBgColor : "#beb16b",
 				},
 				istighrabMag : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_istighrab_mag.php",
 					itemListCallBack : "istighrabMagCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_istighrab_esdar.php",
+					itemHeadBg : "img/istighrab.jpg",
 					itemTitle : "مجلة الإستغراب",
-					itemTitleBgColor : "#1aae88",
+					itemDes : "دورية فكرية تعنى بدراسة الغرب وفهمه معرفياً ونقدياً",
+					itemTitleBgColor : "#4e86a4",
 				},
 				rayِAkharMag : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_ray_akhar_mag.php",
 					itemListCallBack : "ray_akhar_magCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/ray-akhar.jpg",
 					itemTitle : "مجلة رأي آخر",
-					itemTitleBgColor : "#6fa890",
+					itemDes : "نشرة فصلية محدودة التداول تعنى برصد ما ينشر عن الشيعة والتشيع",
+					itemTitleBgColor : "#b37c96",
 				},
 				alrasadMag : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_alrasad_mag.php",
 					itemListCallBack : "alrasad_magCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/al-rasad.jpg",
 					itemTitle : "نشرة الرصد",
+					itemDes : "مجلة محدودة التداول تعكس آخر الأخبار والتقارير السياسية والثقافية",
 					itemTitleBgColor : "#49959e",
 				},
 				molhaqRasadMag : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_molhaq_rasad_mag.php",
 					itemListCallBack : "molhaqRasadMagCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/molhaq-al-rasad.jpg",
 					itemTitle : "ملحق الرصد",
+					itemDes : "",
 					itemTitleBgColor : "#b37c96",
 				},
 				aqeedaBooks : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_books.php",
 					itemListCallBack : "aqeedaBooksCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/aqeeda-books.jpg",
 					itemTitle : "كتب الكلام والعقيدة",
+					itemDes : "",
 					itemTitleBgColor : "#b37c96",
 				},
 				estishraqBooks : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_books.php",
 					itemListCallBack : "estishraqBooksCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/istishraq-books.jpg",
 					itemTitle : "كتب الإستشراق",
+					itemDes : "",
 					itemTitleBgColor : "#b37c96",
 				},
 				darasatGharbiaBooks : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_darasat_gharbia_books.php",
 					itemListCallBack : "darasatGharbiaBooksCallBack",
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/gharbia-books.jpg",
 					itemTitle : "سلسلة دراسات غربية",
+					itemDes : "",
 					itemTitleBgColor : "#b37c96",
 				},
 			}
@@ -141,8 +156,9 @@
 					});
 					
 					TapedElement.siblings(".loading2").remove();
-					$("#esdarat-item-list #esdarat-item-list-win-title").css({backgroundColor : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitleBgColor});
 					$("#esdarat-item-list #esdarat-item-list-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
+					$("#esdarat-item-list #esdarat-item-list-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
+					$("#esdarat-item-list #esdarat-item-list-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
 					$.afui.loadContent("#esdarat-item-list",false,false,"up");
 						
 						
