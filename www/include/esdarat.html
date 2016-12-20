@@ -63,7 +63,7 @@
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
 					itemHeadBg : "img/molhaq-al-rasad.jpg",
 					itemTitle : "ملحق الرصد",
-					itemDes : "",
+					itemDes : "نشرة تعنى برصد المواضيع الساخنة في الساحة الثقافية والسياسية...",
 					itemTitleBgColor : "#b37c96",
 				},
 				aqeedaBooks : {
@@ -72,7 +72,7 @@
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
 					itemHeadBg : "img/aqeeda-books.jpg",
 					itemTitle : "كتب الكلام والعقيدة",
-					itemDes : "",
+					itemDes : "سلسلة إصدارات تعنى بقضايا الكلام والعقيدة ورد الشبهات",
 					itemTitleBgColor : "#b37c96",
 				},
 				estishraqBooks : {
@@ -81,7 +81,7 @@
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
 					itemHeadBg : "img/istishraq-books.jpg",
 					itemTitle : "كتب الإستشراق",
-					itemDes : "",
+					itemDes : "سلسلة إصدارات تعنى بتحليل ونقد الدراسات الإستشراقية",
 					itemTitleBgColor : "#b37c96",
 				},
 				darasatGharbiaBooks : {
@@ -90,7 +90,7 @@
 					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
 					itemHeadBg : "img/gharbia-books.jpg",
 					itemTitle : "سلسلة دراسات غربية",
-					itemDes : "",
+					itemDes : "سلسلة إصدارات تعنى بتحليل ونقد الغرب بأقلام المسلمين والغربيين",
 					itemTitleBgColor : "#b37c96",
 				},
 			}
@@ -128,8 +128,9 @@
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#esdarat-inside-content #esdar-win-title").css({backgroundColor : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitleBgColor});
-								$("#esdarat-inside-content #esdar-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
+								$("#esdarat-inside-content #esdarat-item-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
+								$("#esdarat-inside-content #esdarat-item-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
+								$("#esdarat-inside-content #esdarat-item-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
 								$("#esdarat-inside-content #esdar-text").html(json['text']);
 								$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
 								$.each(json['links'], function(index, value){
@@ -222,7 +223,7 @@
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">ملحق الرصد</h3>
-				<span class="item-des">ششش</span>
+				<span class="item-des">نشرة تعنى برصد المواضيع الساخنة في الساحة الثقافية والسياسية...</span>
 			</div>
 		</div>
 	</div>
@@ -231,7 +232,7 @@
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">كتب الكلام والعقيدة</h3>
-				<span class="item-des">شششش</span>
+				<span class="item-des">سلسلة إصدارات تعنى بقضايا الكلام والعقيدة ورد الشبهات</span>
 			</div>
 		</div>
 	</div>
@@ -240,7 +241,7 @@
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">كتب الإستشراق</h3>
-				<span class="item-des">شششش</span>
+				<span class="item-des">سلسلة إصدارات تعنى بتحليل ونقد الدراسات الإستشراقية</span>
 			</div>
 		</div>
 	</div>
@@ -249,7 +250,7 @@
 		<div class="esdar-item-in">
 			<div class="item-text">
 				<h3 class="item-title">سلسلة دراسات غربية</h3>
-				<span class="item-des">شششش</span>
+				<span class="item-des">سلسلة إصدارات تعنى بتحليل ونقد الغرب بأقلام المسلمين والغربيين</span>
 			</div>
 		</div>
 	</div>
