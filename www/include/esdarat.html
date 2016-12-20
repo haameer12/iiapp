@@ -9,6 +9,7 @@
 
 	<script>
 	$(document).ready(function(){
+		var getEsdaratRequestObj = "";
 		$(".esdarat-button .esdar-item-in").bind("tap",function(){
 			
 			var esdarTypeTools = {
@@ -95,10 +96,14 @@
 				},
 			}
 			
+			if(getEsdaratRequestObj != ""){
+				getEsdaratRequestObj.abort();
+			}
+			
 			TapedElement = $(this);
 			TapedElement.parent().append('<span class="loading2">&nbsp;</span>');
 			
-			$.ajax({
+			getEsdaratRequestObj = $.ajax({
 				type : 'get',
 				url : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemListUrl,
 				async : false,
@@ -116,11 +121,15 @@
 						//close_notify("all");
 						notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
 					});
+					var getEsdarRequestObj = "";
 					$(".open-esdar-item").bind("tap",function(){
 						//alert($(this).attr("sec-id") )
+						if(getEsdarRequestObj != ""){
+							getEsdarRequestObj.abort();
+						}
 						var this_element = $(this);
 						this_element.append('<span class="loading2">&nbsp;</span>');
-						$.ajax({
+						getEsdarRequestObj = $.ajax({
 							type : 'get',
 							url : esdarTypeTools[TapedElement.parent().attr("esdarName")].singleItemUrl+'?id='+this_element.attr("sec-id"),
 							async : false,
@@ -146,11 +155,18 @@
 								$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
 								this_element.children(".loading2").remove();
 								$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+								
+								getEsdarRequestObj = "";
+								
 							},
-							error: function(e){
+							error: function(e, errorReason){
 								//console.log(e.message);
-								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+								if(errorReason != "abort"){
+									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+								}
 								this_element.children(".loading2").remove();
+								
+								getEsdarRequestObj = "";
 							}
 						});
 		
@@ -161,13 +177,18 @@
 					$("#esdarat-item-list #esdarat-item-list-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
 					$("#esdarat-item-list #esdarat-item-list-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
 					$.afui.loadContent("#esdarat-item-list",false,false,"up");
-						
+					
+					getEsdaratRequestObj = "";
 						
 				},
-				error: function(e){
+				error: function(e, errorReason){
 					//console.log(e.message);
-					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+					if(errorReason != "abort"){
+						notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+					}
 					TapedElement.siblings(".loading2").remove();
+					
+					getEsdaratRequestObj = "";
 				}
 			});
 
