@@ -140,7 +140,7 @@
 
 
 	
-    <!-- Define app splash screen for each platform.-->
+    <!-- Define app splash screen for each platform. -->
 	<gap:splash src="img/splash/screen-hdpi-landscape.png" />
 	<!--
 	<gap:splash src="img/splash/splash_bkg.png" gap:platform="android" gap:qualifier="port-xxhdpi" />
