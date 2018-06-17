@@ -49,6 +49,15 @@
 					itemDes : "دورية محدودة التداول تعنى برصد وترجمة ما ينشر عن الشيعة والتشيع",
 					itemTitleBgColor : "#b37c96",
 				},
+				maAlshababMag : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_ma_alshabab_mag.php",
+					itemListCallBack : "maAlshababMagCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/maalshabab.jpg",
+					itemTitle : "مجلة مع الشباب",
+					itemDes : "---",
+					itemTitleBgColor : "#b37c96",
+				},
 				alrasadMag : {
 					itemListUrl : "http://iicss.iq/app/esdarat/json_alrasad_mag.php",
 					itemListCallBack : "alrasad_magCallBack",
@@ -101,6 +110,69 @@
 					itemHeadBg : "img/gharbia-books.jpg",
 					itemTitle : "سلسلة دراسات غربية",
 					itemDes : "سلسلة إصدارات تعنى بتحليل ونقد الغرب بأقلام المسلمين والغربيين",
+					itemTitleBgColor : "#b37c96",
+				},
+				newEstishraqBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_new_estishraq_books.php",
+					itemListCallBack : "newEstishraqBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/new_estishraq_books.jpg",
+					itemTitle : "سلسلة الاستشراق السياسي الحديث",
+					itemDes : "---",
+					itemTitleBgColor : "#b37c96",
+				},
+				naqdElhadBook : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_naqd_elhad_books.php",
+					itemListCallBack : "naqdElhadBookCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/naqd_elhad_book.jpg",
+					itemTitle : "سلسلة نقد الإلحاد",
+					itemDes : "---",
+					itemTitleBgColor : "#b37c96",
+				},
+				estiratigeatMarfeaBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_estiratigeat_marfea_books.php",
+					itemListCallBack : "estiratigeatMarfeaBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/esdarat-button-bg.jpg",
+					itemTitle : "سلسلة استراتيجيات معرفية",
+					itemDes : "---",
+					itemTitleBgColor : "#b37c96",
+				},
+				mostalahatMoasiraBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_mostalahat_moasira_books.php",
+					itemListCallBack : "mostalahatMoasiraBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/esdarat-button-bg.jpg",
+					itemTitle : "سلسلة مصطلحات معاصرة",
+					itemDes : "---",
+					itemTitleBgColor : "#b37c96",
+				},
+				lahotAlmoasirBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_lahot_almoasir_books.php",
+					itemListCallBack : "lahotAlmoasirBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/esdarat-button-bg.jpg",
+					itemTitle : "دراسات نقدية في اللاهوت المعاصر",
+					itemDes : "---",
+					itemTitleBgColor : "#b37c96",
+				},
+				nahnoWalgharbBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_nahno_walgharb_books.php",
+					itemListCallBack : "nahnoWalgharbBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/esdarat-button-bg.jpg",
+					itemTitle : "سلسلة نحن والغرب",
+					itemDes : "---",
+					itemTitleBgColor : "#b37c96",
+				},
+				roaNaqdeaMoasiraBooks : {
+					itemListUrl : "http://iicss.iq/app/esdarat/json_roa_naqdea_moasira_books.php",
+					itemListCallBack : "roaNaqdeaMoasiraBooksCallBack",
+					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+					itemHeadBg : "img/esdarat-button-bg.jpg",
+					itemTitle : "سلسلة رؤى نقدية معاصرة",
+					itemDes : "---",
 					itemTitleBgColor : "#b37c96",
 				},
 			}
@@ -240,6 +312,15 @@
 		</div>
 	</div>
 	
+	<div class="esdar-item" esdarName="maAlshababMag" style="background-image:url(img/maalshabab.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">مجلة مع الشباب</h3>
+				<span class="item-des">...</span>
+			</div>
+		</div>
+	</div>
+	
 	<div class="esdar-item" esdarName="alrasadMag" style="background-image:url(img/al-rasad.jpg)">
 		<div class="esdar-item-in">
 			<div class="item-text">
@@ -290,6 +371,69 @@
 			<div class="item-text">
 				<h3 class="item-title">سلسلة دراسات غربية</h3>
 				<span class="item-des">سلسلة إصدارات تعنى بتحليل ونقد الغرب بأقلام المسلمين والغربيين</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="newEstishraqBooks" style="background-image:url(img/new_estishraq_books.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">سلسلة الاستشراق السياسي الحديث</h3>
+				<span class="item-des">...</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="naqdElhadBook" style="background-image:url(img/naqd_elhad_book.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">سلسلة نقد الإلحاد</h3>
+				<span class="item-des">...</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="estiratigeatMarfeaBooks" style="background-image:url(img/esdarat-button-bg.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">سلسلة استراتيجيات معرفية</h3>
+				<span class="item-des">...</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="mostalahatMoasiraBooks" style="background-image:url(img/esdarat-button-bg.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">سلسلة مصطلحات معاصرة</h3>
+				<span class="item-des">...</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="lahotAlmoasirBooks" style="background-image:url(img/esdarat-button-bg.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">دراسات نقدية في اللاهوت المعاصر</h3>
+				<span class="item-des">...</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="nahnoWalgharbBooks" style="background-image:url(img/esdarat-button-bg.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">سلسلة نحن والغرب</h3>
+				<span class="item-des">...</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="esdar-item" esdarName="roaNaqdeaMoasiraBooks" style="background-image:url(img/esdarat-button-bg.jpg)">
+		<div class="esdar-item-in">
+			<div class="item-text">
+				<h3 class="item-title">سلسلة رؤى نقدية معاصرة</h3>
+				<span class="item-des">...</span>
 			</div>
 		</div>
 	</div>
