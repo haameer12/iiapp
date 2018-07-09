@@ -29,14 +29,14 @@
 		<div class="overthrow nano-content">
 
 
-
+			<!--<div style="height:59px"></div>-->
 			
 
 			<div class="white-item">
 				<div class="panel-subject">الرصد / تقارير وتحقيقات</div>
 			</div>
 			
-			<div class="inside-loading">
+			<div class="inside-loading top">
 				<img src="img/loading3.gif" />
 			</div>
 			
@@ -56,7 +56,7 @@
 								contentType : "application/json",
 								dataType : 'jsonp',
 								success : function(json){
-									$("#rasad_taqarir_contaner").html('<div id="rasad_taqarir_contaner_in" style="font-size:0;padding:3px;">&nbsp;</div>')
+									$("#rasad_taqarir_contaner").html('')
 									$.each(json, function(key, val){
 										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><div class="pic-text"><img src="' +val['pic'] +'" /><table class="text"><td><span class="title">' +val['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +val['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +val['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +val['t_date'] +'</bdi></span></div><div class="text">' +val['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +val['id'] +'"><span class="title">' +val['title'] +'</span><span class="investigator">' +val['investigator'] +'</span><span class="source">' +val['source'] +'</span><span class="t_date">' +val['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
 									});
@@ -120,12 +120,12 @@
 
 
 				<div id="rasad_taqarir_contaner" style="position:relative;  text-align:right">
-				<!--	<div id='rasad_taqarir_id_for_loading' style="text-align:center;                          background:#FFF;border:1px solid #eaeef1;border-top:none;position:relative;">
-						<a id='rasad_taqarir_first_load' style="display:block;"><img src="img/tap-icon.png" onload="this.width/=2;this.onload=null;" style="margin:10px;vertical-align:middle" /><span style="vertical-align:middle;color:#bbbbbb;font-family:hacen_light;font-size:16px;">انقر مرتين لتحميل البيانات</span></a>
-					</div>-->
+					<div id="rasad_taqarir_contaner_in" lastNewsIdBySort="" lastNewsId="" style="font-size:0;padding:3px;">
 					
-					
+					</div>
 
+					
+					
 
 					<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55<br />55
 
@@ -139,7 +139,7 @@
 
 
 
-			<div class="inside-loading">
+			<div class="inside-loading bottom">
 				<img src="img/loading3.gif" />
 			</div>
 
@@ -148,5 +148,520 @@
 </div>
 <script>
 $("#alrasad-taqarir").bind('panelload', function(){
-	$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+	setTimeout(function(){
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	if($("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsIdBySort") == ""){
+		//window.alert("hi");
+		
+		$("#news_list_page").find(".inside-loading.top").show();
+		$.ajax({
+			type : 'get',
+			url : 'http://imamali.net/app_json/get_news_items.php',
+			async : false,
+			jsonpCallback : 'newsItemsCallBack',
+			contentType : "application/json",
+			dataType : 'jsonp',
+			success : function(json){
+				$("#news_list_page").find(".inside-loading.top").hide();
+				var i = 0;
+				$.each(json, function(index, value){
+					i++;
+					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsIdBySort", value['id']);
+					if(i == 1){$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId", value['id']);}//---------we are here---------
+					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
+						<img src="http://imamali.net/rpic.php?i=files/' +value['pic_name'] +'&w=230&h=190" /> \
+						<div class="news-img-loading ' +value['id'] +'"><img src="img/small-pic.jpg" /></div> \
+						<span class="news-text">' +value['title'] +'</span> \
+						<div> \
+							<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+							<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+						</div> \
+					<div class="clear"></div> \
+					</a></li>');
+					
+					$("div.news-img-loading."+value['id']).siblings("img").on("load", function(){
+						$(this).css({
+							opacity : "1",
+							filter  : "opacity(100%)",
+						});
+						$(this).siblings("div.news-img-loading").remove();
+					});
+					
+				});
+				
+				
+				
+				
+				
+				
+				
+				
+				
+
+
+				
+				
+				
+				$("#news_list_page #app-news-list .newsListItem a").unbind("tap");
+				var getEsdarRequestObj = "";
+				$("#news_list_page #app-news-list .newsListItem a").bind("tap",function(){
+					if(getEsdarRequestObj != ""){
+						getEsdarRequestObj.abort();
+					}
+					var this_element = $(this);
+					$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+					getEsdarRequestObj = $.ajax({
+						type : 'get',
+						url : 'http://imamali.net/app_json/get_news_single_item.php?news_id='+this_element.attr("newsId"),
+						async : false,
+						jsonpCallback : 'newsSingleItemCallBack',
+						contentType : "application/json",
+						dataType : 'jsonp',
+						success : function(json){
+							
+							$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "data:image/gif;base64,R0lGODlhrgEsAYAAAPjy1AAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QjY2RjU5MUI2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjY2RjU5MUM2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCNjZGNTkxOTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCNjZGNTkxQTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAAALAAAAACuASwBAAL/hI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUqn1Kr1is1qt9yu9wsOi8fksvmMTqvX7Lb7DY/L5/S6/Y7P6/f8vv8PGCg4SFhoeIiYqLjI2Oj4CBkpOUlZaXmJmam5ydnp+QkaKjpKWmp6ipqqusra6voKGys7S1tre4ubq7vL2+v7CxwsPExcbHyMnKy8zNzs/AwdLT1NXW19jZ2tvc3d7f0NHi4+Tl5ufo6err7O3u7+Dh8vP09fb3+Pn6+/z9/v/w8woMCBBAsaPIgwocKFDBs6fAgxosSJFCtavIgxo8aN/xw7evwIMqTIkSRLmjyJMqXKlSxbunwJM6bMmTRr2ryJM6fOnTx7+vwJNKjQoUSLGj2KNKnSpUybOn0KNarUqVSrWr2KNavWrVy7ev0KNqzYsWTLmj2LNq3atWzbun0LN67cuXTr2r2LN6/evXz7+v0LOLDgwYQLGz6MOLHixYwbO34MObLkyZQrW76MObPmzZw7e/4MOrTo0aRLmz6NOrXq1axbu34NO7bs2bRr276NO7fu3bx7+/4NPLjw4cSLGz+OPLny5cybO38OPbr06dSrW7+OPbv27dy7e/8OPrz48eTLmz+PPr369ezbu38PP778+fTr27+PP7/+/fz7+wT/L04BADs=");
+							
+							$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "http://imamali.net/rpic.php?i=files/" +json['pic_name'] +"&w=430&h=300");
+							$("#news_item_content #app-news-content .news-pic-tools .news-tools span span").text(json['date']);
+							$("#news_item_content #app-news-content .news-pic-tools .news-tools span:first span").text(json['view_num']);
+							$("#news_item_content #app-news-content h3.news-title").text(json['title']);
+							$("#news_item_content #app-news-content div.news-text").html(json['text']);
+							$("#news_item_content #app-news-content div.news-text img").each(function(){
+								if($(this).attr("src").indexOf("http://imamali") > -1 ){
+						
+								}else{
+									$(this).attr("src", "http://imamali.net/" +$(this).attr("src"));
+								}
+							});
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							$.afui.loadContent("#news_item_content",false,false,"up");
+
+							getEsdarRequestObj = "";
+							
+						},
+						error: function(e, errorReason){
+							//console.log(e.message);
+							if(errorReason != "abort"){
+								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+							}
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							
+							getEsdarRequestObj = "";
+						}
+					});
+				
+					return false;
+				});
+				
+				$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+				
+				
+				
+				
+				$("#news_list_page .nano").bind("scrollend", function(e){
+					//window.alert("current HTMLDivElement", e.currentTarget);
+					
+					$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+					$.ajax({
+						type : 'get',
+						url : 'http://imamali.net/app_json/get_news_items.php?last_item_by_sort='+$("#app-news-list ul").attr("lastNewsIdBySort"),
+						async : false,
+						jsonpCallback : 'newsItemsCallBack',
+						contentType : "application/json",
+						dataType : 'jsonp',
+						success : function(json){
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							$.each(json, function(index, value){
+								$("#app-news-list ul").append('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
+									<img src="http://imamali.net/rpic.php?i=files/' +value['pic_name'] +'&w=230&h=190" /> \
+									<div class="news-img-loading ' +value['id'] +'"><img src="img/small-pic.jpg" /></div> \
+									<span class="news-text">' +value['title'] +'</span> \
+									<div> \
+										<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+										<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+									</div> \
+								<div class="clear"></div> \
+								</a></li>');
+								$("#app-news-list ul").attr("lastNewsIdBySort", value['id']);
+								
+								$("div.news-img-loading."+value['id']).siblings("img").on("load", function(){
+									$(this).css({
+										opacity : "1",
+										filter  : "opacity(100%)",
+									});
+									$(this).siblings("div.news-img-loading").remove();
+								});
+								
+							});
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							$("#news_list_page #app-news-list .newsListItem a").unbind("tap");
+							var getEsdarRequestObj = "";
+							$("#news_list_page #app-news-list .newsListItem a").bind("tap",function(){
+								if(getEsdarRequestObj != ""){
+									getEsdarRequestObj.abort();
+								}
+								var this_element = $(this);
+								$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+								getEsdarRequestObj = $.ajax({
+									type : 'get',
+									url : 'http://imamali.net/app_json/get_news_single_item.php?news_id='+this_element.attr("newsId"),
+									async : false,
+									jsonpCallback : 'newsSingleItemCallBack',
+									contentType : "application/json",
+									dataType : 'jsonp',
+									success : function(json){
+										
+										$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "data:image/gif;base64,R0lGODlhrgEsAYAAAPjy1AAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QjY2RjU5MUI2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjY2RjU5MUM2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCNjZGNTkxOTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCNjZGNTkxQTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAAALAAAAACuASwBAAL/hI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUqn1Kr1is1qt9yu9wsOi8fksvmMTqvX7Lb7DY/L5/S6/Y7P6/f8vv8PGCg4SFhoeIiYqLjI2Oj4CBkpOUlZaXmJmam5ydnp+QkaKjpKWmp6ipqqusra6voKGys7S1tre4ubq7vL2+v7CxwsPExcbHyMnKy8zNzs/AwdLT1NXW19jZ2tvc3d7f0NHi4+Tl5ufo6err7O3u7+Dh8vP09fb3+Pn6+/z9/v/w8woMCBBAsaPIgwocKFDBs6fAgxosSJFCtavIgxo8aN/xw7evwIMqTIkSRLmjyJMqXKlSxbunwJM6bMmTRr2ryJM6fOnTx7+vwJNKjQoUSLGj2KNKnSpUybOn0KNarUqVSrWr2KNavWrVy7ev0KNqzYsWTLmj2LNq3atWzbun0LN67cuXTr2r2LN6/evXz7+v0LOLDgwYQLGz6MOLHixYwbO34MObLkyZQrW76MObPmzZw7e/4MOrTo0aRLmz6NOrXq1axbu34NO7bs2bRr276NO7fu3bx7+/4NPLjw4cSLGz+OPLny5cybO38OPbr06dSrW7+OPbv27dy7e/8OPrz48eTLmz+PPr369ezbu38PP778+fTr27+PP7/+/fz7+wT/L04BADs=");
+										
+										$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "http://imamali.net/rpic.php?i=files/" +json['pic_name'] +"&w=430&h=300");
+										$("#news_item_content #app-news-content .news-pic-tools .news-tools span span").text(json['date']);
+										$("#news_item_content #app-news-content .news-pic-tools .news-tools span:first span").text(json['view_num']);
+										$("#news_item_content #app-news-content h3.news-title").text(json['title']);
+										$("#news_item_content #app-news-content div.news-text").html(json['text']);
+										$("#news_item_content #app-news-content div.news-text img").each(function(){
+											if($(this).attr("src").indexOf("http://imamali") > -1 ){
+									
+											}else{
+												$(this).attr("src", "http://imamali.net/" +$(this).attr("src"));
+											}
+										});
+										$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+										$.afui.loadContent("#news_item_content",false,false,"up");
+			
+										getEsdarRequestObj = "";
+										
+									},
+									error: function(e, errorReason){
+										//console.log(e.message);
+										if(errorReason != "abort"){
+											notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+										}
+										$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+										
+										getEsdarRequestObj = "";
+									}
+								});
+							
+								return false;
+							});
+							
+							$("#news_list_page .nano").nanoScroller();
+							
+							
+							
+							
+							
+						},
+						error: function(e, errorReason){
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+						}
+					});
+	
+				});
+				$("#news_list_page .nano").bind("scrolltop", function(e){
+					//window.alert("current HTMLDivElement", e.currentTarget);
+					
+					
+					$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+					$.ajax({
+						type : 'get',
+						url : 'http://imamali.net/app_json/get_news_items.php?last_item='+$("#app-news-list ul").attr("lastNewsId"),
+						async : false,
+						jsonpCallback : 'newsItemsCallBack',
+						contentType : "application/json",
+						dataType : 'jsonp',
+						success : function(json){
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							$.each(json, function(index, value){
+								$("#app-news-list ul").prepend('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
+									<img src="http://imamali.net/rpic.php?i=files/' +value['pic_name'] +'&w=230&h=190" /> \
+									<div class="news-img-loading ' +value['id'] +'"><img src="img/small-pic.jpg" /></div> \
+									<span class="news-text">' +value['title'] +'</span> \
+									<div> \
+										<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+										<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+									</div> \
+								<div class="clear"></div> \
+								</a></li>');
+								$("#app-news-list ul").attr("lastNewsId", value['id']);
+								
+								$("div.news-img-loading."+value['id']).siblings("img").on("load", function(){
+									$(this).css({
+										opacity : "1",
+										filter  : "opacity(100%)",
+									});
+									$(this).siblings("div.news-img-loading").remove();
+								});
+								
+							});
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							$("#news_list_page #app-news-list .newsListItem a").unbind("tap");
+							var getEsdarRequestObj = "";
+							$("#news_list_page #app-news-list .newsListItem a").bind("tap",function(){
+								if(getEsdarRequestObj != ""){
+									getEsdarRequestObj.abort();
+								}
+								var this_element = $(this);
+								$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+								getEsdarRequestObj = $.ajax({
+									type : 'get',
+									url : 'http://imamali.net/app_json/get_news_single_item.php?news_id='+this_element.attr("newsId"),
+									async : false,
+									jsonpCallback : 'newsSingleItemCallBack',
+									contentType : "application/json",
+									dataType : 'jsonp',
+									success : function(json){
+										
+										$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "data:image/gif;base64,R0lGODlhrgEsAYAAAPjy1AAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QjY2RjU5MUI2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjY2RjU5MUM2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCNjZGNTkxOTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCNjZGNTkxQTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAAALAAAAACuASwBAAL/hI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUqn1Kr1is1qt9yu9wsOi8fksvmMTqvX7Lb7DY/L5/S6/Y7P6/f8vv8PGCg4SFhoeIiYqLjI2Oj4CBkpOUlZaXmJmam5ydnp+QkaKjpKWmp6ipqqusra6voKGys7S1tre4ubq7vL2+v7CxwsPExcbHyMnKy8zNzs/AwdLT1NXW19jZ2tvc3d7f0NHi4+Tl5ufo6err7O3u7+Dh8vP09fb3+Pn6+/z9/v/w8woMCBBAsaPIgwocKFDBs6fAgxosSJFCtavIgxo8aN/xw7evwIMqTIkSRLmjyJMqXKlSxbunwJM6bMmTRr2ryJM6fOnTx7+vwJNKjQoUSLGj2KNKnSpUybOn0KNarUqVSrWr2KNavWrVy7ev0KNqzYsWTLmj2LNq3atWzbun0LN67cuXTr2r2LN6/evXz7+v0LOLDgwYQLGz6MOLHixYwbO34MObLkyZQrW76MObPmzZw7e/4MOrTo0aRLmz6NOrXq1axbu34NO7bs2bRr276NO7fu3bx7+/4NPLjw4cSLGz+OPLny5cybO38OPbr06dSrW7+OPbv27dy7e/8OPrz48eTLmz+PPr369ezbu38PP778+fTr27+PP7/+/fz7+wT/L04BADs=");
+										
+										$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "http://imamali.net/rpic.php?i=files/" +json['pic_name'] +"&w=430&h=300");
+										$("#news_item_content #app-news-content .news-pic-tools .news-tools span span").text(json['date']);
+										$("#news_item_content #app-news-content .news-pic-tools .news-tools span:first span").text(json['view_num']);
+										$("#news_item_content #app-news-content h3.news-title").text(json['title']);
+										$("#news_item_content #app-news-content div.news-text").html(json['text']);
+										$("#news_item_content #app-news-content div.news-text img").each(function(){
+											if($(this).attr("src").indexOf("http://imamali") > -1 ){
+									
+											}else{
+												$(this).attr("src", "http://imamali.net/" +$(this).attr("src"));
+											}
+										});
+										$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+										$.afui.loadContent("#news_item_content",false,false,"up");
+			
+										getEsdarRequestObj = "";
+										
+									},
+									error: function(e, errorReason){
+										//console.log(e.message);
+										if(errorReason != "abort"){
+											notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+										}
+										$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+										
+										getEsdarRequestObj = "";
+									}
+								});
+							
+								return false;
+							});
+							
+							$("#news_list_page .nano").nanoScroller();
+							
+							
+							
+							
+							
+							
+							
+							
+						},
+						error: function(e, errorReason){
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+						}
+					});
+					
+				});
+				$("#news_list_page .nano").on("update", function(event, values){
+					//window.alert("It also carries a JavaScript object with the current position, the maximum height and the direction (up or down).");
+				});
+				
+				
+				
+				
+			},
+			error: function(e, errorReason){
+				$("#news_list_page").find(".inside-loading.top").hide();
+			}
+		});
+		
+		
+	}else{
+		
+		$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+		$.ajax({
+			type : 'get',
+			url : 'http://imamali.net/app_json/get_news_items.php?last_item='+$("#app-news-list ul").attr("lastNewsId"),
+			async : false,
+			jsonpCallback : 'newsItemsCallBack',
+			contentType : "application/json",
+			dataType : 'jsonp',
+			success : function(json){
+				$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+				$.each(json, function(index, value){
+					$("#app-news-list ul").prepend('<li class="newsListItem"><a newsId="' +value['id'] +'" href="#"> \
+						<img src="http://imamali.net/rpic.php?i=files/' +value['pic_name'] +'&w=230&h=190" /> \
+						<div class="news-img-loading ' +value['id'] +'"><img src="img/small-pic.jpg" /></div> \
+						<span class="news-text">' +value['title'] +'</span> \
+						<div> \
+							<span>' +value['view_num'] +'<i class="fa fa-eye" aria-hidden="true"></i></span> \
+							<span>' +value['date'] +'<i class="fa fa-calendar" aria-hidden="true"></i></span> \
+						</div> \
+					<div class="clear"></div> \
+					</a></li>');
+					$("#app-news-list ul").attr("lastNewsId", value['id']);
+					
+					$("div.news-img-loading."+value['id']).siblings("img").on("load", function(){
+						$(this).css({
+							opacity : "1",
+							filter  : "opacity(100%)",
+						});
+						$(this).siblings("div.news-img-loading").remove();
+					});
+					
+				});
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				$("#news_list_page #app-news-list .newsListItem a").unbind("tap");
+				var getEsdarRequestObj = "";
+				$("#news_list_page #app-news-list .newsListItem a").bind("tap",function(){
+					if(getEsdarRequestObj != ""){
+						getEsdarRequestObj.abort();
+					}
+					var this_element = $(this);
+					$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "1");
+					getEsdarRequestObj = $.ajax({
+						type : 'get',
+						url : 'http://imamali.net/app_json/get_news_single_item.php?news_id='+this_element.attr("newsId"),
+						async : false,
+						jsonpCallback : 'newsSingleItemCallBack',
+						contentType : "application/json",
+						dataType : 'jsonp',
+						success : function(json){
+							
+							$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "data:image/gif;base64,R0lGODlhrgEsAYAAAPjy1AAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxMTEgNzkuMTU4MzI1LCAyMDE1LzA5LzEwLTAxOjEwOjIwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxNSAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QjY2RjU5MUI2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QjY2RjU5MUM2NjE0MTFFN0FCMjlFREMzOTA5Q0Q3NjgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCNjZGNTkxOTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCNjZGNTkxQTY2MTQxMUU3QUIyOUVEQzM5MDlDRDc2OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgH//v38+/r5+Pf29fTz8vHw7+7t7Ovq6ejn5uXk4+Lh4N/e3dzb2tnY19bV1NPS0dDPzs3My8rJyMfGxcTDwsHAv769vLu6ubi3trW0s7KxsK+urayrqqmop6alpKOioaCfnp2cm5qZmJeWlZSTkpGQj46NjIuKiYiHhoWEg4KBgH9+fXx7enl4d3Z1dHNycXBvbm1sa2ppaGdmZWRjYmFgX15dXFtaWVhXVlVUU1JRUE9OTUxLSklIR0ZFRENCQUA/Pj08Ozo5ODc2NTQzMjEwLy4tLCsqKSgnJiUkIyIhIB8eHRwbGhkYFxYVFBMSERAPDg0MCwoJCAcGBQQDAgEAACH5BAEAAAAALAAAAACuASwBAAL/hI+py+0Po5y02ouz3rz7D4biSJbmiabqyrbuC8fyTNf2jef6zvf+DwwKh8Si8YhMKpfMpvMJjUqn1Kr1is1qt9yu9wsOi8fksvmMTqvX7Lb7DY/L5/S6/Y7P6/f8vv8PGCg4SFhoeIiYqLjI2Oj4CBkpOUlZaXmJmam5ydnp+QkaKjpKWmp6ipqqusra6voKGys7S1tre4ubq7vL2+v7CxwsPExcbHyMnKy8zNzs/AwdLT1NXW19jZ2tvc3d7f0NHi4+Tl5ufo6err7O3u7+Dh8vP09fb3+Pn6+/z9/v/w8woMCBBAsaPIgwocKFDBs6fAgxosSJFCtavIgxo8aN/xw7evwIMqTIkSRLmjyJMqXKlSxbunwJM6bMmTRr2ryJM6fOnTx7+vwJNKjQoUSLGj2KNKnSpUybOn0KNarUqVSrWr2KNavWrVy7ev0KNqzYsWTLmj2LNq3atWzbun0LN67cuXTr2r2LN6/evXz7+v0LOLDgwYQLGz6MOLHixYwbO34MObLkyZQrW76MObPmzZw7e/4MOrTo0aRLmz6NOrXq1axbu34NO7bs2bRr276NO7fu3bx7+/4NPLjw4cSLGz+OPLny5cybO38OPbr06dSrW7+OPbv27dy7e/8OPrz48eTLmz+PPr369ezbu38PP778+fTr27+PP7/+/fz7+wT/L04BADs=");
+							
+							$("#news_item_content #app-news-content .news-pic-tools img").attr("src", "http://imamali.net/rpic.php?i=files/" +json['pic_name'] +"&w=430&h=300");
+							$("#news_item_content #app-news-content .news-pic-tools .news-tools span span").text(json['date']);
+							$("#news_item_content #app-news-content .news-pic-tools .news-tools span:first span").text(json['view_num']);
+							$("#news_item_content #app-news-content h3.news-title").text(json['title']);
+							$("#news_item_content #app-news-content div.news-text").html(json['text']);
+							$("#news_item_content #app-news-content div.news-text img").each(function(){
+								if($(this).attr("src").indexOf("http://imamali") > -1 ){
+						
+								}else{
+									$(this).attr("src", "http://imamali.net/" +$(this).attr("src"));
+								}
+							});
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							$.afui.loadContent("#news_item_content",false,false,"up");
+
+							getEsdarRequestObj = "";
+							
+						},
+						error: function(e, errorReason){
+							//console.log(e.message);
+							if(errorReason != "abort"){
+								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+							}
+							$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+							
+							getEsdarRequestObj = "";
+						}
+					});
+				
+					return false;
+				});
+				
+				$("#news_list_page .nano").nanoScroller();
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			},
+			error: function(e, errorReason){
+				$("#news_list_page").siblings(".inside_page_title").children(".inside_page_loading").css("opacity", "0");
+			}
+		});
+		
+		
+	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+	}, 5)
 })
+$("#alrasad-taqarir").bind('panelunload', function() {
+	//alert("news_list end");
+});
+</script>
