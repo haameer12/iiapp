@@ -51,18 +51,18 @@
 
 				<div id="rasad_taqarir_contaner" style="position:relative;  text-align:right">
 					<div id="rasad_taqarir_contaner_in" lastNewsIdBySort="" lastNewsId="" style="font-size:0;padding:3px;">
-					
 					</div>
-
-					
-					
-
-					
 
 					
 					
 					
 				</div>
+				
+				
+				
+				
+				
+				
 
 			</div>
 
@@ -80,26 +80,7 @@
 $("#alrasad-taqarir").bind('panelload', function(){
 	setTimeout(function(){
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		
 	if($("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsIdBySort") == ""){
@@ -278,6 +259,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 
 							},
 							error: function(e, errorReason){
+								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
 								$("#news_list_page").find(".inside-loading.bottom").hide();
 							}
 						});
@@ -373,6 +355,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 
 							},
 							error: function(e, errorReason){
+								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
 								$("#news_list_page").find(".inside-loading.top").hide();
 							}
 						});
@@ -389,6 +372,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 				
 			},
 			error: function(e, errorReason){
+				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
 				$("#news_list_page").find(".inside-loading.top").hide();
 			}
 		});
@@ -490,29 +474,13 @@ $("#alrasad-taqarir").bind('panelload', function(){
 				
 			},
 			error: function(e, errorReason){
+				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
 				$("#news_list_page").find(".inside-loading.top").hide();
 			}
 		});
 		
 		
 	}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
