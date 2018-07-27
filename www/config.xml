@@ -11,7 +11,6 @@
     <author href="http://magicwd.co" email="info@magicwd.co">MWD Hassan Haddad</author>
 		
     <!--
-		ir.smgroup.saveimage
         If you do not want any permissions to be added to your app, add the
         following tag to your config.xml; you will still have the INTERNET
         permission on your app, which PhoneGap requires. 
