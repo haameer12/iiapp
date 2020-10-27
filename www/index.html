@@ -744,7 +744,7 @@
 	<style>
 	/*مشاهدة الإصدار - esdarat-inside-content*/
 	@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
-	#esdarat-inside-content .esdar-title, #sec-type-text-content .sec-type-text-title, #alrasad_marakiz-inside-content .markaz-title, #alrasad_taqarir-inside-content .taqrir-title, #taqrir-content .taqrir-title{
+	#esdarat-inside-content .esdar-title, #sec-type-text-content .sec-type-text-title, #alrasad_marakiz-inside-content .markaz-title, #hewarat-inside-content .hewar-title, #hewar-content .taqrir-title, #alrasad_taqarir-inside-content .taqrir-title, #taqrir-content .taqrir-title{
 		font-family:"hacen_screen";
 		font-size:16px;
 		text-align:center;
@@ -870,6 +870,18 @@
 		border-left:1px solid #eaeef1;
 		opacity:0;
 	}
+	.list-pic_item .pic-text .img-loading{
+		background:url("img/loading4.gif") no-repeat center center;
+		background-size:25px;
+		border-left:1px solid #eaeef1;
+		position:absolute;
+		top:0;
+		right:0;
+	}
+	.list-pic_item .pic-text .img-loading img{
+		padding:1px;
+		opacity:0.5;
+	}
 	.list-pic_item .pic-text .taqarir-img-loading{
 		background:url("img/loading4.gif") no-repeat center center;
 		background-size:25px;
@@ -940,6 +952,26 @@
 	}
 	.list-pic_item .details .text span.read_more span{
 		display:none;
+	}
+
+	#hewarat-inside-content .details, #hewar-content .details{
+		background:#fcfdfd;
+		margin:3px -10px 13px -10px;
+		padding:5px 0;
+		border-top:1px solid #f7f8f9;
+		border-bottom:1px solid #f7f8f9;
+	}
+	#hewarat-inside-content .details .p-item, #hewar-content .details .p-item{
+		padding:9px 10px;
+	}
+	#hewarat-inside-content .details .p-item img, #hewar-content .details .p-item img{
+		vertical-align:middle;
+	}
+	#hewarat-inside-content .details .p-item span, #hewar-content .details .p-item span{
+		font-family:"hacen_light";
+		padding:0 10px 0 0;
+		font-size:15px;
+		color:#5a5e64;
 	}
 	
 	#alrasad_taqarir-inside-content .details, #taqrir-content .details{
@@ -1133,6 +1165,19 @@
 				</div>
 
 			</div>
+
+			<div data-left-drawer="left" class="panel" id="hewarat" data-include="include/hewarat.html" data-title="حوارات" >
+				
+			</div>
+			<div data-left-drawer="left" class="panel" id="hewarat-inside-content" data-title="مشاهدة بيانات الحوار" >
+				
+				<div class="colored-win"><div class="c-w-title icon pin" id="hewarat-win-title">&nbsp;</div>
+					<div id="hewarat-text" class="app-text">
+						
+					</div>
+				</div>
+				
+			</div>
 			
 			<div data-left-drawer="left" class="panel" id="alrasad-marakiz" data-include="include/alrasad_marakiz.html" data-title="الرصد / مراكز الدراسات والبحوث" >
 				
@@ -1271,9 +1316,10 @@
 					   <ul class="list">
 							<li><a href="#main" class="icon home" onClick="$.afui.drawer.hide('#right','right')">الرئيسية</a></li>
 							<li><a href="#esdarat" class="icon settings" onClick="$.afui.drawer.hide('#right','right')">الإصدارات</a></li>
+							<li><a href="#hewarat" class="icon mic" onClick="$.afui.drawer.hide('#right','right')">حوارات</a></li>
 							<li><a href="#alrasad-marakiz" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / مراكز الدراسات والبحوث</a></li>
 							<li><a href="#alrasad-taqarir" class="icon camera" onClick="$.afui.drawer.hide('#right','right')">الرصد / تقارير وتحقيقات</a></li>
-							<li><a href="#" class="icon tv" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=41', 'blank');return false;">قناة العقيدة</a></li>
+							<!--<li><a href="#" class="icon tv" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=41', 'blank');return false;">قناة العقيدة</a></li>-->
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=1', 'blank');return false;">قسم الكلام والعقيدة</a></li>
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=2', 'blank');return false;">قسم الإستشراق</a></li>
 							<li><a href="#" class="icon pin" onClick="$.afui.drawer.hide('#right','right');openUrl('http://iicss.iq/?id=3', 'blank');return false;">قسم الفكر المعاصر</a></li>
