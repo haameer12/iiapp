@@ -4,9 +4,6 @@
 
 
 
-
-
-
 <style>
 	form.contact_form{
 		direction:rtl;
@@ -42,6 +39,9 @@
 		<input class="text" name="name" type="text" value="" placeholder="الاسم" />
 	</p>
 	<p>
+		<input class="text" name="country" type="text" value="" placeholder="البلد" />
+	</p>
+	<p>
 		<input class="text" name="email" type="text" dir="ltr" value="" placeholder="Email" />
 	</p>
 	<p>
@@ -64,6 +64,7 @@ $("#contact_form_submit").bind("tap",function(){
 			url : 'http://iicss.iq/app/contact_form.php',
 			data: {
 				name : $(".contact_form input[name=name]").val(),
+				country : $(".contact_form input[name=country]").val(),
 				email : $(".contact_form input[name=email]").val(),
 				subject : $(".contact_form input[name=subject]").val(),
 				mailtext : $(".contact_form textarea[name=mailtext]").val()
@@ -77,6 +78,7 @@ $("#contact_form_submit").bind("tap",function(){
 					$(".contact_form").children(".loading2").remove();
 					notify('شكراً، تم استلام رسالتكم بنجاح', 'success', 4000, 'bottom', 'Up', 'Down');	
 					$(".contact_form input[name=name]").val("");
+					$(".contact_form input[name=country]").val("");
 					$(".contact_form input[name=email]").val("");
 					$(".contact_form input[name=subject]").val("");
 					$(".contact_form textarea[name=mailtext]").val("")
