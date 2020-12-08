@@ -23,7 +23,7 @@
 	
 
     <!-- Customize your app and platform with the preference element. -->
-    <preference name="phonegap-version"           value="cli-6.5.0" />      <!-- all: current version of PhoneGap cli-5.4.1-->
+    <preference name="phonegap-version"           value="cli-7.1.0" />      <!-- all: current version of PhoneGap cli-5.4.1-->
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
 	<preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
@@ -72,7 +72,7 @@
     <!--<gap:plugin name="org.apache.cordova.globalization" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-inappbrowser.git" source="git" />
     <!--<gap:plugin name="cordova.inappbrowser" source="npm" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-media.git#a13a360" source="git" />
+	<plugin spec="https://github.com/apache/cordova-plugin-media.git" source="git" />
 	<!--<gap:plugin name="cordova.media" source="npm" />-->
 	<!--<gap:plugin name="org.apache.cordova.media-capture" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-network-information.git" source="git" />
