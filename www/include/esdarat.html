@@ -9,330 +9,235 @@
 
 	<script>
 	$(document).ready(function(){
+
+
+
+
+		var esdarTypeTools = {
+			aqeedaMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_mag.php",
+				itemListCallBack : "aqeedaMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_aqeeda_esdar.php",
+				itemHeadBg : "img/al-aqeeda.jpg",
+				itemTitle : "مجلة العقيدة",
+				itemDes : "فصلية تعنى بمسائل العقيدة وعلم الكلام القديم والجديد",
+				itemTitleBgColor : "#177bbb",
+			},
+			estishraqMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_mag.php",
+				itemListCallBack : "estishraqMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_estishraq_esdar.php",
+				itemHeadBg : "img/darasat-istishraqia.jpg",
+				itemTitle : "مجلة دراسات إستشراقية",
+				itemDes : "فصلية محكمة تعنى بالتراث الإستشراقي عرضاً ونقداً",
+				itemTitleBgColor : "#beb16b",
+			},
+			istighrabMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_istighrab_mag.php",
+				itemListCallBack : "istighrabMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_istighrab_esdar.php",
+				itemHeadBg : "img/istighrab.jpg",
+				itemTitle : "مجلة الإستغراب",
+				itemDes : "دورية فكرية تعنى بدراسة الغرب وفهمه معرفياً ونقدياً",
+				itemTitleBgColor : "#4e86a4",
+			},
+			rayِAkharMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_ray_akhar_mag.php",
+				itemListCallBack : "ray_akhar_magCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/ray-akhar.jpg",
+				itemTitle : "مجلة رأي آخر",
+				itemDes : "دورية محدودة التداول تعنى برصد وترجمة ما ينشر عن الشيعة والتشيع",
+				itemTitleBgColor : "#b37c96",
+			},
+			maAlshababMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_ma_alshabab_mag.php",
+				itemListCallBack : "maAlshababMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_ma_alshabab_esdar.php",
+				itemHeadBg : "img/maalshabab.jpg",
+				itemTitle : "مجلة مع الشباب",
+				itemDes : "مجلة فصلية شبابية تعنى باهتمامات الشباب وتطلعاتهم",
+				itemTitleBgColor : "#b37c96",
+			},
+			alrasadMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_alrasad_mag.php",
+				itemListCallBack : "alrasad_magCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/al-rasad.jpg",
+				itemTitle : "مجلة الرصد",
+				itemDes : "مجلة محدودة التداول تعكس آخر الأخبار والتقارير السياسية والثقافية",
+				itemTitleBgColor : "#49959e",
+			},
+			molhaqRasadMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_molhaq_rasad_mag.php",
+				itemListCallBack : "molhaqRasadMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/molhaq-al-rasad.jpg",
+				itemTitle : "ملحق الرصد",
+				itemDes : "نشرة تعنى برصد المواضيع الساخنة في الساحة الثقافية والسياسية...",
+				itemTitleBgColor : "#b37c96",
+			},
+			ekhtiraqThaghafiMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_ekhtiraq_thaghafi_mag.php",
+				itemListCallBack : "ekhtiraqThaghafiMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/ekhtiraq-thaghafi.jpg",
+				itemTitle : "سلسلة الاختراق الثقافي",
+				itemDes : "سلسلة لرصد اهم المجالات التي تصب في صالح تغريب الامة الإسلامية",
+				itemTitleBgColor : "#b37c96",
+			},
+			quranEstishraqMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_quran_estishraq_mag.php",
+				itemListCallBack : "quranEstishraqMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/quran-estishraq.jpg",
+				itemTitle : "مجلة القرآن والاستشراق المعاصر",
+				itemDes : "نشرة خبرية تعنى برصد حركة الاستشراق المعاصر للقرآن الكريم",
+				itemTitleBgColor : "#b37c96",
+			},
+			shiaDarasatGharbiaMag : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_shia_darasat_gharbia_mag.php",
+				itemListCallBack : "shiaDarasatGharbiaMagCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/shia_darasat_gharbia.jpg",//-----------------------
+				itemTitle : "مجلة الشيعة في الدراسات الغربية",
+				itemDes : "نشرة فصلية تعنى برصد الاهتمام الغربي بالشيعة والتشيع",
+				itemTitleBgColor : "#b37c96",
+			},
+			aqeedaBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_books.php",
+				itemListCallBack : "aqeedaBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/aqeeda-books.jpg",
+				itemTitle : "سلسلة دراسات كلامية",
+				itemDes : "سلسلة إصدارات تعنى بقضايا الكلام والعقيدة ورد الشبهات",
+				itemTitleBgColor : "#b37c96",
+			},
+			estishraqBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_books.php",
+				itemListCallBack : "estishraqBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/istishraq-books.jpg",
+				itemTitle : "سلسلة دراسات استشراقية",
+				itemDes : "سلسلة إصدارات تعنى بتحليل ونقد الدراسات الإستشراقية",
+				itemTitleBgColor : "#b37c96",
+			},
+			darasatGharbiaBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_darasat_gharbia_books.php",
+				itemListCallBack : "darasatGharbiaBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/gharbia-books.jpg",
+				itemTitle : "سلسلة دراسات غربية",
+				itemDes : "سلسلة إصدارات تعنى بتحليل ونقد الغرب بأقلام المسلمين والغربيين",
+				itemTitleBgColor : "#b37c96",
+			},
+			newEstishraqBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_new_estishraq_books.php",
+				itemListCallBack : "newEstishraqBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/new_estishraq_books.jpg",
+				itemTitle : "الاستشراق السياسي الحديث",
+				itemDes : "سلسلة تعنى بتعريف وترجمة وعرض ونقد نتاجات مراكز التفكير الغربية",
+				itemTitleBgColor : "#b37c96",
+			},
+			naqdElhadBook : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_naqd_elhad_books.php",
+				itemListCallBack : "naqdElhadBookCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/naqd_elhad_book.jpg",
+				itemTitle : "سلسلة نقد الإلحاد",
+				itemDes : "سلسلة تعنى بمعالجة حالات الالحاد بأقلام دعاة الدين",
+				itemTitleBgColor : "#b37c96",
+			},
+			estiratigeatMarfeaBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_estiratigeat_marfea_books.php",
+				itemListCallBack : "estiratigeatMarfeaBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/estiratigeat_marfea_books.jpg",
+				itemTitle : "سلسلة استراتيجيات معرفية",
+				itemDes : "سلسة تعنى بدراسة الغرب المعاصر وتحليله ونقده",
+				itemTitleBgColor : "#b37c96",
+			},
+			mostalahatMoasiraBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_mostalahat_moasira_books.php",
+				itemListCallBack : "mostalahatMoasiraBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/mostalahat_moasira_books.jpg",
+				itemTitle : "سلسلة مصطلحات معاصرة",
+				itemDes : "سلسلة تعنى بتأصيل ونقد مفاهيم التفكير المعاصر",
+				itemTitleBgColor : "#b37c96",
+			},
+			lahotAlmoasirBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_lahot_almoasir_books.php",
+				itemListCallBack : "lahotAlmoasirBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/lahot_almoasir_books.jpg",
+				itemTitle : "دراسات نقدية في اللاهوت المعاصر",
+				itemDes : "بحوث ودراسات معاصرة تعنى بمسائل اللاهوت",
+				itemTitleBgColor : "#b37c96",
+			},
+			nahnoWalgharbBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_nahno_walgharb_books.php",
+				itemListCallBack : "nahnoWalgharbBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/nahno_walgharb_books.jpg",
+				itemTitle : "سلسلة نحن والغرب",
+				itemDes : "سلسلة إحياء وتفعيل الحركة المعرفية والنقدية حيال قيم الغرب",
+				itemTitleBgColor : "#b37c96",
+			},
+			roaNaqdeaMoasiraBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_roa_naqdea_moasira_books.php",
+				itemListCallBack : "roaNaqdeaMoasiraBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/roa_naqdea_moasira_books.jpg",
+				itemTitle : "سلسلة رؤى نقدية معاصرة",
+				itemDes : "سلسلة تعنى بمصطلحات معاصرة لمشاريع فكرية ومعرفية",
+				itemTitleBgColor : "#b37c96",
+			},
+			darasatNaqdeaAalamGharBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_darasat_naqdea_aalam_gharb_books.php",
+				itemListCallBack : "darasatNaqdeaAalamGharBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/darasat_naqdea_aalam_gharb_books.jpg",
+				itemTitle : "سلسلة دراسات نقدية في أعلام الغرب",
+				itemDes : "سلسلة دراسات نقدية للفكر الغربي في إطار بحوث تحليلية نقدية للمنظومات الفكرية",
+				itemTitleBgColor : "#b37c96",
+			},
+			tasisElmEstighrabBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_tasis_elm_estighrab_books.php",
+				itemListCallBack : "tasisElmEstighrabBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/tasis_elm_estighrab_books.jpg",
+				itemTitle : "المشروع التأسيسي لعلم الاستغراب",
+				itemDes : "",
+				itemTitleBgColor : "#b37c96",
+			},
+			quranInDarasatGharbiaBooks : {
+				itemListUrl : "http://iicss.iq/app/esdarat/json_quran_in_darasat_gharbia_books.php",
+				itemListCallBack : "quranInDarasatGharbiaBooksCallBack",
+				singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
+				itemHeadBg : "img/quran_in_darasat_gharbia_books.jpg",
+				itemTitle : "سلسلة القرآن في الدراسات الغربية",
+				itemDes : "",
+				itemTitleBgColor : "#b37c96",
+			}
+		}
+
 		var getEsdaratRequestObj = "";
 		$(".esdarat-button .esdar-item-in").bind("tap",function(){
-			
-			var esdarTypeTools = {
-				aqeedaMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_mag.php",
-					itemListCallBack : "aqeedaMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_aqeeda_esdar.php",
-					itemHeadBg : "img/al-aqeeda.jpg",
-					itemTitle : "مجلة العقيدة",
-					itemDes : "فصلية تعنى بمسائل العقيدة وعلم الكلام القديم والجديد",
-					itemTitleBgColor : "#177bbb",
-				},
-				estishraqMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_mag.php",
-					itemListCallBack : "estishraqMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_estishraq_esdar.php",
-					itemHeadBg : "img/darasat-istishraqia.jpg",
-					itemTitle : "مجلة دراسات إستشراقية",
-					itemDes : "فصلية محكمة تعنى بالتراث الإستشراقي عرضاً ونقداً",
-					itemTitleBgColor : "#beb16b",
-				},
-				istighrabMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_istighrab_mag.php",
-					itemListCallBack : "istighrabMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_istighrab_esdar.php",
-					itemHeadBg : "img/istighrab.jpg",
-					itemTitle : "مجلة الإستغراب",
-					itemDes : "دورية فكرية تعنى بدراسة الغرب وفهمه معرفياً ونقدياً",
-					itemTitleBgColor : "#4e86a4",
-				},
-				rayِAkharMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_ray_akhar_mag.php",
-					itemListCallBack : "ray_akhar_magCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/ray-akhar.jpg",
-					itemTitle : "مجلة رأي آخر",
-					itemDes : "دورية محدودة التداول تعنى برصد وترجمة ما ينشر عن الشيعة والتشيع",
-					itemTitleBgColor : "#b37c96",
-				},
-				maAlshababMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_ma_alshabab_mag.php",
-					itemListCallBack : "maAlshababMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_ma_alshabab_esdar.php",
-					itemHeadBg : "img/maalshabab.jpg",
-					itemTitle : "مجلة مع الشباب",
-					itemDes : "مجلة فصلية شبابية تعنى باهتمامات الشباب وتطلعاتهم",
-					itemTitleBgColor : "#b37c96",
-				},
-				alrasadMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_alrasad_mag.php",
-					itemListCallBack : "alrasad_magCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/al-rasad.jpg",
-					itemTitle : "مجلة الرصد",
-					itemDes : "مجلة محدودة التداول تعكس آخر الأخبار والتقارير السياسية والثقافية",
-					itemTitleBgColor : "#49959e",
-				},
-				molhaqRasadMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_molhaq_rasad_mag.php",
-					itemListCallBack : "molhaqRasadMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/molhaq-al-rasad.jpg",
-					itemTitle : "ملحق الرصد",
-					itemDes : "نشرة تعنى برصد المواضيع الساخنة في الساحة الثقافية والسياسية...",
-					itemTitleBgColor : "#b37c96",
-				},
-				ekhtiraqThaghafiMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_ekhtiraq_thaghafi_mag.php",
-					itemListCallBack : "ekhtiraqThaghafiMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/ekhtiraq-thaghafi.jpg",
-					itemTitle : "سلسلة الاختراق الثقافي",
-					itemDes : "سلسلة لرصد اهم المجالات التي تصب في صالح تغريب الامة الإسلامية",
-					itemTitleBgColor : "#b37c96",
-				},
-				quranEstishraqMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_quran_estishraq_mag.php",
-					itemListCallBack : "quranEstishraqMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/quran-estishraq.jpg",
-					itemTitle : "مجلة القرآن والاستشراق المعاصر",
-					itemDes : "نشرة خبرية تعنى برصد حركة الاستشراق المعاصر للقرآن الكريم",
-					itemTitleBgColor : "#b37c96",
-				},
-				shiaDarasatGharbiaMag : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_shia_darasat_gharbia_mag.php",
-					itemListCallBack : "shiaDarasatGharbiaMagCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/shia_darasat_gharbia.jpg",//-----------------------
-					itemTitle : "مجلة الشيعة في الدراسات الغربية",
-					itemDes : "نشرة فصلية تعنى برصد الاهتمام الغربي بالشيعة والتشيع",
-					itemTitleBgColor : "#b37c96",
-				},
-				aqeedaBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_aqeeda_books.php",
-					itemListCallBack : "aqeedaBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/aqeeda-books.jpg",
-					itemTitle : "سلسلة دراسات كلامية",
-					itemDes : "سلسلة إصدارات تعنى بقضايا الكلام والعقيدة ورد الشبهات",
-					itemTitleBgColor : "#b37c96",
-				},
-				estishraqBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_estishraq_books.php",
-					itemListCallBack : "estishraqBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/istishraq-books.jpg",
-					itemTitle : "سلسلة دراسات استشراقية",
-					itemDes : "سلسلة إصدارات تعنى بتحليل ونقد الدراسات الإستشراقية",
-					itemTitleBgColor : "#b37c96",
-				},
-				darasatGharbiaBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_darasat_gharbia_books.php",
-					itemListCallBack : "darasatGharbiaBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/gharbia-books.jpg",
-					itemTitle : "سلسلة دراسات غربية",
-					itemDes : "سلسلة إصدارات تعنى بتحليل ونقد الغرب بأقلام المسلمين والغربيين",
-					itemTitleBgColor : "#b37c96",
-				},
-				newEstishraqBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_new_estishraq_books.php",
-					itemListCallBack : "newEstishraqBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/new_estishraq_books.jpg",
-					itemTitle : "الاستشراق السياسي الحديث",
-					itemDes : "سلسلة تعنى بتعريف وترجمة وعرض ونقد نتاجات مراكز التفكير الغربية",
-					itemTitleBgColor : "#b37c96",
-				},
-				naqdElhadBook : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_naqd_elhad_books.php",
-					itemListCallBack : "naqdElhadBookCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/naqd_elhad_book.jpg",
-					itemTitle : "سلسلة نقد الإلحاد",
-					itemDes : "سلسلة تعنى بمعالجة حالات الالحاد بأقلام دعاة الدين",
-					itemTitleBgColor : "#b37c96",
-				},
-				estiratigeatMarfeaBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_estiratigeat_marfea_books.php",
-					itemListCallBack : "estiratigeatMarfeaBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/estiratigeat_marfea_books.jpg",
-					itemTitle : "سلسلة استراتيجيات معرفية",
-					itemDes : "سلسة تعنى بدراسة الغرب المعاصر وتحليله ونقده",
-					itemTitleBgColor : "#b37c96",
-				},
-				mostalahatMoasiraBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_mostalahat_moasira_books.php",
-					itemListCallBack : "mostalahatMoasiraBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/mostalahat_moasira_books.jpg",
-					itemTitle : "سلسلة مصطلحات معاصرة",
-					itemDes : "سلسلة تعنى بتأصيل ونقد مفاهيم التفكير المعاصر",
-					itemTitleBgColor : "#b37c96",
-				},
-				lahotAlmoasirBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_lahot_almoasir_books.php",
-					itemListCallBack : "lahotAlmoasirBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/lahot_almoasir_books.jpg",
-					itemTitle : "دراسات نقدية في اللاهوت المعاصر",
-					itemDes : "بحوث ودراسات معاصرة تعنى بمسائل اللاهوت",
-					itemTitleBgColor : "#b37c96",
-				},
-				nahnoWalgharbBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_nahno_walgharb_books.php",
-					itemListCallBack : "nahnoWalgharbBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/nahno_walgharb_books.jpg",
-					itemTitle : "سلسلة نحن والغرب",
-					itemDes : "سلسلة إحياء وتفعيل الحركة المعرفية والنقدية حيال قيم الغرب",
-					itemTitleBgColor : "#b37c96",
-				},
-				roaNaqdeaMoasiraBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_roa_naqdea_moasira_books.php",
-					itemListCallBack : "roaNaqdeaMoasiraBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/roa_naqdea_moasira_books.jpg",
-					itemTitle : "سلسلة رؤى نقدية معاصرة",
-					itemDes : "سلسلة تعنى بمصطلحات معاصرة لمشاريع فكرية ومعرفية",
-					itemTitleBgColor : "#b37c96",
-				},
-
-
-
-
-
-
-
-
-				darasatNaqdeaAalamGharBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_darasat_naqdea_aalam_gharb_books.php",
-					itemListCallBack : "darasatNaqdeaAalamGharBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/darasat_naqdea_aalam_gharb_books.jpg",
-					itemTitle : "سلسلة دراسات نقدية في أعلام الغرب",
-					itemDes : "سلسلة دراسات نقدية للفكر الغربي في إطار بحوث تحليلية نقدية للمنظومات الفكرية",
-					itemTitleBgColor : "#b37c96",
-				},
-				tasisElmEstighrabBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_tasis_elm_estighrab_books.php",
-					itemListCallBack : "tasisElmEstighrabBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/tasis_elm_estighrab_books.jpg",
-					itemTitle : "المشروع التأسيسي لعلم الاستغراب",
-					itemDes : "",
-					itemTitleBgColor : "#b37c96",
-				},
-				quranInDarasatGharbiaBooks : {
-					itemListUrl : "http://iicss.iq/app/esdarat/json_quran_in_darasat_gharbia_books.php",
-					itemListCallBack : "quranInDarasatGharbiaBooksCallBack",
-					singleItemUrl : "http://iicss.iq/app/esdarat/get_iicss_esdar.php",
-					itemHeadBg : "img/quran_in_darasat_gharbia_books.jpg",
-					itemTitle : "سلسلة القرآن في الدراسات الغربية",
-					itemDes : "",
-					itemTitleBgColor : "#b37c96",
-				},
-
-
-
-
-
-
-
-			}
-			
-			if(getEsdaratRequestObj != ""){
-				getEsdaratRequestObj.abort();
-			}
-			
 			TapedElement = $(this);
-			TapedElement.parent().append('<span class="loading2">&nbsp;</span>');
-			
-			getEsdaratRequestObj = $.ajax({
-				type : 'get',
-				url : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemListUrl,
-				async : false,
-				jsonpCallback : esdarTypeTools[TapedElement.parent().attr("esdarName")].itemListCallBack,
-				contentType : "application/json",
-				dataType : 'jsonp',
-				success : function(json){
-					
-					$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").html("");
-					$.each(json, function(key, val){
-						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").append('<span class="grid-item"><div class="in ' +((val['type'] == 2 && val['protected'] == 0)? 'open-esdar-item' : 'not-open-esdar-item') +'" sec-id="' +val['id'] +'"><img src="' +((val['pic'].length > 30)? val['pic'] : 'img/esdarat_default_pic.jpg') +'" width="100%" /><h3 class="title">' +val['name'] +'</h3></div></span>');
-					});
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl", esdarTypeTools[TapedElement.parent().attr("esdarName")].itemListUrl);
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListCallBack", esdarTypeTools[TapedElement.parent().attr("esdarName")].itemListCallBack);
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("singleItemUrl", esdarTypeTools[TapedElement.parent().attr("esdarName")].singleItemUrl);
+			$("#esdarat-item-list #esdarat-item-list-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
+			$("#esdarat-item-list #esdarat-item-list-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
+			$("#esdarat-item-list #esdarat-item-list-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
 
-					$(".not-open-esdar-item").bind("tap",function(){
-						//close_notify("all");
-						notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
-					});
-					var getEsdarRequestObj = "";
-					$(".open-esdar-item").bind("tap",function(){
-						//alert($(this).attr("sec-id") )
-						if(getEsdarRequestObj != ""){
-							getEsdarRequestObj.abort();
-						}
-						var this_element = $(this);
-						this_element.append('<span class="loading2">&nbsp;</span>');
-						getEsdarRequestObj = $.ajax({
-							type : 'get',
-							url : esdarTypeTools[TapedElement.parent().attr("esdarName")].singleItemUrl+'?id='+this_element.attr("sec-id"),
-							async : false,
-							jsonpCallback : 'esdarTextCallBack',
-							contentType : "application/json",
-							dataType : 'jsonp',
-							success : function(json){
-								$("#esdarat-inside-content #esdarat-item-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
-								$("#esdarat-inside-content #esdarat-item-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
-								$("#esdarat-inside-content #esdarat-item-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
-								$("#esdarat-inside-content #esdar-text").html(json['text']);
-								$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
-								$.each(json['links'], function(index, value){
-									if(value['type'] == "investigations"){
-										link_color = "background:#7cbcb4";
-									}else{
-										link_color = "";
-									}
-									$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
-								});
-								$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
-								$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
-								$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
-								this_element.children(".loading2").remove();
-								$.afui.loadContent("#esdarat-inside-content",false,false,"up");
-								
-								getEsdarRequestObj = "";
-								
-							},
-							error: function(e, errorReason){
-								//console.log(e.message);
-								if(errorReason != "abort"){
-									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-								}
-								this_element.children(".loading2").remove();
-								
-								getEsdarRequestObj = "";
-							}
-						});
-		
-					});
-					
-					TapedElement.siblings(".loading2").remove();
-					$("#esdarat-item-list #esdarat-item-list-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
-					$("#esdarat-item-list #esdarat-item-list-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
-					$("#esdarat-item-list #esdarat-item-list-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
-					$.afui.loadContent("#esdarat-item-list",false,false,"up");
-					
-					getEsdaratRequestObj = "";
-						
-				},
-				error: function(e, errorReason){
-					//console.log(e.message);
-					if(errorReason != "abort"){
-						notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					}
-					TapedElement.siblings(".loading2").remove();
-					
-					getEsdaratRequestObj = "";
-				}
-			});
+			$("#esdarat-inside-content #esdarat-item-win-title").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemTitle);
+			$("#esdarat-inside-content #esdarat-item-win-head-bg").attr("style", "background-image:url(" +esdarTypeTools[TapedElement.parent().attr("esdarName")].itemHeadBg +")");
+			$("#esdarat-inside-content #esdarat-item-win-des").text(esdarTypeTools[TapedElement.parent().attr("esdarName")].itemDes);
 
+			$.afui.loadContent("#esdarat-item-list",false,false,"up");
 		});
 	});
 	</script>

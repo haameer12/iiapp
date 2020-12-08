@@ -1,30 +1,30 @@
 <style>
-#news_list_page .nano {
+#alrasad_taqarir_list_page .nano {
 	width: 100%;
 	height: 100%;
 }
-#news_list_page .nano .nano-content{
+#alrasad_taqarir_list_page .nano .nano-content{
 	padding:0 2.7vw;
 }
-#news_list_page .nano .nano-pane{
+#alrasad_taqarir_list_page .nano .nano-pane{
 	background:none !important;
 	width:0.5vw !important;
 	top:0 !important;
 	bottom:0 !important;
 	/*box-shadow: 0 0 40px 1px #fff;*/
 }
-#news_list_page .nano .nano-slider{
+#alrasad_taqarir_list_page .nano .nano-slider{
 	background: #013b5d !important;
 	margin:0 !important;
 	opacity:0.3;
 }
 @media screen and (orientation : landscape){
-	#news_list_page .nano .nano-pane{
+	#alrasad_taqarir_list_page .nano .nano-pane{
 		width:0.5vh !important;
 	}
 }
 </style>
-<div class="inside_page_content" id="news_list_page">
+<div class="inside_page_content" id="alrasad_taqarir_list_page">
 	<div class="nano">
 		<div class="overthrow nano-content">
 
@@ -36,7 +36,7 @@
 				<div class="panel-subject">الرصد / تقارير وتحقيقات</div>
 			</div>
 			
-			<div class="inside-loading top">
+			<div class="inside-loading top alrasad_taqarir">
 				<img src="img/loading3.gif" />
 			</div>
 			
@@ -69,7 +69,7 @@
 
 
 
-			<div class="inside-loading bottom" style="margin:7px 0 11px 0;">
+			<div class="inside-loading bottom alrasad_taqarir" style="margin:7px 0 11px 0;">
 				<img src="img/loading3.gif" />
 			</div>
 
@@ -86,7 +86,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 	if($("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsIdBySort") == ""){
 		//window.alert("hi");
 		
-		$("#news_list_page").find(".inside-loading.top").show();
+		$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").show();
 		$.ajax({
 			type : 'get',
 			url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir__new.php',
@@ -95,7 +95,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 			contentType : "application/json",
 			dataType : 'jsonp',
 			success : function(json){
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").hide();
 				var i = 0;
 				$.each(json, function(index, value){
 					i++;
@@ -160,7 +160,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 
 				});
 
-				$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+				$("#alrasad_taqarir_list_page .nano").nanoScroller({ alwaysVisible: true });
 				
 				
 				
@@ -178,12 +178,12 @@ $("#alrasad-taqarir").bind('panelload', function(){
 				
 				
 				
-				$("#news_list_page .nano").bind("scrollend", function(e){
+				$("#alrasad_taqarir_list_page .nano").bind("scrollend", function(e){
 					//window.alert("current HTMLDivElement", e.currentTarget);
 					
-					if($("#news_list_page").find(".inside-loading.bottom").css("display") != "none"){ }else{
+					if($("#alrasad_taqarir_list_page").find(".inside-loading.bottom.alrasad_taqarir").css("display") != "none"){ }else{
 						
-						$("#news_list_page").find(".inside-loading.bottom").show();
+						$("#alrasad_taqarir_list_page").find(".inside-loading.bottom.alrasad_taqarir").show();
 						$.ajax({
 							type : 'get',
 							url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir__new.php?last_item_by_sort='+$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsIdBySort"),
@@ -192,7 +192,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#news_list_page").find(".inside-loading.bottom").hide();
+								$("#alrasad_taqarir_list_page").find(".inside-loading.bottom.alrasad_taqarir").hide();
 								$.each(json, function(index, value){
 									$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><div class="pic-text"><img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" /><div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;"><img src="img/small-pic.jpg" width="113" height="84" /></div><table class="text"><td><span class="title">' +value['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +value['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span></div><div class="text">' +value['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'"><span class="title">' +value['title'] +'</span><span class="investigator">' +value['investigator'] +'</span><span class="source">' +value['source'] +'</span><span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
 
@@ -255,12 +255,12 @@ $("#alrasad-taqarir").bind('panelload', function(){
 
 								});
 
-								$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+								$("#alrasad_taqarir_list_page .nano").nanoScroller({ alwaysVisible: true });
 
 							},
 							error: function(e, errorReason){
 								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-								$("#news_list_page").find(".inside-loading.bottom").hide();
+								$("#alrasad_taqarir_list_page").find(".inside-loading.bottom.alrasad_taqarir").hide();
 							}
 						});
 						
@@ -272,12 +272,12 @@ $("#alrasad-taqarir").bind('panelload', function(){
 				
 				
 				
-				$("#news_list_page .nano").bind("scrolltop", function(e){
+				$("#alrasad_taqarir_list_page .nano").bind("scrolltop", function(e){
 					//window.alert("current HTMLDivElement", e.currentTarget);
 					
-					if($("#news_list_page").find(".inside-loading.top").css("display") != "none"){ }else{
+					if($("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").css("display") != "none"){ }else{
 
-						$("#news_list_page").find(".inside-loading.top").show();
+						$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").show();
 						
 						$.ajax({
 							type : 'get',
@@ -287,7 +287,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#news_list_page").find(".inside-loading.top").hide();
+								$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").hide();
 								$.each(json, function(index, value){
 									$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").prepend('<div class="list-pic_item"><div class="pic-text"><img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" /><div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;"><img src="img/small-pic.jpg" width="113" height="84" /></div><table class="text"><td><span class="title">' +value['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +value['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span></div><div class="text">' +value['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'"><span class="title">' +value['title'] +'</span><span class="investigator">' +value['investigator'] +'</span><span class="source">' +value['source'] +'</span><span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
 	
@@ -351,19 +351,19 @@ $("#alrasad-taqarir").bind('panelload', function(){
 
 								});
 
-								$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+								$("#alrasad_taqarir_list_page .nano").nanoScroller({ alwaysVisible: true });
 
 							},
 							error: function(e, errorReason){
 								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-								$("#news_list_page").find(".inside-loading.top").hide();
+								$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").hide();
 							}
 						});
 					
 					}
 					
 				});
-				$("#news_list_page .nano").on("update", function(event, values){
+				$("#alrasad_taqarir_list_page .nano").on("update", function(event, values){
 					//window.alert("It also carries a JavaScript object with the current position, the maximum height and the direction (up or down).");
 				});
 				
@@ -373,14 +373,14 @@ $("#alrasad-taqarir").bind('panelload', function(){
 			},
 			error: function(e, errorReason){
 				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").hide();
 			}
 		});
 		
 		
 	}else{
 		
-		$("#news_list_page").find(".inside-loading.top").show();
+		$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").show();
 		$.ajax({
 			type : 'get',
 			url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir__new.php?last_item='+$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId"),
@@ -389,7 +389,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 			contentType : "application/json",
 			dataType : 'jsonp',
 			success : function(json){
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").hide();
 				$.each(json, function(index, value){
 					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").prepend('<div class="list-pic_item"><div class="pic-text"><img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" /><div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;"><img src="img/small-pic.jpg" width="113" height="84" /></div><table class="text"><td><span class="title">' +value['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +value['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span></div><div class="text">' +value['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'"><span class="title">' +value['title'] +'</span><span class="investigator">' +value['investigator'] +'</span><span class="source">' +value['source'] +'</span><span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
 	
@@ -453,7 +453,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 
 				});
 
-				$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+				$("#alrasad_taqarir_list_page .nano").nanoScroller({ alwaysVisible: true });
 
 
 
@@ -475,7 +475,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 			},
 			error: function(e, errorReason){
 				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").hide();
 			}
 		});
 		

@@ -1,30 +1,30 @@
 <style>
-#news_list_page .nano {
+#hewarat_list_page .nano{
 	width: 100%;
 	height: 100%;
 }
-#news_list_page .nano .nano-content{
+#hewarat_list_page .nano .nano-content{
 	padding:0 2.7vw;
 }
-#news_list_page .nano .nano-pane{
+#hewarat_list_page .nano .nano-pane{
 	background:none !important;
 	width:0.5vw !important;
 	top:0 !important;
 	bottom:0 !important;
 	/*box-shadow: 0 0 40px 1px #fff;*/
 }
-#news_list_page .nano .nano-slider{
+#hewarat_list_page .nano .nano-slider{
 	background: #013b5d !important;
 	margin:0 !important;
 	opacity:0.3;
 }
 @media screen and (orientation : landscape){
-	#news_list_page .nano .nano-pane{
+	#hewarat_list_page .nano .nano-pane{
 		width:0.5vh !important;
 	}
 }
 </style>
-<div class="inside_page_content" id="news_list_page">
+<div class="inside_page_content" id="hewarat_list_page">
 	<div class="nano">
 		<div class="overthrow nano-content">
 
@@ -34,7 +34,7 @@
 				<div class="panel-subject">حوارات</div>
 			</div>
 			
-			<div class="inside-loading top">
+			<div class="inside-loading top hewarat">
 				<img src="img/loading3.gif" />
 			</div>
 			
@@ -52,7 +52,7 @@
 			</div>
 
 
-			<div class="inside-loading bottom" style="margin:7px 0 11px 0;">
+			<div class="inside-loading bottom hewarat" style="margin:7px 0 11px 0;">
 				<img src="img/loading3.gif" />
 			</div>
 
@@ -68,7 +68,7 @@ $("#hewarat").bind('panelload', function(){
 		
 	if($("#hewarat_contaner #hewarat_contaner_in").attr("lastNewsIdBySort") == ""){
 		//window.alert("hi");
-		$("#news_list_page").find(".inside-loading.top").show();
+		$("#hewarat_list_page").find(".inside-loading.top.hewarat").show();
 		$.ajax({
 			type : 'get',
 			url : 'http://iicss.iq/app/hewarat/json_hewarat.php',
@@ -77,7 +77,7 @@ $("#hewarat").bind('panelload', function(){
 			contentType : "application/json",
 			dataType : 'jsonp',
 			success : function(json){
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 				var i = 0;
 				$.each(json, function(index, value){
 					i++;
@@ -173,18 +173,18 @@ $("#hewarat").bind('panelload', function(){
 					});
 				});
 
-				$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+				$("#hewarat_list_page .nano").nanoScroller({ alwaysVisible: true });
 				
 				
 				//---------------------
 				
 				
-				$("#news_list_page .nano").bind("scrollend", function(e){
+				$("#hewarat_list_page .nano").bind("scrollend", function(e){
 					//window.alert("current HTMLDivElement", e.currentTarget);
 					
-					if($("#news_list_page").find(".inside-loading.bottom").css("display") != "none"){ }else{
+					if($("#hewarat_list_page").find(".inside-loading.bottom.hewarat").css("display") != "none"){ }else{
 						
-						$("#news_list_page").find(".inside-loading.bottom").show();
+						$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").show();
 						$.ajax({
 							type : 'get',
 							url : 'http://iicss.iq/app/hewarat/json_hewarat.php?last_item_by_sort='+$("#hewarat_contaner #hewarat_contaner_in").attr("lastNewsIdBySort"),
@@ -193,7 +193,7 @@ $("#hewarat").bind('panelload', function(){
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#news_list_page").find(".inside-loading.bottom").hide();
+								$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").hide();
 								$.each(json, function(index, value){
 									$("#hewarat_contaner #hewarat_contaner_in").append('\
 										<div class="list-pic_item">\
@@ -287,12 +287,12 @@ $("#hewarat").bind('panelload', function(){
 									});
 								});
 
-								$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+								$("#hewarat_list_page .nano").nanoScroller({ alwaysVisible: true });
 
 							},
 							error: function(e, errorReason){
 								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-								$("#news_list_page").find(".inside-loading.bottom").hide();
+								$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").hide();
 							}
 						});
 						
@@ -304,12 +304,12 @@ $("#hewarat").bind('panelload', function(){
 				//---------------------
 				
 				
-				$("#news_list_page .nano").bind("scrolltop", function(e){
+				$("#hewarat_list_page .nano").bind("scrolltop", function(e){
 					//window.alert("current HTMLDivElement", e.currentTarget);
 					
-					if($("#news_list_page").find(".inside-loading.top").css("display") != "none"){ }else{
+					if($("#hewarat_list_page").find(".inside-loading.top.hewarat").css("display") != "none"){ }else{
 
-						$("#news_list_page").find(".inside-loading.top").show();
+						$("#hewarat_list_page").find(".inside-loading.top.hewarat").show();
 						
 						$.ajax({
 							type : 'get',
@@ -319,7 +319,7 @@ $("#hewarat").bind('panelload', function(){
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#news_list_page").find(".inside-loading.top").hide();
+								$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 								$.each(json, function(index, value){
 									$("#hewarat_contaner #hewarat_contaner_in").prepend('\
 										<div class="list-pic_item">\
@@ -414,19 +414,19 @@ $("#hewarat").bind('panelload', function(){
 									});
 								});
 
-								$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+								$("#hewarat_list_page .nano").nanoScroller({ alwaysVisible: true });
 
 							},
 							error: function(e, errorReason){
 								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-								$("#news_list_page").find(".inside-loading.top").hide();
+								$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 							}
 						});
 					
 					}
 					
 				});
-				$("#news_list_page .nano").on("update", function(event, values){
+				$("#hewarat_list_page .nano").on("update", function(event, values){
 					//window.alert("It also carries a JavaScript object with the current position, the maximum height and the direction (up or down).");
 				});
 				
@@ -436,7 +436,7 @@ $("#hewarat").bind('panelload', function(){
 			},
 			error: function(e, errorReason){
 				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 			}
 		});
 		
@@ -467,59 +467,93 @@ $("#hewarat").bind('panelload', function(){
 
 	}else{
 		
-		$("#news_list_page").find(".inside-loading.top").show();
+		
+		$("#hewarat_list_page").find(".inside-loading.top.hewarat").show();
+		
 		$.ajax({
 			type : 'get',
-			url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir__new.php?last_item='+$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId"),
+			url : 'http://iicss.iq/app/hewarat/json_hewarat.php?last_item='+$("#hewarat_contaner #hewarat_contaner_in").attr("lastNewsId"),
 			async : false,
-			jsonpCallback : 'rasadTaqarirCallBack',
+			jsonpCallback : 'hewaratCallBack',
 			contentType : "application/json",
 			dataType : 'jsonp',
 			success : function(json){
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 				$.each(json, function(index, value){
-					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").prepend('<div class="list-pic_item"><div class="pic-text"><img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" /><div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;"><img src="img/small-pic.jpg" width="113" height="84" /></div><table class="text"><td><span class="title">' +value['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +value['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span></div><div class="text">' +value['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'"><span class="title">' +value['title'] +'</span><span class="investigator">' +value['investigator'] +'</span><span class="source">' +value['source'] +'</span><span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
-	
-					$("div.taqarir-img-loading."+value['id']).siblings("img").on("load", function(){
+					$("#hewarat_contaner #hewarat_contaner_in").prepend('\
+						<div class="list-pic_item">\
+							<div class="pic-text">\
+								<img src="http://iicss.iq/rpic.php?i=files/discussion/images/' +value['pic_name'] +'&w=110&h=82" />\
+								<div class="img-loading hewarat-img-loading ' +value['id'] +'" style="width:113px;height:84px;">\
+									<img src="img/small-pic.jpg" width="113" height="84" />\
+								</div>\
+								<table class="text">\
+									<td><span class="title">' +value['title'] +'</span></td>\
+								</table>\
+							</div>\
+							<div class="details">\
+								<div class="p-item">\
+									<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
+								</div>\
+								<div class="p-item">\
+									<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
+								</div>\
+								<div class="p-item">\
+									<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+								</div>\
+								<div class="text">\
+									' +value['text'] +'...\
+									<span class="open-hewar read_more" hewar-id="' +value['id'] +'">\
+										<span class="title">' +value['title'] +'</span>\
+										<span class="interlocutor">' +value['interlocutor'] +'</span>\
+										<span class="main_person">' +value['main_person'] +'</span>\
+										<span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...\
+									</span>\
+								</div>\
+							</div>\
+						</div>\
+					');
+
+					$("div.hewarat-img-loading."+value['id']).siblings("img").on("load", function(){
 						$(this).css({
 							opacity : "1",
 							filter  : "opacity(100%)",
 						});
-						$(this).siblings("div.taqarir-img-loading").remove();
+						$(this).siblings("div.hewarat-img-loading").remove();
 					});
 
-					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId", value['id']);
-					
+					$("#hewarat_contaner #hewarat_contaner_in").attr("lastNewsId", value['id']);
+
 				});
-				
+
 				$(".list-pic_item .pic-text").unbind("tap");
 				$(".list-pic_item .pic-text").bind("tap",function(){
 					$(this).siblings(".list-pic_item .details").fadeToggle(1);
 				});
 
-				$(".open-rasad-taqrir").unbind("tap");
-				$(".open-rasad-taqrir").bind("tap",function(){
+				$(".open-hewar").unbind("tap");
+				$(".open-hewar").bind("tap",function(){
 					//alert($(this).attr("sec-id") )
 					var this_element = $(this);
 					this_element.before('<span class="loading2">&nbsp;</span>');
 					$.ajax({
 						type : 'get',
-						url : 'http://iicss.iq/app/rasad/taqarir/json_get_taqrir_data.php?id='+this_element.attr("rasad-taqrir-id"),
+						url : 'http://iicss.iq/app/hewarat/json_get_hewar_data.php?id='+this_element.attr("hewar-id"),
 						async : false,
-						jsonpCallback : 'alrasadTaqrirTextCallBack',
+						jsonpCallback : 'hewarTextCallBack',
 						contentType : "application/json",
 						dataType : 'jsonp',
 						success : function(json){
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
-							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
-							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
-							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
+							$("#hewarat-inside-content #hewarat-win-title").css({backgroundColor : "#1ccacc"});
+							$("#hewarat-inside-content #hewarat-win-title").text("حوارات");
+							$("#hewarat-inside-content #hewarat-text").html(json['text']);
+							$("#hewarat-inside-content #hewarat-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.interlocutor').text() +'</bdi></span></div><div class="p-item"><span class="icon mic"><bdi>' +this_element.children('span.main_person').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
+							$("#hewarat-inside-content #hewarat-text").prepend('<div class="hewar-title">' +this_element.children("span.title").text() +'</div>');
+							//$("#hewarat-inside-content #hewarat-text img").attr("src",  this_element.children("img").attr("src"));
+							//$("#hewarat-inside-content #hewarat-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#hewarat-inside-content #hewarat-text a").attr("href") +"', 'system');return false;");
+							//$("#hewarat-inside-content #hewarat-text a").attr("href", "#");
 
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").each(function(){
+							$("#hewarat-inside-content #hewarat-text img").each(function(){
 								if($(this).attr("src").indexOf("http://iicss") > -1 ){
 									$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 								}else{
@@ -527,9 +561,9 @@ $("#hewarat").bind('panelload', function(){
 									$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 								}
 							});
-
+							
 							this_element.siblings(".loading2").remove();
-							$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
+							$.afui.loadContent("#hewarat-inside-content",false,false,"up");
 						},
 						error: function(e){
 							//console.log(e.message);
@@ -537,32 +571,14 @@ $("#hewarat").bind('panelload', function(){
 							this_element.children(".loading2").remove();
 						}
 					});
-
 				});
 
-				$("#news_list_page .nano").nanoScroller({ alwaysVisible: true });
+				$("#hewarat_list_page .nano").nanoScroller({ alwaysVisible: true });
 
-
-
-
-
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 			},
 			error: function(e, errorReason){
 				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-				$("#news_list_page").find(".inside-loading.top").hide();
+				$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 			}
 		});
 		
@@ -575,7 +591,7 @@ $("#hewarat").bind('panelload', function(){
 	
 	}, 5)
 })
-$("#alrasad-taqarir").bind('panelunload', function() {
+$("#hewarat").bind('panelunload', function() {
 	//alert("news_list end");
 });
 </script>

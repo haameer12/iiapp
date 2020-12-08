@@ -1,0 +1,584 @@
+<style>
+	#esdarat-item-list .nano{
+		width: 100%;
+		height: 100%;
+	}
+	#esdarat-item-list .nano .nano-content{
+		padding:0 2.7vw;
+	}
+	#esdarat-item-list .nano .nano-pane{
+		background:none !important;
+		width:0.5vw !important;
+		top:0 !important;
+		bottom:0 !important;
+		/*box-shadow: 0 0 40px 1px #fff;*/
+	}
+	#esdarat-item-list .nano .nano-slider{
+		background: #013b5d !important;
+		margin:0 !important;
+		opacity:0.3;
+	}
+	@media screen and (orientation : landscape){
+		#esdarat-item-list .nano .nano-pane{
+			width:0.5vh !important;
+		}
+	}
+
+	.inside-loading.esdarat_items{
+		border: 1px solid #ebf6fd;
+		border-left: 0;
+		border-right: 0;
+		box-shadow:none;
+		position:absolute;
+		left:0px;
+		right:0px;
+		opacity:0.85;
+		z-index:+15000;
+	}
+</style>
+<div class="nano">
+	<div class="overthrow nano-content">
+
+
+		<div class="esdarat-list-win" id="esdarat-item-list-win-head-bg">
+			<div class="esdar-win-head">
+				<div class="esdar-win-head-in">
+					<div class="head-text">
+						<h3 class="head-title" id="esdarat-item-list-win-title"></h3>
+						<span class="head-des" id="esdarat-item-list-win-des"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="inside-loading fisrt_load esdarat_items" style="position:static;">
+				<img src="img/loading3.gif" />
+			</div>
+
+			<div class="inside-loading top esdarat_items" style="top:70px;">
+				<img src="img/loading3.gif" />
+			</div>
+			
+			<div>
+				<div id="esdarat-item-list_contaner" style="position:relative;  text-align:right">
+					<div id="esdarat-item-list_contaner_in" itemListUrl="" itemListUrlOld="" itemListCallBack="" singleItemUrl="" lastNewsIdBySort="" lastNewsId="" style="text-align:center;font-size:0px;padding:3px;direction:rtl;">
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="inside-loading bottom esdarat_items" style="bottom:0px;">
+				<img src="img/loading3.gif" />
+			</div>
+		</div>
+
+
+	</div>
+</div>
+<script>
+$("#esdarat-item-list").bind('panelload', function(){
+	setTimeout(function(){
+		$("#esdarat-item-list .nano").nanoScroller({ alwaysVisible: true });
+
+		
+		
+		if($("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsIdBySort") == "" || $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl") != $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrlOld")){
+			//window.alert($("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrlOld") );
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").html("");
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrlOld", $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl"));
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsIdBySort", "");
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsId", "");
+
+			$("#esdarat-item-list").find(".inside-loading.fisrt_load.esdarat_items").show();
+			$.ajax({
+				type : 'get',
+				url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl"),
+				async : false,
+				jsonpCallback : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListCallBack"),
+				contentType : "application/json",
+				dataType : 'jsonp',
+				success : function(json){
+					$("#esdarat-item-list").find(".inside-loading.fisrt_load.esdarat_items").hide();
+					var i = 0;
+					$.each(json, function(index, value){
+						i++;
+						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsIdBySort", value['id']);
+						if(i == 1){$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsId", value['id']);}
+						
+						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").append('\
+							<span class="grid-item">\
+								<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-esdar-item' : 'not-open-esdar-item') +'" sec-id="' +value['id'] +'">\
+									<img src="' +value['pic'] +'" width="100%" style="display:none" />\
+									<div class="img-loading esdarat-item-list-img-loading ' +value['id'] +'">\
+										<img src="img/book-small-pic.jpg" width="100%" />\
+									</div>\
+									<h3 class="title">' +value['name'] +'</h3>\
+								</div>\
+							</span>\
+						');
+						
+						$("div.esdarat-item-list-img-loading."+value['id']).siblings("img").on("load", function(){
+							$(this).show();
+							$(this).siblings("div.esdarat-item-list-img-loading").remove();
+						});
+						
+					});
+					
+					
+					$(".not-open-esdar-item").bind("tap",function(){
+						//close_notify("all");
+						notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
+					});
+					var getEsdarRequestObj = "";
+					$(".open-esdar-item").bind("tap",function(){
+						//alert($(this).attr("sec-id") )
+						if(getEsdarRequestObj != ""){
+							getEsdarRequestObj.abort();
+						}
+						var this_element = $(this);
+						this_element.append('<span class="loading2">&nbsp;</span>');
+						getEsdarRequestObj = $.ajax({
+							type : 'get',
+							url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("singleItemUrl") +'?id='+this_element.attr("sec-id"),
+							async : false,
+							jsonpCallback : 'esdarTextCallBack',
+							contentType : "application/json",
+							dataType : 'jsonp',
+							success : function(json){
+								$("#esdarat-inside-content #esdar-text").html(json['text']);
+								$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
+								$.each(json['links'], function(index, value){
+									if(value['type'] == "investigations"){
+										link_color = "background:#7cbcb4";
+									}else{
+										link_color = "";
+									}
+									$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
+								});
+								$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
+								$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
+								$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+								this_element.children(".loading2").remove();
+								$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+								
+								getEsdarRequestObj = "";
+								
+							},
+							error: function(e, errorReason){
+								//console.log(e.message);
+								if(errorReason != "abort"){
+									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+								}
+								this_element.children(".loading2").remove();
+								
+								getEsdarRequestObj = "";
+							}
+						});
+		
+					});
+
+					$("#esdarat-item-list .nano").nanoScroller({ alwaysVisible: true });
+					
+					
+					//---------------------
+					
+					
+					$("#esdarat-item-list .nano").bind("scrollend", function(e){
+						//window.alert("current HTMLDivElement", e.currentTarget);
+						
+						if($("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").css("display") != "none"){ }else{
+							
+							$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").show();
+							$.ajax({
+								type : 'get',
+								url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl") +'?last_item_by_sort='+$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsIdBySort"),
+								async : false,
+								jsonpCallback : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListCallBack"),
+								contentType : "application/json",
+								dataType : 'jsonp',
+								success : function(json){
+									$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").hide();
+									$.each(json, function(index, value){
+										$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").append('\
+											<span class="grid-item">\
+												<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-esdar-item' : 'not-open-esdar-item') +'" sec-id="' +value['id'] +'">\
+													<img src="' +value['pic'] +'" width="100%" style="display:none" />\
+													<div class="img-loading esdarat-item-list-img-loading ' +value['id'] +'">\
+														<img src="img/book-small-pic.jpg" width="100%" />\
+													</div>\
+													<h3 class="title">' +value['name'] +'</h3>\
+												</div>\
+											</span>\
+										');
+
+										$("div.esdarat-item-list-img-loading."+value['id']).siblings("img").on("load", function(){
+											$(this).show();
+											$(this).siblings("div.esdarat-item-list-img-loading").remove();
+										});
+
+										$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsIdBySort", value['id']);
+									});
+
+									
+									$(".not-open-esdar-item").unbind("tap");
+									$(".not-open-esdar-item").bind("tap",function(){
+										//close_notify("all");
+										notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
+									});
+									var getEsdarRequestObj = "";
+									$(".open-esdar-item").unbind("tap");
+									$(".open-esdar-item").bind("tap",function(){
+										//alert($(this).attr("sec-id") )
+										if(getEsdarRequestObj != ""){
+											getEsdarRequestObj.abort();
+										}
+										var this_element = $(this);
+										this_element.append('<span class="loading2">&nbsp;</span>');
+										getEsdarRequestObj = $.ajax({
+											type : 'get',
+											url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("singleItemUrl") +'?id='+this_element.attr("sec-id"),
+											async : false,
+											jsonpCallback : 'esdarTextCallBack',
+											contentType : "application/json",
+											dataType : 'jsonp',
+											success : function(json){
+												$("#esdarat-inside-content #esdar-text").html(json['text']);
+												$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
+												$.each(json['links'], function(index, value){
+													if(value['type'] == "investigations"){
+														link_color = "background:#7cbcb4";
+													}else{
+														link_color = "";
+													}
+													$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
+												});
+												$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
+												$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
+												$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+												this_element.children(".loading2").remove();
+												$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+												
+												getEsdarRequestObj = "";
+												
+											},
+											error: function(e, errorReason){
+												//console.log(e.message);
+												if(errorReason != "abort"){
+													notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+												}
+												this_element.children(".loading2").remove();
+												
+												getEsdarRequestObj = "";
+											}
+										});
+						
+									});
+
+
+
+									$("#esdarat-item-list .nano").nanoScroller({ alwaysVisible: true });
+
+								},
+								error: function(e, errorReason){
+									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+									$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").hide();
+								}
+							});
+							
+						}
+		
+					});
+					
+					
+					//---------------------
+					
+					
+					$("#esdarat-item-list .nano").bind("scrolltop", function(e){
+						//window.alert("current HTMLDivElement", e.currentTarget);
+						
+						if($("#esdarat-item-list").find(".inside-loading.top.esdarat_items").css("display") != "none"){ }else{
+
+							$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").show();
+							$.ajax({
+								type : 'get',
+								url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl") +'?last_item='+$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsId"),
+								async : false,
+								jsonpCallback : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListCallBack"),
+								contentType : "application/json",
+								dataType : 'jsonp',
+								success : function(json){
+									$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").hide();
+									$.each(json, function(index, value){
+										$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").prepend('\
+											<span class="grid-item">\
+												<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-esdar-item' : 'not-open-esdar-item') +'" sec-id="' +value['id'] +'">\
+													<img src="' +value['pic'] +'" width="100%" style="display:none" />\
+													<div class="img-loading esdarat-item-list-img-loading ' +value['id'] +'">\
+														<img src="img/book-small-pic.jpg" width="100%" />\
+													</div>\
+													<h3 class="title">' +value['name'] +'</h3>\
+												</div>\
+											</span>\
+										');
+
+										$("div.esdarat-item-list-img-loading."+value['id']).siblings("img").on("load", function(){
+											$(this).show();
+											$(this).siblings("div.esdarat-item-list-img-loading").remove();
+										});
+
+										$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsId", value['id']);
+										
+									});
+
+									
+									$(".not-open-esdar-item").unbind("tap");
+									$(".not-open-esdar-item").bind("tap",function(){
+										//close_notify("all");
+										notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
+									});
+									var getEsdarRequestObj = "";
+									$(".open-esdar-item").unbind("tap");
+									$(".open-esdar-item").bind("tap",function(){
+										//alert($(this).attr("sec-id") )
+										if(getEsdarRequestObj != ""){
+											getEsdarRequestObj.abort();
+										}
+										var this_element = $(this);
+										this_element.append('<span class="loading2">&nbsp;</span>');
+										getEsdarRequestObj = $.ajax({
+											type : 'get',
+											url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("singleItemUrl") +'?id='+this_element.attr("sec-id"),
+											async : false,
+											jsonpCallback : 'esdarTextCallBack',
+											contentType : "application/json",
+											dataType : 'jsonp',
+											success : function(json){
+												$("#esdarat-inside-content #esdar-text").html(json['text']);
+												$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
+												$.each(json['links'], function(index, value){
+													if(value['type'] == "investigations"){
+														link_color = "background:#7cbcb4";
+													}else{
+														link_color = "";
+													}
+													$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
+												});
+												$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
+												$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
+												$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+												this_element.children(".loading2").remove();
+												$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+												
+												getEsdarRequestObj = "";
+												
+											},
+											error: function(e, errorReason){
+												//console.log(e.message);
+												if(errorReason != "abort"){
+													notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+												}
+												this_element.children(".loading2").remove();
+												
+												getEsdarRequestObj = "";
+											}
+										});
+						
+									});
+
+
+									$("#esdarat-item-list .nano").nanoScroller({ alwaysVisible: true });
+
+
+
+
+
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+								},
+								error: function(e, errorReason){
+									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+									$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").hide();
+								}
+							});
+						
+						}
+						
+					});
+					$("#esdarat-item-list .nano").on("update", function(event, values){
+						//window.alert("It also carries a JavaScript object with the current position, the maximum height and the direction (up or down).");
+					});
+					
+					
+					
+					
+				},
+				error: function(e, errorReason){
+					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+					$("#esdarat-item-list").find(".inside-loading.fisrt_load.esdarat_items").hide();
+				}
+			});
+			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		}else{
+			
+			$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").show();
+			$.ajax({
+				type : 'get',
+				url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl") +'?last_item='+$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsId"),
+				async : false,
+				jsonpCallback : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListCallBack"),
+				contentType : "application/json",
+				dataType : 'jsonp',
+				success : function(json){
+					$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").hide();
+					$.each(json, function(index, value){
+						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").prepend('\
+							<span class="grid-item">\
+								<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-esdar-item' : 'not-open-esdar-item') +'" sec-id="' +value['id'] +'">\
+									<img src="' +value['pic'] +'" width="100%" style="display:none" />\
+									<div class="img-loading esdarat-item-list-img-loading ' +value['id'] +'">\
+										<img src="img/book-small-pic.jpg" width="100%" />\
+									</div>\
+									<h3 class="title">' +value['name'] +'</h3>\
+								</div>\
+							</span>\
+						');
+
+						$("div.esdarat-item-list-img-loading."+value['id']).siblings("img").on("load", function(){
+							$(this).show();
+							$(this).siblings("div.esdarat-item-list-img-loading").remove();
+						});
+
+						$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsId", value['id']);
+						
+					});
+
+					
+					$(".not-open-esdar-item").unbind("tap");
+					$(".not-open-esdar-item").bind("tap",function(){
+						//close_notify("all");
+						notify('لا يمكن مشاهدة هذا الإصدار', 'warning', 4000, 'bottom', 'Up', 'Down');
+					});
+					var getEsdarRequestObj = "";
+					$(".open-esdar-item").unbind("tap");
+					$(".open-esdar-item").bind("tap",function(){
+						//alert($(this).attr("sec-id") )
+						if(getEsdarRequestObj != ""){
+							getEsdarRequestObj.abort();
+						}
+						var this_element = $(this);
+						this_element.append('<span class="loading2">&nbsp;</span>');
+						getEsdarRequestObj = $.ajax({
+							type : 'get',
+							url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("singleItemUrl") +'?id='+this_element.attr("sec-id"),
+							async : false,
+							jsonpCallback : 'esdarTextCallBack',
+							contentType : "application/json",
+							dataType : 'jsonp',
+							success : function(json){
+								$("#esdarat-inside-content #esdar-text").html(json['text']);
+								$("#esdarat-inside-content #esdar-text").prepend("<div id='esdar_links' style='padding:10px 0'></div>");
+								$.each(json['links'], function(index, value){
+									if(value['type'] == "investigations"){
+										link_color = "background:#7cbcb4";
+									}else{
+										link_color = "";
+									}
+									$("#esdarat-inside-content #esdar-text div#esdar_links").prepend("<div><a href='#' onclick='openUrl(\"" +value['href'] +"\", \"system\");return false;' style='" +link_color +"'>" +value['name'] +"</a></div>");
+								});
+								$("#esdarat-inside-content #esdar-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='esdar_cover' src='' /></div>");
+								$("#esdarat-inside-content #esdar-text img#esdar_cover").attr("src",  this_element.children("img").attr("src"));
+								$("#esdarat-inside-content #esdar-text").prepend('<div class="esdar-title">' +this_element.children("h3.title").text() +'</div>');
+								this_element.children(".loading2").remove();
+								$.afui.loadContent("#esdarat-inside-content",false,false,"up");
+								
+								getEsdarRequestObj = "";
+								
+							},
+							error: function(e, errorReason){
+								//console.log(e.message);
+								if(errorReason != "abort"){
+									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+								}
+								this_element.children(".loading2").remove();
+								
+								getEsdarRequestObj = "";
+							}
+						});
+		
+					});
+
+
+					$("#esdarat-item-list .nano").nanoScroller({ alwaysVisible: true });
+
+
+
+
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				},
+				error: function(e, errorReason){
+					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+					$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").hide();
+				}
+			});
+			
+			
+		}
+		
+		
+		
+		
+	
+	}, 5)
+})
+$("#esdarat-item-list").bind('panelunload', function() {
+	//alert("news_list end");
+});
+</script>
