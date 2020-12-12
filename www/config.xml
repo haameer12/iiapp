@@ -82,50 +82,6 @@
 	
 	<plugin name="cordova-plugin-whitelist" source="npm"/>
 
-    <!-- Core plugins -->
-	<plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />
-	<!--<gap:plugin name="cordova-plugin-camera" source="npm" />-->
-	<!--<plugin spec="https://github.com/apache/cordova-plugin-console.git" source="git" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-device.git" source="git" />
-    <!--<gap:plugin name="cordova.device" source="npm" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />
-    <!--<gap:plugin name="cordova.device-motion" source="npm" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />
-    <!--<gap:plugin name="cordova.device-orientation" source="npm" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-dialogs.git" source="git" />
-    <!--<gap:plugin name="cordova.dialogs" source="npm" />-->
-    <!--<gap:plugin name="org.apache.cordova.file" />-->
-    <!--<gap:plugin name="org.apache.cordova.file-transfer" />-->
-    <!--<gap:plugin name="org.apache.cordova.geolocation" />-->
-    <!--<gap:plugin name="org.apache.cordova.globalization" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-inappbrowser.git" source="git" />
-    <!--<gap:plugin name="cordova.inappbrowser" source="npm" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-media.git" source="git" />
-	<!--<gap:plugin name="cordova.media" source="npm" />-->
-	<!--<gap:plugin name="org.apache.cordova.media-capture" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-network-information.git" source="git" />
-    <!--<gap:plugin name="cordova.network-information" source="npm" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-splashscreen.git" source="git" />
-    <!--<gap:plugin name="cordova.splashscreen" source="npm" />-->
-	<plugin spec="https://github.com/apache/cordova-plugin-vibration.git" source="git" />
-    <!--<gap:plugin name="cordova.vibration" source="npm" />-->
-
-    <!-- Third party plugins -->
-    <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
-    <!-- 
-        <gap:plugin name="com.phonegap.plugins.barcodescanner" />
-		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
-    -->
-	<!--<plugin spec="https://github.com/phonegap/phonegap-plugin-push.git" source="git" />-->
-	<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />
-    <!--<gap:plugin name="phonegap-plugin-push-deprecated" source="npm" />-->
-	<plugin spec="https://github.com/Paldom/UniqueDeviceID.git" source="git" />
-	<!--<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />-->
-	
-	<plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
-	<!--<gap:plugin name="phonegap.plugin.statusbar" source="npm" />-->
-
-
 
 
 
