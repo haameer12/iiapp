@@ -84,6 +84,20 @@
 
 	<!-- Core plugins -->
 	<plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />
+	<!--<gap:plugin name="cordova-plugin-camera" source="npm" />-->
+	<!--<plugin spec="https://github.com/apache/cordova-plugin-console.git" source="git" />-->
+	<plugin spec="https://github.com/apache/cordova-plugin-device.git" source="git" />
+    <!--<gap:plugin name="cordova.device" source="npm" />-->
+	<plugin spec="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />
+    <!--<gap:plugin name="cordova.device-motion" source="npm" />-->
+	<plugin spec="https://github.com/apache/cordova-plugin-device-orientation.git" source="git" />
+    <!--<gap:plugin name="cordova.device-orientation" source="npm" />-->
+	<plugin spec="https://github.com/apache/cordova-plugin-dialogs.git" source="git" />
+    <!--<gap:plugin name="cordova.dialogs" source="npm" />-->
+    <!--<gap:plugin name="org.apache.cordova.file" />-->
+    <!--<gap:plugin name="org.apache.cordova.file-transfer" />-->
+    <!--<gap:plugin name="org.apache.cordova.geolocation" />-->
+    <!--<gap:plugin name="org.apache.cordova.globalization" />-->
 
 
 
