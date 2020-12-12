@@ -16,7 +16,7 @@
 	<content src="index.html" />
 	<access origin="*" /> <!--allow local pages -->
 	<preference name="permissions" value="none"/>
-	<preference name="Fullscreen" value="true" />
+	<preference name="Fullscreen" value="false" />
 	<preference name="phonegap-version" value="cli-7.1.0" />
 	<!--<preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />-->
 
@@ -72,6 +72,8 @@
 			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
 		</config-file>-->
+
+		<splash src="img/splash/screen-hdpi-landscape.png" />
 
 		<splash src="img/splash/screen-ldpi-landscape.png" density="port-ldpi"/>
 		<splash src="img/splash/screen-mdpi-landscape.png" density="port-mdpi"/>
@@ -153,7 +155,11 @@
 	<!--<gap:plugin name="com.dawsonloudon.videoplayer" 	platform="android"	version="1.0.0" />-->
 	<!--<gap:plugin name="com.hutchind.cordova.plugins.streamingmedia"  source="plugins.cordova.io" />-->
 
-	
+
+
+
+
+
 
 
 
@@ -191,6 +197,18 @@
 				<string>This app requires access to your exact location in order to report your location to emergency services.</string>
 			</dict>
 		</config-file>
+
+
+
+
+
+
+		<splash src="img/splash/screen-iphone-landscape.png" width="320" height="480"/>
+		<splash src="img/splash/screen-iphone-landscape-2x.png" width="640" height="960"/>
+		<splash src="img/splash/screen-iphone-landscape-568h-2x.png" width="640" height="1136"/>
+		<splash src="img/splash/screen-ipad-landscape.png" width="768" height="1024"/>
+		<splash src="img/splash/screen-ipad-landscape-2x.png" width="1536" height="2048"/>
+
 	</platform>
 	<platform name="windows">
 		<preference name="windows-target-version" value="10.0" />
