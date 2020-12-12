@@ -98,7 +98,7 @@
     <!--<gap:plugin name="org.apache.cordova.file-transfer" />-->
     <!--<gap:plugin name="org.apache.cordova.geolocation" />-->
     <!--<gap:plugin name="org.apache.cordova.globalization" />-->
-	
+	                                                  <!--<plugin spec="https://github.com/apache/cordova-plugin-inappbrowser.git" source="git" />-->
     <!--<gap:plugin name="cordova.inappbrowser" source="npm" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-media.git" source="git" />
 	<!--<gap:plugin name="cordova.media" source="npm" />-->
@@ -116,7 +116,14 @@
         <gap:plugin name="com.phonegap.plugins.barcodescanner" />
 		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
     -->
-
+	<!--<plugin spec="https://github.com/phonegap/phonegap-plugin-push.git" source="git" />-->
+	<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />
+    <!--<gap:plugin name="phonegap-plugin-push-deprecated" source="npm" />-->
+	<plugin spec="https://github.com/Paldom/UniqueDeviceID.git" source="git" />
+	<!--<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />-->
+	
+	<plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
+	<!--<gap:plugin name="phonegap.plugin.statusbar" source="npm" />-->
 
 
 
