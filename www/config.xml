@@ -1,66 +1,72 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="cordova.plugins.diagnostic.example" version="6.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Diagnostic plugin example</name>
-    <description>
-        An example app that demonstrates use of cordova.plugins.diagnostic
-    </description>
-    <author email="dave@workingedge.co.uk" href="http://www.workingedge.co.uk/dave">
-        Dave Alden
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
-    <preference name="Fullscreen" value="false" />
-    <preference name="phonegap-version" value="cli-7.1.0" />
-    <preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
-    <platform name="android">
-        <preference name="android-targetSdkVersion" value="29" />
+<widget
+	id="iicss.app.iicssApp"
+	version="1.5.1"
+	xmlns="http://www.w3.org/ns/widgets"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:cdv="http://cordova.apache.org/ns/1.0"
+>
+	<name>المركز الإسلامي للدراسات الإستراتيجية</name>
+	<description>
+		تطبيق يعكس آخر نشاطات المركز الإسلامي للدراسات الإستراتيجية التابع للعتبة العباسية المقدسة.
+	</description>
+	<author email="info@magicwd.co" href="http://magicwd.co">
+		MWD Hassan Haddad
+	</author>
+	<content src="index.html" />
+	<access origin="*" /> <!--allow local pages -->
+	<preference name="Fullscreen" value="false" />
+	<preference name="phonegap-version" value="cli-7.1.0" />
+	<preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />
+	<platform name="android">
+		<preference name="android-targetSdkVersion" value="29" />
 
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:allowBackup="false"/>
-        </edit-config>
+		<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+			<application android:allowBackup="false"/>
+		</edit-config>
 
-        <config-file parent="/*" target="AndroidManifest.xml">
-            <uses-permission android:name="android.permission.BLUETOOTH" />
-            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-            <uses-permission android:name="android.permission.RECORD_AUDIO" />
-            <uses-permission android:name="android.permission.CAMERA" />
-            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-            <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-            <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-            <uses-permission android:name="android.permission.READ_CONTACTS" />
-            <uses-permission android:name="android.permission.READ_CALENDAR" />
-            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-            <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-        </config-file>
-    </platform>
-    <platform name="ios">
-        <plugin name="cordova-plugin-background-fetch" spec="*" />
-        <config-file parent="UIBackgroundModes" platform="ios" target="*-Info.plist">
-            <array>
-                <string>fetch</string>
-                <string>remote-notification</string>
-            </array>
-        </config-file>
-        <config-file platform="ios" target="*-Info.plist" parent="NSLocationTemporaryUsageDescriptionDictionary">
-            <dict>
-                <key>navigation</key>
-                <string>This app requires access to your exact location in order to provide SatNav route navigation.</string>
-                <key>emergency</key>
-                <string>This app requires access to your exact location in order to report your location to emergency services.</string>
-            </dict>
-        </config-file>
-    </platform>
-    <platform name="windows">
-        <preference name="windows-target-version" value="10.0" />
-        <preference name="target-device" value="universal" />
-        <preference name="Windows.Universal-MinVersion" value="10.0.0.0" />
-    </platform>
-    <engine name="ios" spec="latest" />
-    <engine name="windows" spec="latest" />
+		<config-file parent="/*" target="AndroidManifest.xml">
+			<uses-permission android:name="android.permission.BLUETOOTH" />
+			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+			<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+			<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+			<uses-permission android:name="android.permission.READ_CONTACTS" />
+			<uses-permission android:name="android.permission.READ_CALENDAR" />
+			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+		</config-file>
+	</platform>
+	<platform name="ios">
+		<plugin name="cordova-plugin-background-fetch" spec="*" />
+		<config-file parent="UIBackgroundModes" platform="ios" target="*-Info.plist">
+			<array>
+				<string>fetch</string>
+				<string>remote-notification</string>
+			</array>
+		</config-file>
+		<config-file platform="ios" target="*-Info.plist" parent="NSLocationTemporaryUsageDescriptionDictionary">
+			<dict>
+				<key>navigation</key>
+				<string>This app requires access to your exact location in order to provide SatNav route navigation.</string>
+				<key>emergency</key>
+				<string>This app requires access to your exact location in order to report your location to emergency services.</string>
+			</dict>
+		</config-file>
+	</platform>
+	<platform name="windows">
+		<preference name="windows-target-version" value="10.0" />
+		<preference name="target-device" value="universal" />
+		<preference name="Windows.Universal-MinVersion" value="10.0.0.0" />
+	</platform>
+	<engine name="ios" spec="latest" />
+	<engine name="windows" spec="latest" />
 </widget>
