@@ -82,7 +82,8 @@
 	
 	<plugin name="cordova-plugin-whitelist" source="npm"/>
 
-
+	<!-- Core plugins -->
+	<plugin spec="https://github.com/apache/cordova-plugin-battery-status.git" source="git" />
 
 
 
