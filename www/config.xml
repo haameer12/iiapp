@@ -137,8 +137,8 @@
 	<plugin spec="https://github.com/phonegap-build/PushPlugin.git" source="git" />
     <!--<gap:plugin name="phonegap-plugin-push-deprecated" source="npm" />-->
 	<!--<plugin spec="https://github.com/Paldom/UniqueDeviceID.git" source="git" />
-	<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />-->
-	<plugin name="cordova-plugin-uniquedeviceid" source="npm"/>
+	<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />
+	<plugin name="cordova-plugin-uniquedeviceid" source="npm"/>-->
 	
 	<plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />
 	<!--<gap:plugin name="phonegap.plugin.statusbar" source="npm" />-->
