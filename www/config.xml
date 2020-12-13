@@ -17,7 +17,7 @@
 	<access origin="*" /> <!--allow local pages -->
 	<preference name="permissions" value="none"/>
 	<preference name="Fullscreen" value="true" />
-	<preference name="phonegap-version" value="cli-7.1.0" />
+	<preference name="phonegap-version" value="cli-8.0.0" />
 	<!--<preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />-->
 
 
