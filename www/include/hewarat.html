@@ -23,6 +23,27 @@
 		width:0.5vh !important;
 	}
 }
+
+
+#hewarat-inside-content #hewarat-text .pic-con{
+	background: url(img/loading4.gif) no-repeat center center;
+    background-size: 25px;
+	font-size:0;
+	line-height:0;
+	width:70%;
+	margin:0 auto;
+}
+#hewarat-inside-content #hewarat-text .pic-con img{
+	border:1px solid rgb(230, 228, 228);
+	padding:1px;
+	width:100%;
+}
+#hewarat-inside-content #hewarat-text .pic-con .hewar-img-loading{
+	opacity:0.45;
+}
+#hewarat-inside-content #hewarat-text .pic-con .hewar-img-loading img{
+	border:1px solid #c7c7c7;
+}
 </style>
 <div class="inside_page_content" id="hewarat_list_page">
 	<div class="nano">
@@ -96,18 +117,11 @@ $("#hewarat").bind('panelload', function(){
 								</table>\
 							</div>\
 							<div class="details">\
-								<div class="p-item">\
-									<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
-								</div>\
-								<div class="p-item">\
-									<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
-								</div>\
-								<div class="p-item">\
-									<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
-								</div>\
+								<div class="details-in' +value['id'] +'"></div>\
 								<div class="text">\
 									' +value['text'] +'...\
 									<span class="open-hewar read_more" hewar-id="' +value['id'] +'">\
+										<span class="pic">' +value['pic_name'] +'</span>\
 										<span class="title">' +value['title'] +'</span>\
 										<span class="interlocutor">' +value['interlocutor'] +'</span>\
 										<span class="main_person">' +value['main_person'] +'</span>\
@@ -117,6 +131,27 @@ $("#hewarat").bind('panelload', function(){
 							</div>\
 						</div>\
 					');
+					if( value['interlocutor'].length != 0 ){
+						$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
+							</div>\
+						');
+					}
+					if( value['main_person'].length != 0 ){
+						$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
+							</div>\
+						');
+					}
+					if( value['t_date'].length != 0 ){
+						$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+							</div>\
+						');
+					}
 					
 					$("div.hewarat-img-loading."+value['id']).siblings("img").on("load", function(){
 						$(this).css({
@@ -146,14 +181,66 @@ $("#hewarat").bind('panelload', function(){
 						success : function(json){
 							$("#hewarat-inside-content #hewarat-win-title").css({backgroundColor : "#1ccacc"});
 							$("#hewarat-inside-content #hewarat-win-title").text("حوارات");
-							$("#hewarat-inside-content #hewarat-text").html(json['text']);
-							$("#hewarat-inside-content #hewarat-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.interlocutor').text() +'</bdi></span></div><div class="p-item"><span class="icon mic"><bdi>' +this_element.children('span.main_person').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-							$("#hewarat-inside-content #hewarat-text").prepend('<div class="hewar-title">' +this_element.children("span.title").text() +'</div>');
+							$("#hewarat-inside-content #hewarat-text").html('\
+								<div class="hewar-text">\
+								' +json['text'] +'\
+								</div>\
+							');
+							$("#hewarat-inside-content #hewarat-text").prepend('\
+								<div class="pic-con"></div>\
+								<div class="details"></div>\
+							');
+							if( this_element.children('span.pic').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .pic-con").append('\
+									<img class="hewar-pic" src="http://iicss.iq/rpic.php?i=files/discussion/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+									<span class="hewar-img-loading">\
+										<img src="img/small-pic.jpg" />\
+									</span>\
+								');
+							}
+							$("#hewarat-inside-content #hewarat-text .pic-con img.hewar-pic").on("load", function(){
+								$(this).show();
+								$(this).siblings("span.hewar-img-loading").remove();
+							});
+
+							$("#hewarat-inside-content #hewarat-text .pic-con").before('\
+								<div class="hewar-title">\
+									' +this_element.children("span.title").text() +'\
+								</div>\
+							');
+							if( this_element.children('span.interlocutor').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .details").append('\
+									<div class="p-item">\
+										<span class="icon camera">\
+											<bdi>' +this_element.children('span.interlocutor').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.main_person').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .details").append('\
+									<div class="p-item">\
+										<span class="icon mic">\
+											<bdi>' +this_element.children('span.main_person').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.t_date').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .details").append('\
+									<div class="p-item">\
+										<span class="icon calendar">\
+											<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							
 							//$("#hewarat-inside-content #hewarat-text img").attr("src",  this_element.children("img").attr("src"));
 							//$("#hewarat-inside-content #hewarat-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#hewarat-inside-content #hewarat-text a").attr("href") +"', 'system');return false;");
 							//$("#hewarat-inside-content #hewarat-text a").attr("href", "#");
 
-							$("#hewarat-inside-content #hewarat-text img").each(function(){
+							$("#hewarat-inside-content #hewarat-text .hewar-text img").each(function(){
 								if($(this).attr("src").indexOf("http://iicss") > -1 ){
 									$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 								}else{
@@ -207,18 +294,11 @@ $("#hewarat").bind('panelload', function(){
 												</table>\
 											</div>\
 											<div class="details">\
-												<div class="p-item">\
-													<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
-												</div>\
-												<div class="p-item">\
-													<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
-												</div>\
-												<div class="p-item">\
-													<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
-												</div>\
+												<div class="details-in' +value['id'] +'"></div>\
 												<div class="text">\
 													' +value['text'] +'...\
 													<span class="open-hewar read_more" hewar-id="' +value['id'] +'">\
+														<span class="pic">' +value['pic_name'] +'</span>\
 														<span class="title">' +value['title'] +'</span>\
 														<span class="interlocutor">' +value['interlocutor'] +'</span>\
 														<span class="main_person">' +value['main_person'] +'</span>\
@@ -228,6 +308,27 @@ $("#hewarat").bind('panelload', function(){
 											</div>\
 										</div>\
 									');
+									if( value['interlocutor'].length != 0 ){
+										$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['main_person'].length != 0 ){
+										$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['t_date'].length != 0 ){
+										$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+											</div>\
+										');
+									}
 
 									$("div.hewarat-img-loading."+value['id']).siblings("img").on("load", function(){
 										$(this).css({
@@ -260,14 +361,66 @@ $("#hewarat").bind('panelload', function(){
 										success : function(json){
 											$("#hewarat-inside-content #hewarat-win-title").css({backgroundColor : "#1ccacc"});
 											$("#hewarat-inside-content #hewarat-win-title").text("حوارات");
-											$("#hewarat-inside-content #hewarat-text").html(json['text']);
-											$("#hewarat-inside-content #hewarat-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.interlocutor').text() +'</bdi></span></div><div class="p-item"><span class="icon mic"><bdi>' +this_element.children('span.main_person').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-											$("#hewarat-inside-content #hewarat-text").prepend('<div class="hewar-title">' +this_element.children("span.title").text() +'</div>');
+											$("#hewarat-inside-content #hewarat-text").html('\
+												<div class="hewar-text">\
+												' +json['text'] +'\
+												</div>\
+											');
+											$("#hewarat-inside-content #hewarat-text").prepend('\
+												<div class="pic-con"></div>\
+												<div class="details"></div>\
+											');
+											if( this_element.children('span.pic').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .pic-con").append('\
+													<img class="hewar-pic" src="http://iicss.iq/rpic.php?i=files/discussion/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+													<span class="hewar-img-loading">\
+														<img src="img/small-pic.jpg" />\
+													</span>\
+												');
+											}
+											$("#hewarat-inside-content #hewarat-text .pic-con img.hewar-pic").on("load", function(){
+												$(this).show();
+												$(this).siblings("span.hewar-img-loading").remove();
+											});
+
+											$("#hewarat-inside-content #hewarat-text .pic-con").before('\
+												<div class="hewar-title">\
+													' +this_element.children("span.title").text() +'\
+												</div>\
+											');
+											if( this_element.children('span.interlocutor').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .details").append('\
+													<div class="p-item">\
+														<span class="icon camera">\
+															<bdi>' +this_element.children('span.interlocutor').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.main_person').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .details").append('\
+													<div class="p-item">\
+														<span class="icon mic">\
+															<bdi>' +this_element.children('span.main_person').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.t_date').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .details").append('\
+													<div class="p-item">\
+														<span class="icon calendar">\
+															<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											
 											//$("#hewarat-inside-content #hewarat-text img").attr("src",  this_element.children("img").attr("src"));
 											//$("#hewarat-inside-content #hewarat-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#hewarat-inside-content #hewarat-text a").attr("href") +"', 'system');return false;");
 											//$("#hewarat-inside-content #hewarat-text a").attr("href", "#");
 
-											$("#hewarat-inside-content #hewarat-text img").each(function(){
+											$("#hewarat-inside-content #hewarat-text .hewar-text img").each(function(){
 												if($(this).attr("src").indexOf("http://iicss") > -1 ){
 													$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 												}else{
@@ -321,7 +474,7 @@ $("#hewarat").bind('panelload', function(){
 							success : function(json){
 								$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 								$.each(json, function(index, value){
-									$("#hewarat_contaner #hewarat_contaner_in").prepend('\
+									$("#hewarat_contaner #hewarat_contaner_in").append('\
 										<div class="list-pic_item">\
 											<div class="pic-text">\
 												<img src="http://iicss.iq/rpic.php?i=files/discussion/images/' +value['pic_name'] +'&w=110&h=82" />\
@@ -333,18 +486,11 @@ $("#hewarat").bind('panelload', function(){
 												</table>\
 											</div>\
 											<div class="details">\
-												<div class="p-item">\
-													<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
-												</div>\
-												<div class="p-item">\
-													<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
-												</div>\
-												<div class="p-item">\
-													<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
-												</div>\
+												<div class="details-in' +value['id'] +'"></div>\
 												<div class="text">\
 													' +value['text'] +'...\
 													<span class="open-hewar read_more" hewar-id="' +value['id'] +'">\
+														<span class="pic">' +value['pic_name'] +'</span>\
 														<span class="title">' +value['title'] +'</span>\
 														<span class="interlocutor">' +value['interlocutor'] +'</span>\
 														<span class="main_person">' +value['main_person'] +'</span>\
@@ -354,6 +500,27 @@ $("#hewarat").bind('panelload', function(){
 											</div>\
 										</div>\
 									');
+									if( value['interlocutor'].length != 0 ){
+										$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['main_person'].length != 0 ){
+										$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['t_date'].length != 0 ){
+										$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+											</div>\
+										');
+									}
 	
 									$("div.hewarat-img-loading."+value['id']).siblings("img").on("load", function(){
 										$(this).css({
@@ -387,14 +554,66 @@ $("#hewarat").bind('panelload', function(){
 										success : function(json){
 											$("#hewarat-inside-content #hewarat-win-title").css({backgroundColor : "#1ccacc"});
 											$("#hewarat-inside-content #hewarat-win-title").text("حوارات");
-											$("#hewarat-inside-content #hewarat-text").html(json['text']);
-											$("#hewarat-inside-content #hewarat-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.interlocutor').text() +'</bdi></span></div><div class="p-item"><span class="icon mic"><bdi>' +this_element.children('span.main_person').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-											$("#hewarat-inside-content #hewarat-text").prepend('<div class="hewar-title">' +this_element.children("span.title").text() +'</div>');
+											$("#hewarat-inside-content #hewarat-text").html('\
+												<div class="hewar-text">\
+												' +json['text'] +'\
+												</div>\
+											');
+											$("#hewarat-inside-content #hewarat-text").prepend('\
+												<div class="pic-con"></div>\
+												<div class="details"></div>\
+											');
+											if( this_element.children('span.pic').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .pic-con").append('\
+													<img class="hewar-pic" src="http://iicss.iq/rpic.php?i=files/discussion/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+													<span class="hewar-img-loading">\
+														<img src="img/small-pic.jpg" />\
+													</span>\
+												');
+											}
+											$("#hewarat-inside-content #hewarat-text .pic-con img.hewar-pic").on("load", function(){
+												$(this).show();
+												$(this).siblings("span.hewar-img-loading").remove();
+											});
+
+											$("#hewarat-inside-content #hewarat-text .pic-con").before('\
+												<div class="hewar-title">\
+													' +this_element.children("span.title").text() +'\
+												</div>\
+											');
+											if( this_element.children('span.interlocutor').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .details").append('\
+													<div class="p-item">\
+														<span class="icon camera">\
+															<bdi>' +this_element.children('span.interlocutor').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.main_person').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .details").append('\
+													<div class="p-item">\
+														<span class="icon mic">\
+															<bdi>' +this_element.children('span.main_person').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.t_date').text().length != 0 ){
+												$("#hewarat-inside-content #hewarat-text .details").append('\
+													<div class="p-item">\
+														<span class="icon calendar">\
+															<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											
 											//$("#hewarat-inside-content #hewarat-text img").attr("src",  this_element.children("img").attr("src"));
 											//$("#hewarat-inside-content #hewarat-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#hewarat-inside-content #hewarat-text a").attr("href") +"', 'system');return false;");
 											//$("#hewarat-inside-content #hewarat-text a").attr("href", "#");
 
-											$("#hewarat-inside-content #hewarat-text img").each(function(){
+											$("#hewarat-inside-content #hewarat-text .hewar-text img").each(function(){
 												if($(this).attr("src").indexOf("http://iicss") > -1 ){
 													$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 												}else{
@@ -480,7 +699,7 @@ $("#hewarat").bind('panelload', function(){
 			success : function(json){
 				$("#hewarat_list_page").find(".inside-loading.top.hewarat").hide();
 				$.each(json, function(index, value){
-					$("#hewarat_contaner #hewarat_contaner_in").prepend('\
+					$("#hewarat_contaner #hewarat_contaner_in").append('\
 						<div class="list-pic_item">\
 							<div class="pic-text">\
 								<img src="http://iicss.iq/rpic.php?i=files/discussion/images/' +value['pic_name'] +'&w=110&h=82" />\
@@ -492,18 +711,11 @@ $("#hewarat").bind('panelload', function(){
 								</table>\
 							</div>\
 							<div class="details">\
-								<div class="p-item">\
-									<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
-								</div>\
-								<div class="p-item">\
-									<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
-								</div>\
-								<div class="p-item">\
-									<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
-								</div>\
+								<div class="details-in' +value['id'] +'"></div>\
 								<div class="text">\
 									' +value['text'] +'...\
 									<span class="open-hewar read_more" hewar-id="' +value['id'] +'">\
+										<span class="pic">' +value['pic_name'] +'</span>\
 										<span class="title">' +value['title'] +'</span>\
 										<span class="interlocutor">' +value['interlocutor'] +'</span>\
 										<span class="main_person">' +value['main_person'] +'</span>\
@@ -513,6 +725,27 @@ $("#hewarat").bind('panelload', function(){
 							</div>\
 						</div>\
 					');
+					if( value['interlocutor'].length != 0 ){
+						$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon camera"><bdi>' +value['interlocutor'] +'</bdi></span>\
+							</div>\
+						');
+					}
+					if( value['main_person'].length != 0 ){
+						$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon mic"><bdi>' +value['main_person'] +'</bdi></span>\
+							</div>\
+						');
+					}
+					if( value['t_date'].length != 0 ){
+						$("#hewarat_contaner #hewarat_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+							</div>\
+						');
+					}
 
 					$("div.hewarat-img-loading."+value['id']).siblings("img").on("load", function(){
 						$(this).css({
@@ -546,14 +779,66 @@ $("#hewarat").bind('panelload', function(){
 						success : function(json){
 							$("#hewarat-inside-content #hewarat-win-title").css({backgroundColor : "#1ccacc"});
 							$("#hewarat-inside-content #hewarat-win-title").text("حوارات");
-							$("#hewarat-inside-content #hewarat-text").html(json['text']);
-							$("#hewarat-inside-content #hewarat-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.interlocutor').text() +'</bdi></span></div><div class="p-item"><span class="icon mic"><bdi>' +this_element.children('span.main_person').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-							$("#hewarat-inside-content #hewarat-text").prepend('<div class="hewar-title">' +this_element.children("span.title").text() +'</div>');
+							$("#hewarat-inside-content #hewarat-text").html('\
+								<div class="hewar-text">\
+								' +json['text'] +'\
+								</div>\
+							');
+							$("#hewarat-inside-content #hewarat-text").prepend('\
+								<div class="pic-con"></div>\
+								<div class="details"></div>\
+							');
+							if( this_element.children('span.pic').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .pic-con").append('\
+									<img class="hewar-pic" src="http://iicss.iq/rpic.php?i=files/discussion/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+									<span class="hewar-img-loading">\
+										<img src="img/small-pic.jpg" />\
+									</span>\
+								');
+							}
+							$("#hewarat-inside-content #hewarat-text .pic-con img.hewar-pic").on("load", function(){
+								$(this).show();
+								$(this).siblings("span.hewar-img-loading").remove();
+							});
+
+							$("#hewarat-inside-content #hewarat-text .pic-con").before('\
+								<div class="hewar-title">\
+									' +this_element.children("span.title").text() +'\
+								</div>\
+							');
+							if( this_element.children('span.interlocutor').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .details").append('\
+									<div class="p-item">\
+										<span class="icon camera">\
+											<bdi>' +this_element.children('span.interlocutor').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.main_person').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .details").append('\
+									<div class="p-item">\
+										<span class="icon mic">\
+											<bdi>' +this_element.children('span.main_person').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.t_date').text().length != 0 ){
+								$("#hewarat-inside-content #hewarat-text .details").append('\
+									<div class="p-item">\
+										<span class="icon calendar">\
+											<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							
 							//$("#hewarat-inside-content #hewarat-text img").attr("src",  this_element.children("img").attr("src"));
 							//$("#hewarat-inside-content #hewarat-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#hewarat-inside-content #hewarat-text a").attr("href") +"', 'system');return false;");
 							//$("#hewarat-inside-content #hewarat-text a").attr("href", "#");
 
-							$("#hewarat-inside-content #hewarat-text img").each(function(){
+							$("#hewarat-inside-content #hewarat-text .hewar-text img").each(function(){
 								if($(this).attr("src").indexOf("http://iicss") > -1 ){
 									$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 								}else{

@@ -13,22 +13,17 @@
 	<author email="info@magicwd.co" href="http://magicwd.co">
 		MWD Hassan Haddad
 	</author>
+
 	<content src="index.html" />
+
 	<access origin="*" /> <!--allow local pages -->
+
+	<!-- Customize your app and platform with the preference element. -->
 	<preference name="permissions" value="none"/>
 	<preference name="Fullscreen" value="true" />
 	<preference name="phonegap-version" value="cli-7.1.0" />
 	<!--<preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />-->
 
-
-
-
-
-
-
-
-	<!-- Customize your app and platform with the preference element. -->
-    
     <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
     <preference name="prerendered-icon"           value="true" />           <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
     <preference name="ios-statusbarstyle"         value="black-opaque" />   <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
@@ -47,55 +42,8 @@
 	<preference name="DisallowOverscroll" value="true"/>
 
 
-	<platform name="android">
 
-		<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-			<application android:allowBackup="false"/>
-		</edit-config>
-
-		<!--<config-file parent="/*" target="AndroidManifest.xml">
-			<uses-permission android:name="android.permission.BLUETOOTH" />
-			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-			<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-			<uses-permission android:name="android.permission.RECORD_AUDIO" />
-			<uses-permission android:name="android.permission.CAMERA" />
-			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-			<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-			<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-			<uses-permission android:name="android.permission.READ_CONTACTS" />
-			<uses-permission android:name="android.permission.READ_CALENDAR" />
-			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
-			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
-		</config-file>-->
-
-		<icon src="img/splash/icon.png" />
-
-		<splash src="img/splash/screen-hdpi-landscape.png" />
-
-		<splash src="img/splash/screen-ldpi-landscape.png" density="port-ldpi"/>
-		<splash src="img/splash/screen-mdpi-landscape.png" density="port-mdpi"/>
-		<splash src="img/splash/screen-hdpi-landscape.png" density="port-hdpi"/>
-		<splash src="img/splash/screen-xhdpi-landscape.png" density="port-xhdpi"/>
-		<splash src="img/splash/screen-xxhdpi-landscape.png" density="port-xxhdpi"/>
-
-		<splash src="img/splash/land/screen-ldpi-landscape.png" density="land-ldpi"/>
-		<splash src="img/splash/land/screen-mdpi-landscape.png" density="land-mdpi"/>
-		<splash src="img/splash/land/screen-hdpi-landscape.png" density="land-hdpi"/>
-		<splash src="img/splash/land/screen-xhdpi-landscape.png" density="land-xhdpi"/>
-		<splash src="img/splash/land/screen-xxhdpi-landscape.png" density="land-xxhdpi"/>
-
-	</platform>
-
-
-
-
-
-	    <!-- Plugins -->
+	<!-- Plugins -->
 	
 	<plugin name="cordova-plugin-whitelist" source="npm"/>
 
@@ -166,7 +114,49 @@
 
 
 
+	<platform name="android">
 
+		<edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+			<application android:allowBackup="false"/>
+		</edit-config>
+
+		<!--<config-file parent="/*" target="AndroidManifest.xml">
+			<uses-permission android:name="android.permission.BLUETOOTH" />
+			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+			<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+			<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+			<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+			<uses-permission android:name="android.permission.READ_CONTACTS" />
+			<uses-permission android:name="android.permission.READ_CALENDAR" />
+			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+		</config-file>-->
+
+		<icon src="img/splash/icon.png" />
+
+		<splash src="img/splash/screen-hdpi-landscape.png" />
+
+		<splash src="img/splash/screen-ldpi-landscape.png" density="port-ldpi"/>
+		<splash src="img/splash/screen-mdpi-landscape.png" density="port-mdpi"/>
+		<splash src="img/splash/screen-hdpi-landscape.png" density="port-hdpi"/>
+		<splash src="img/splash/screen-xhdpi-landscape.png" density="port-xhdpi"/>
+		<splash src="img/splash/screen-xxhdpi-landscape.png" density="port-xxhdpi"/>
+
+		<splash src="img/splash/land/screen-ldpi-landscape.png" density="land-ldpi"/>
+		<splash src="img/splash/land/screen-mdpi-landscape.png" density="land-mdpi"/>
+		<splash src="img/splash/land/screen-hdpi-landscape.png" density="land-hdpi"/>
+		<splash src="img/splash/land/screen-xhdpi-landscape.png" density="land-xhdpi"/>
+		<splash src="img/splash/land/screen-xxhdpi-landscape.png" density="land-xxhdpi"/>
+
+	</platform>
 
 
 
@@ -188,8 +178,6 @@
 				<string>This app requires access to your exact location in order to report your location to emergency services.</string>
 			</dict>
 		</config-file>
-
-
 
 
 
@@ -229,11 +217,15 @@
 		<splash src="img/splash/screen-ipad-landscape-2x.png" width="1536" height="2048"/>
 		
 	</platform>
+
 	<platform name="windows">
 		<preference name="windows-target-version" value="10.0" />
 		<preference name="target-device" value="universal" />
 		<preference name="Windows.Universal-MinVersion" value="10.0.0.0" />
 	</platform>
+
 	<engine name="ios" spec="latest" />
+
 	<engine name="windows" spec="latest" />
+
 </widget>

@@ -23,6 +23,27 @@
 		width:0.5vh !important;
 	}
 }
+
+
+#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con{
+	background: url(img/loading4.gif) no-repeat center center;
+    background-size: 25px;
+	font-size:0;
+	line-height:0;
+	width:70%;
+	margin:0 auto;
+}
+#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con img{
+	border:1px solid rgb(230, 228, 228);
+	padding:1px;
+	width:100%;
+}
+#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con .taqrir-img-loading{
+	opacity:0.45;
+}
+#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con .taqrir-img-loading img{
+	border:1px solid #c7c7c7;
+}
 </style>
 <div class="inside_page_content" id="alrasad_taqarir_list_page">
 	<div class="nano">
@@ -102,7 +123,52 @@ $("#alrasad-taqarir").bind('panelload', function(){
 					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsIdBySort", value['id']);
 					if(i == 1){$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId", value['id']);}
 					
-					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><div class="pic-text"><img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" /><div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;"><img src="img/small-pic.jpg" width="113" height="84" /></div><table class="text"><td><span class="title">' +value['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +value['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span></div><div class="text">' +value['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'"><span class="title">' +value['title'] +'</span><span class="investigator">' +value['investigator'] +'</span><span class="source">' +value['source'] +'</span><span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
+					$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('\
+						<div class="list-pic_item">\
+							<div class="pic-text">\
+								<img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" />\
+								<div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;">\
+									<img src="img/small-pic.jpg" width="113" height="84" />\
+								</div>\
+								<table class="text">\
+									<td><span class="title">' +value['title'] +'</span></td>\
+								</table>\
+							</div>\
+							<div class="details">\
+								<div class="details-in' +value['id'] +'"></div>\
+								<div class="text">' +value['text'] +'...\
+									<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'">\
+										<span class="pic">' +value['pic_name'] +'</span>\
+										<span class="title">' +value['title'] +'</span>\
+										<span class="investigator">' +value['investigator'] +'</span>\
+										<span class="source">' +value['source'] +'</span>\
+										<span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...\
+									</span>\
+								</div>\
+							</div>\
+						</div>\
+					');
+					if( value['investigator'].length != 0 ){
+						$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span>\
+							</div>\
+						');
+					}
+					if( value['source'].length != 0 ){
+						$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon paper"><bdi>' +value['source'] +'</bdi></span>\
+							</div>\
+						');
+					}
+					if( value['t_date'].length != 0 ){
+						$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+							<div class="p-item">\
+								<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+							</div>\
+						');
+					}
 					
 					$("div.taqarir-img-loading."+value['id']).siblings("img").on("load", function(){
 						$(this).css({
@@ -132,14 +198,67 @@ $("#alrasad-taqarir").bind('panelload', function(){
 						success : function(json){
 							$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 							$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html('\
+								<div class="alrasad-taqrir-text">\
+								' +json['text'] +'\
+								</div>\
+							');
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('\
+								<div class="pic-con"></div>\
+								<div class="details"></div>\
+							');
+							if( this_element.children('span.pic').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").append('\
+									<img class="taqrir-pic" src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+									<span class="taqrir-img-loading">\
+										<img src="img/small-pic.jpg" />\
+									</span>\
+								');
+							}
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con img.taqrir-pic").on("load", function(){
+								$(this).show();
+								$(this).siblings("span.taqrir-img-loading").remove();
+							});
+
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").before('\
+								<div class="taqrir-title">\
+									' +this_element.children("span.title").text() +'\
+								</div>\
+							');
+
+							if( this_element.children('span.investigator').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+									<div class="p-item">\
+										<span class="icon camera">\
+											<bdi>' +this_element.children('span.investigator').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.source').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+									<div class="p-item">\
+										<span class="icon paper">\
+											<bdi>' +this_element.children('span.source').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.t_date').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+									<div class="p-item">\
+										<span class="icon calendar">\
+											<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+
 							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
 							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
 							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
 
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").each(function(){
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .taqrir-text img").each(function(){
 								if($(this).attr("src").indexOf("http://iicss") > -1 ){
 									$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 								}else{
@@ -194,7 +313,52 @@ $("#alrasad-taqarir").bind('panelload', function(){
 							success : function(json){
 								$("#alrasad_taqarir_list_page").find(".inside-loading.bottom.alrasad_taqarir").hide();
 								$.each(json, function(index, value){
-									$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('<div class="list-pic_item"><div class="pic-text"><img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" /><div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;"><img src="img/small-pic.jpg" width="113" height="84" /></div><table class="text"><td><span class="title">' +value['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +value['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span></div><div class="text">' +value['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'"><span class="title">' +value['title'] +'</span><span class="investigator">' +value['investigator'] +'</span><span class="source">' +value['source'] +'</span><span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
+									$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").append('\
+										<div class="list-pic_item">\
+											<div class="pic-text">\
+												<img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" />\
+												<div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;">\
+													<img src="img/small-pic.jpg" width="113" height="84" />\
+												</div>\
+												<table class="text">\
+													<td><span class="title">' +value['title'] +'</span></td>\
+												</table>\
+											</div>\
+											<div class="details">\
+												<div class="details-in' +value['id'] +'"></div>\
+												<div class="text">' +value['text'] +'...\
+													<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'">\
+														<span class="pic">' +value['pic_name'] +'</span>\
+														<span class="title">' +value['title'] +'</span>\
+														<span class="investigator">' +value['investigator'] +'</span>\
+														<span class="source">' +value['source'] +'</span>\
+														<span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...\
+													</span>\
+												</div>\
+											</div>\
+										</div>\
+									');
+									if( value['investigator'].length != 0 ){
+										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['source'].length != 0 ){
+										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon paper"><bdi>' +value['source'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['t_date'].length != 0 ){
+										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+											</div>\
+										');
+									}
 
 									$("div.taqarir-img-loading."+value['id']).siblings("img").on("load", function(){
 										$(this).css({
@@ -227,14 +391,67 @@ $("#alrasad-taqarir").bind('panelload', function(){
 										success : function(json){
 											$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 											$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html('\
+												<div class="alrasad-taqrir-text">\
+												' +json['text'] +'\
+												</div>\
+											');
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('\
+												<div class="pic-con"></div>\
+												<div class="details"></div>\
+											');
+											if( this_element.children('span.pic').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").append('\
+													<img class="taqrir-pic" src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+													<span class="taqrir-img-loading">\
+														<img src="img/small-pic.jpg" />\
+													</span>\
+												');
+											}
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con img.taqrir-pic").on("load", function(){
+												$(this).show();
+												$(this).siblings("span.taqrir-img-loading").remove();
+											});
+
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").before('\
+												<div class="taqrir-title">\
+													' +this_element.children("span.title").text() +'\
+												</div>\
+											');
+											
+											if( this_element.children('span.investigator').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+													<div class="p-item">\
+														<span class="icon camera">\
+															<bdi>' +this_element.children('span.investigator').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.source').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+													<div class="p-item">\
+														<span class="icon paper">\
+															<bdi>' +this_element.children('span.source').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.t_date').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+													<div class="p-item">\
+														<span class="icon calendar">\
+															<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+
 											//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
 											//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
 											//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
 
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").each(function(){
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .taqrir-text img").each(function(){
 												if($(this).attr("src").indexOf("http://iicss") > -1 ){
 													$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 												}else{
@@ -242,7 +459,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 													$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 												}
 											});
-
+											
 											this_element.siblings(".loading2").remove();
 											$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
 										},
@@ -289,7 +506,52 @@ $("#alrasad-taqarir").bind('panelload', function(){
 							success : function(json){
 								$("#alrasad_taqarir_list_page").find(".inside-loading.top.alrasad_taqarir").hide();
 								$.each(json, function(index, value){
-									$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").prepend('<div class="list-pic_item"><div class="pic-text"><img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" /><div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;"><img src="img/small-pic.jpg" width="113" height="84" /></div><table class="text"><td><span class="title">' +value['title'] +'</span></td>		</table></div><div class="details"><div class="p-item"><span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +value['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span></div><div class="text">' +value['text'] +'...<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'"><span class="title">' +value['title'] +'</span><span class="investigator">' +value['investigator'] +'</span><span class="source">' +value['source'] +'</span><span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...</span></div></div></div>');
+									$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").prepend('\
+										<div class="list-pic_item">\
+											<div class="pic-text">\
+												<img src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +value['pic_name'] +'&w=110&h=82" />\
+												<div class="taqarir-img-loading ' +value['id'] +'" style="width:113px;height:84px;">\
+													<img src="img/small-pic.jpg" width="113" height="84" />\
+												</div>\
+												<table class="text">\
+													<td><span class="title">' +value['title'] +'</span></td>\
+												</table>\
+											</div>\
+											<div class="details">\
+												<div class="details-in' +value['id'] +'"></div>\
+												<div class="text">' +value['text'] +'...\
+													<span class="open-rasad-taqrir read_more" rasad-taqrir-id="' +value['id'] +'">\
+														<span class="pic">' +value['pic_name'] +'</span>\
+														<span class="title">' +value['title'] +'</span>\
+														<span class="investigator">' +value['investigator'] +'</span>\
+														<span class="source">' +value['source'] +'</span>\
+														<span class="t_date">' +value['t_date'] +'</span>تتمة الموضوع...\
+													</span>\
+												</div>\
+											</div>\
+										</div>\
+									');
+									if( value['investigator'].length != 0 ){
+										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon camera"><bdi>' +value['investigator'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['source'].length != 0 ){
+										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon paper"><bdi>' +value['source'] +'</bdi></span>\
+											</div>\
+										');
+									}
+									if( value['t_date'].length != 0 ){
+										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in .list-pic_item .details-in"+value['id']).append('\
+											<div class="p-item">\
+												<span class="icon calendar"><bdi>' +value['t_date'] +'</bdi></span>\
+											</div>\
+										');
+									}
 	
 									$("div.taqarir-img-loading."+value['id']).siblings("img").on("load", function(){
 										$(this).css({
@@ -323,14 +585,67 @@ $("#alrasad-taqarir").bind('panelload', function(){
 										success : function(json){
 											$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 											$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html('\
+												<div class="alrasad-taqrir-text">\
+												' +json['text'] +'\
+												</div>\
+											');
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('\
+												<div class="pic-con"></div>\
+												<div class="details"></div>\
+											');
+											if( this_element.children('span.pic').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").append('\
+													<img class="taqrir-pic" src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+													<span class="taqrir-img-loading">\
+														<img src="img/small-pic.jpg" />\
+													</span>\
+												');
+											}
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con img.taqrir-pic").on("load", function(){
+												$(this).show();
+												$(this).siblings("span.taqrir-img-loading").remove();
+											});
+
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").before('\
+												<div class="taqrir-title">\
+													' +this_element.children("span.title").text() +'\
+												</div>\
+											');
+											
+											if( this_element.children('span.investigator').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+													<div class="p-item">\
+														<span class="icon camera">\
+															<bdi>' +this_element.children('span.investigator').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.source').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+													<div class="p-item">\
+														<span class="icon paper">\
+															<bdi>' +this_element.children('span.source').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+											if( this_element.children('span.t_date').text().length != 0 ){
+												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+													<div class="p-item">\
+														<span class="icon calendar">\
+															<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+														</span>\
+													</div>\
+												');
+											}
+
 											//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
 											//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
 											//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
 
-											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").each(function(){
+											$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .taqrir-text img").each(function(){
 												if($(this).attr("src").indexOf("http://iicss") > -1 ){
 													$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 												}else{
@@ -338,7 +653,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 													$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 												}
 											});
-
+											
 											this_element.siblings(".loading2").remove();
 											$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
 										},
@@ -425,14 +740,67 @@ $("#alrasad-taqarir").bind('panelload', function(){
 						success : function(json){
 							$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
 							$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html('\
+								<div class="alrasad-taqrir-text">\
+								' +json['text'] +'\
+								</div>\
+							');
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('\
+								<div class="pic-con"></div>\
+								<div class="details"></div>\
+							');
+							if( this_element.children('span.pic').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").append('\
+									<img class="taqrir-pic" src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +this_element.children('span.pic').text() +'&w=420&h=267" style="display:none" />\
+									<span class="taqrir-img-loading">\
+										<img src="img/small-pic.jpg" />\
+									</span>\
+								');
+							}
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con img.taqrir-pic").on("load", function(){
+								$(this).show();
+								$(this).siblings("span.taqrir-img-loading").remove();
+							});
+
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con").before('\
+								<div class="taqrir-title">\
+									' +this_element.children("span.title").text() +'\
+								</div>\
+							');
+							
+							if( this_element.children('span.investigator').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+									<div class="p-item">\
+										<span class="icon camera">\
+											<bdi>' +this_element.children('span.investigator').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.source').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+									<div class="p-item">\
+										<span class="icon paper">\
+											<bdi>' +this_element.children('span.source').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+							if( this_element.children('span.t_date').text().length != 0 ){
+								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .details").append('\
+									<div class="p-item">\
+										<span class="icon calendar">\
+											<bdi>' +this_element.children('span.t_date').text() +'</bdi>\
+										</span>\
+									</div>\
+								');
+							}
+
 							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
 							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
 							//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
 
-							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").each(function(){
+							$("#alrasad_taqarir-inside-content #alrasad_taqarir-text .taqrir-text img").each(function(){
 								if($(this).attr("src").indexOf("http://iicss") > -1 ){
 									$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 								}else{
@@ -440,7 +808,7 @@ $("#alrasad-taqarir").bind('panelload', function(){
 									$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
 								}
 							});
-
+							
 							this_element.siblings(".loading2").remove();
 							$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
 						},
