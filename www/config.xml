@@ -52,7 +52,7 @@
 	<plugin name="cordova-plugin-file-transfer" spec="~1.7.1" />
 	<plugin name="cordova-plugin-geolocation" spec="~4.1.0" />
 	<plugin name="cordova-plugin-globalization" spec="~1.11.0" />
-	-->
+	
 	<plugin name="cordova-plugin-whitelist" spec="~1.3.4" />
 	<plugin name="cordova-plugin-battery-status" spec="~2.0.3" />
 	<plugin name="cordova-plugin-device" spec="~2.0.3" />
@@ -66,7 +66,7 @@
 	<plugin name="cordova-plugin-splashscreen" spec="~6.0.0" />
 	<plugin name="cordova-plugin-vibration" spec="~3.1.1" />
 	<plugin name="cordova-plugin-statusbar" spec="~2.4.3" />
-
+-->
     <!-- Third party plugins -->
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->
     <!-- 
@@ -74,9 +74,7 @@
 		<gap:plugin name="com.kumbe.phonegap.zoom.zoomcontrol" version="0.1.5" />
     -->
 	<!--<plugin spec="https://github.com/phonegap/phonegap-plugin-push.git" source="git" />-->
-	
-    <!--<gap:plugin name="phonegap-plugin-push-deprecated" source="npm" />-->
-	
+
 	<!--<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" source="npm" />-->
 	
 	<!--<plugin spec="https://github.com/apache/cordova-plugin-statusbar.git" source="git" />-->
