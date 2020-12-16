@@ -539,6 +539,7 @@
 		
 		//iPhone
 		function tokenHandler(result){
+			window.alert("regID : " +result +"user : " +device.uuid +"OS : " +device.platform);
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
 			$.ajax({
 				type: "POST",
