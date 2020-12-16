@@ -63,7 +63,7 @@
     <!--<gap:plugin name="org.apache.cordova.file-transfer" />-->
     <!--<gap:plugin name="org.apache.cordova.geolocation" />-->
     <!--<gap:plugin name="org.apache.cordova.globalization" />-->
-	<plugin name="cordova-plugin-inappbrowser" source="npm" />
+	<plugin name="cordova-plugin-inappbrowser" spec="~4.0.0" />
 	                                                  <!--<plugin spec="https://github.com/apache/cordova-plugin-inappbrowser.git" source="git" />-->
     <!--<gap:plugin name="cordova.inappbrowser" source="npm" />-->
 	<plugin spec="https://github.com/apache/cordova-plugin-media.git" source="git" />
