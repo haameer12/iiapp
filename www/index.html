@@ -227,7 +227,7 @@
 	function onNotificationGCM(e){
 		window.alert(" regID : " +e.regid +" user : " +device.uuid +" OS : " +device.platform);
 		$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
-
+		window.alert(e.event);
 		switch(e.event){
 			case 'registered':
 				if( e.regid.length > 0){
