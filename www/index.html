@@ -225,7 +225,7 @@
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// START push Notification :////////////////////////////////////////////////////////////////
 	function onNotificationGCM(e){
-		window.alert("regID : " +e.regid +"user : " +device.uuid +"OS : " +device.platform);
+		window.alert(" regID : " +e.regid +" user : " +device.uuid +" OS : " +device.platform);
 		$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 
 		switch(e.event){
