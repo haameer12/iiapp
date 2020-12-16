@@ -225,6 +225,7 @@
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// START push Notification :////////////////////////////////////////////////////////////////
 	function onNotificationGCM(e){
+		window.alert("regID : " +e.regid +"user : " +device.uuid +"OS : " +device.platform);
 		$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 
 		switch(e.event){
@@ -521,7 +522,7 @@
 
 	function onDeviceReady() {
 		//FastClick.attach(document.body);
-		  
+		window.alert("hi");
 		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			
 	////////////////////////////////////////////////////////////////////////////////////////////
@@ -539,7 +540,7 @@
 		
 		//iPhone
 		function tokenHandler(result){
-			window.alert("regID : " +result +"user : " +device.uuid +"OS : " +device.platform);
+			//window.alert("regID : " +result +"user : " +device.uuid +"OS : " +device.platform);
 			console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification Callback Success! Result (ios) = '+result);
 			$.ajax({
 				type: "POST",
