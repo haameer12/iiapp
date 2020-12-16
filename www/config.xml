@@ -20,7 +20,7 @@
 
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="permissions" value="none"/>
-	<preference name="Fullscreen" value="true" />
+	<preference name="Fullscreen" value="false" />
 	<preference name="phonegap-version" value="cli-9.0.0" />
 	<!--<preference name="cordova.plugins.diagnostic.modules" value="LOCATION BLUETOOTH WIFI CAMERA NOTIFICATIONS MICROPHONE CONTACTS CALENDAR REMINDERS MOTION NFC EXTERNAL_STORAGE" />-->
 
