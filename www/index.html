@@ -230,6 +230,30 @@
 		window.alert(e.event);
 
 		switch(e.event){
+			case 'registered':
+				window("ok");
+				if( true){
+					window("ok1");
+					///Android
+					$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
+					// Your GCM push server needs to know the regID before it can push to this device
+					// here is where you might want to send it the regID for later use.
+					window("ok2");
+					$.ajax({
+						type: "POST",
+						url: "http://iicss.iq/app/set_phone_key.php",
+						data: {regID : e.regid,user:device.uuid,OS:device.platform},
+						async: false,
+						success : function(text){
+							window("success");
+							//last_articles_version = text;
+							$("#app-status-ul").append('<li>EVENT -> RECEIVED: Rgister to server is finished : ' + text + '</li>');
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+						}
+					});
+				}
+			break;
+
 			case 'message':
 			
 			
