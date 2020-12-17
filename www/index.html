@@ -228,6 +228,7 @@
 		window.alert(" regID : " +e.regid +" user : " +device.uuid +" OS : " +device.platform);
 		$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 		window.alert(e.event);
+
 		switch(e.event){
 			case 'registered':
 				window("ok");
@@ -400,6 +401,9 @@
 				$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
 			break;
 		}
+	
+		window.alert(55);
+
 	}
 	
 	function onNotificationAPN(event) {
