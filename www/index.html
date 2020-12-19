@@ -241,13 +241,8 @@
 					window.alert("ok2");
 					window.alert(" regID : " +e.regid +" user : " +device.uuid +" OS : " +device.platform);
 					$.ajax({
-						type: "POST",
-						url: "http://iicss.iq/app/set_phone_key.php",
-						data: {
-							regID : e.regid,
-							user : device.uuid,
-							OS : device.platform
-						},
+						type: "GET",
+						url: "http://iicss.iq/app/set_phone_key.php?regid=" +e.regid +"&user=" +device.uuid +"&os" +device.platform,
 						async: false,
 						success : function(text){
 							window.alert(text);
