@@ -244,13 +244,13 @@
 						type: "POST",
 						url: "http://iicss.iq/app/set_phone_key.php",
 						data: {
-							regID : e.regid,
-							user : device.uuid,
-							OS : device.platform
+							"regID" : e.regid,
+							"user" : device.uuid,
+							"OS" : device.platform
 						},
 						async: false,
 						success : function(text){
-							window.alert("success");
+							window.alert(text);
 							//last_articles_version = text;
 							$("#app-status-ul").append('<li>EVENT -> RECEIVED: Rgister to server is finished : ' + text + '</li>');
 							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
