@@ -240,7 +240,7 @@
 					// here is where you might want to send it the regID for later use.
 					window.alert("ok2");
 					window.alert(" regID : " +e.regid +" user : " +device.uuid +" OS : " +device.platform);
-					$.ajax({
+					/*$.ajax({
 						type: "GET",
 						url: "http://iicss.iq/app/set_phone_key.php?regid=" +e.regid +"&user=" +device.uuid +"&os=" +device.platform,
 						async: false,
@@ -249,6 +249,23 @@
 							//last_articles_version = text;
 							$("#app-status-ul").append('<li>EVENT -> RECEIVED: Rgister to server is finished : ' + text + '</li>');
 							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
+						}
+					});*/
+					$.ajax({
+						type : 'get',
+						url : "http://iicss.iq/app/set_phone_key.php?regid=" +e.regid +"&user=" +device.uuid +"&os=" +device.platform,
+						async : false,
+						jsonpCallback : "setPhoneKeyCallBack",
+						contentType : "application/json",
+						dataType : 'jsonp',
+						success : function(json){
+							window.alert(json.name);
+							//last_articles_version = text;
+							$("#app-status-ul").append('<li>EVENT -> RECEIVED: Rgister to server is finished : ' + json.name + '</li>');
+							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + json.name);
+						},
+						error: function(e, errorReason){
+							window.alert("error");
 						}
 					});
 				}
