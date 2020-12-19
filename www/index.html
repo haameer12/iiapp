@@ -244,9 +244,9 @@
 						type: "POST",
 						url: "http://iicss.iq/app/set_phone_key.php",
 						data: {
-							"regID" : e.regid,
-							"user" : device.uuid,
-							"OS" : device.platform
+							regID : e.regid,
+							user : device.uuid,
+							OS : device.platform
 						},
 						async: false,
 						success : function(text){
