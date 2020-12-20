@@ -225,7 +225,6 @@
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// START push Notification :////////////////////////////////////////////////////////////////
 	function onNotificationGCM(e){
-		window.alert(" regID : " +e.regid +" user : " +device.uuid +" OS : " +device.platform);
 		$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
 		window.alert(e.event);
 
@@ -233,24 +232,10 @@
 			case 'registered':
 				window.alert("ok");
 				if( e.regid.length > 0){
-					window.alert("ok1");
 					///Android
 					$("#app-status-ul").append('<li>REGISTERED -> REGID:' +e.regid +'</li>');
 					// Your GCM push server needs to know the regID before it can push to this device
 					// here is where you might want to send it the regID for later use.
-					window.alert("ok2");
-					window.alert(" regID : " +e.regid +" user : " +device.uuid +" OS : " +device.platform);
-					/*$.ajax({
-						type: "GET",
-						url: "http://iicss.iq/app/set_phone_key.php?regid=" +e.regid +"&user=" +device.uuid +"&os=" +device.platform,
-						async: false,
-						success : function(text){
-							window.alert(text);
-							//last_articles_version = text;
-							$("#app-status-ul").append('<li>EVENT -> RECEIVED: Rgister to server is finished : ' + text + '</li>');
-							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + text);
-						}
-					});*/
 					$.ajax({
 						type : 'get',
 						url : "http://iicss.iq/app/set_phone_key.php?regid=" +e.regid +"&user=" +device.uuid +"&os=" +device.platform,
@@ -259,13 +244,13 @@
 						contentType : "application/json",
 						dataType : 'jsonp',
 						success : function(json){
-							window.alert(json.name);
+							//window.alert(json.name);
 							//last_articles_version = text;
 							$("#app-status-ul").append('<li>EVENT -> RECEIVED: Rgister to server is finished : ' + json.name + '</li>');
 							console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    Notification registration text : ' + json.name);
 						},
 						error: function(e, errorReason){
-							window.alert("error");
+							//window.alert("error");
 						}
 					});
 				}
@@ -418,8 +403,6 @@
 				$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
 			break;
 		}
-	
-		window.alert(55);
 
 	}
 	
