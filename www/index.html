@@ -226,11 +226,9 @@
 	// START push Notification :////////////////////////////////////////////////////////////////
 	function onNotificationGCM(e){
 		$("#app-status-ul").append('<li>EVENT -> RECEIVED:' + e.event + '</li>');
-		window.alert(e.event);
 
 		switch(e.event){
 			case 'registered':
-				window.alert("ok");
 				if( e.regid.length > 0){
 					///Android
 					$("#app-status-ul").append('<li>REGISTERED -> REGID:' +e.regid +'</li>');
@@ -529,7 +527,6 @@
 
 	function onDeviceReady() {
 		//FastClick.attach(document.body);
-		window.alert("hi");
 		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
 			
 	////////////////////////////////////////////////////////////////////////////////////////////
