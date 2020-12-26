@@ -119,9 +119,7 @@
 
 				<div id="alrasad_marakiz_contaner" style="position:relative">
 					<img style="display:none;margin:0 auto;" src="img/loading.gif" class="inside-loading top">
-					<div id="alrasad_marakiz_contaner_in" lastMarkazIdBySort="" lastMarkazId="">
-
-					</div>
+					<div id="alrasad_marakiz_contaner_in" lastMarkazIdBySort="" lastMarkazId=""></div>
 					<img style="display:none;margin:0 auto;" src="img/loading.gif" class="inside-loading bottom">
 				</div>
 
@@ -156,7 +154,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 			$("#marakiz_list_page").find(".inside-loading.top").css("display","block");
 			$.ajax({
 				type : 'get',
-				url : 'http://www.iicss.iq/app/get_data/get_sec.php?sec_id=27',
+				url : 'http://iicss.iq/app/rasad/marakiz/json_marakiz__new.php',
 				async : false,
 				jsonpCallback : 'rasadMarakizCallBack',
 				contentType : "application/json",
@@ -246,7 +244,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 							$("#marakiz_list_page").find(".inside-loading.bottom").css("display","block");
 							$.ajax({
 								type : 'get',
-								url : 'http://www.iicss.iq/app/get_data/get_sec.php?sec_id=27&last_item_by_sort='+$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazIdBySort"),
+								url : 'http://iicss.iq/app/rasad/marakiz/json_marakiz__new.php?last_item_by_sort='+$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazIdBySort"),
 								async : false,
 								jsonpCallback : 'rasadMarakizCallBack',
 								contentType : "application/json",
@@ -334,15 +332,15 @@ $("#alrasad-marakiz").bind('panelload', function(){
 							
 							$.ajax({
 								type : 'get',
-								url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir__new.php?last_item='+$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId"),
+								url : 'http://iicss.iq/app/rasad/marakiz/json_marakiz__new.php?last_item='+$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazId"),
 								async : false,
-								jsonpCallback : 'rasadTaqarirCallBack',
+								jsonpCallback : 'rasadMarakizCallBack',
 								contentType : "application/json",
 								dataType : 'jsonp',
 								success : function(json){
 									$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
 									$.each(json, function(index, value){
-										$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="grid-item">\
+										$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").prepend('<span class="grid-item">\
 											<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +value['id'] +'">\
 												<img class="alrasad_marakiz_img ' +value['id'] +'" src="' +((value['pic_name'].length > 3)? 'http://iicss.iq/rpic.php?i=files/sections/images/' +value['pic_name'] +'&w=300&h=135' : 'img/alrasad_marakiz_default_pic.jpg') +'" />\
 												<div class="alrasad_marakiz_img_loading_holder">\
@@ -357,48 +355,35 @@ $("#alrasad-marakiz").bind('panelload', function(){
 											$(this).siblings("div.alrasad_marakiz_img_loading_holder").remove();
 										});
 
-										$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId", value['id']);
-
+										$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazId", value['id']);
 									});
+									
 
-									$(".list-pic_item .pic-text").unbind("tap");
-									$(".list-pic_item .pic-text").bind("tap",function(){
-										$(this).siblings(".list-pic_item .details").fadeToggle(1);
+									$(".not-open-alrasad_marakiz").unbind("tap");
+									$(".not-open-alrasad_marakiz").bind("tap",function(){
+										//close_notify("all");
+										notify('لا يمكن مشاهدة هذه البيانات!', 'warning', 4000, 'bottom', 'Up', 'Down');
 									});
-
-									$(".open-rasad-taqrir").unbind("tap");
-									$(".open-rasad-taqrir").bind("tap",function(){
+									$(".open-alrasad_marakiz").unbind("tap");
+									$(".open-alrasad_marakiz").bind("tap",function(){
 										//alert($(this).attr("sec-id") )
 										var this_element = $(this);
-										this_element.before('<span class="loading2">&nbsp;</span>');
+										this_element.append('<span class="loading2">&nbsp;</span>');
 										$.ajax({
 											type : 'get',
-											url : 'http://iicss.iq/app/rasad/taqarir/json_get_taqrir_data.php?id='+this_element.attr("rasad-taqrir-id"),
+											url : 'http://iicss.iq/app/rasad/marakiz/json_get_markaz_data.php?id='+this_element.attr("sec-id"),
 											async : false,
-											jsonpCallback : 'alrasadTaqrirTextCallBack',
+											jsonpCallback : 'alrasadMarkazTextCallBack',
 											contentType : "application/json",
 											dataType : 'jsonp',
 											success : function(json){
-												$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
-												$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
-												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
-												//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
-												//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
-												//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
-
-												$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").each(function(){
-													if($(this).attr("src").indexOf("http://iicss") > -1 ){
-														$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
-													}else{
-														$(this).attr("src", "http://iicss.iq/" +$(this).attr("src"));
-														$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
-													}
-												});
-
-												this_element.siblings(".loading2").remove();
-												$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
+												$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").css({backgroundColor : "#1aae88"});
+												$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").text("الرصد / مراكز الدراسات والبحوث");
+												$("#alrasad_marakiz-inside-content #alrasad_markaz-text").html(json['text']);
+												$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div style="text-align:center"><img src="' +this_element.children("img").attr("src") +'" style="border:1px solid #cfcece;padding:1px" />');
+												$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div class="markaz-title">' +this_element.children("h3.title").text() +'</div>');
+												this_element.children(".loading2").remove();
+												$.afui.loadContent("#alrasad_marakiz-inside-content",false,false,"up");
 											},
 											error: function(e){
 												//console.log(e.message);
@@ -439,17 +424,18 @@ $("#alrasad-marakiz").bind('panelload', function(){
 		}else{
 			
 			$("#marakiz_list_page").find(".inside-loading.top").css("display","block");
+			
 			$.ajax({
 				type : 'get',
-				url : 'http://iicss.iq/app/rasad/taqarir/json_taqarir__new.php?last_item='+$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId"),
+				url : 'http://iicss.iq/app/rasad/marakiz/json_marakiz__new.php?last_item='+$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazId"),
 				async : false,
-				jsonpCallback : 'rasadTaqarirCallBack',
+				jsonpCallback : 'rasadMarakizCallBack',
 				contentType : "application/json",
 				dataType : 'jsonp',
 				success : function(json){
 					$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
 					$.each(json, function(index, value){
-						$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="grid-item">\
+						$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").prepend('<span class="grid-item">\
 							<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +value['id'] +'">\
 								<img class="alrasad_marakiz_img ' +value['id'] +'" src="' +((value['pic_name'].length > 3)? 'http://iicss.iq/rpic.php?i=files/sections/images/' +value['pic_name'] +'&w=300&h=135' : 'img/alrasad_marakiz_default_pic.jpg') +'" />\
 								<div class="alrasad_marakiz_img_loading_holder">\
@@ -464,48 +450,35 @@ $("#alrasad-marakiz").bind('panelload', function(){
 							$(this).siblings("div.alrasad_marakiz_img_loading_holder").remove();
 						});
 
-						$("#rasad_taqarir_contaner #rasad_taqarir_contaner_in").attr("lastNewsId", value['id']);
-						
+						$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazId", value['id']);
 					});
 					
-					$(".list-pic_item .pic-text").unbind("tap");
-					$(".list-pic_item .pic-text").bind("tap",function(){
-						$(this).siblings(".list-pic_item .details").fadeToggle(1);
-					});
 
-					$(".open-rasad-taqrir").unbind("tap");
-					$(".open-rasad-taqrir").bind("tap",function(){
+					$(".not-open-alrasad_marakiz").unbind("tap");
+					$(".not-open-alrasad_marakiz").bind("tap",function(){
+						//close_notify("all");
+						notify('لا يمكن مشاهدة هذه البيانات!', 'warning', 4000, 'bottom', 'Up', 'Down');
+					});
+					$(".open-alrasad_marakiz").unbind("tap");
+					$(".open-alrasad_marakiz").bind("tap",function(){
 						//alert($(this).attr("sec-id") )
 						var this_element = $(this);
-						this_element.before('<span class="loading2">&nbsp;</span>');
+						this_element.append('<span class="loading2">&nbsp;</span>');
 						$.ajax({
 							type : 'get',
-							url : 'http://iicss.iq/app/rasad/taqarir/json_get_taqrir_data.php?id='+this_element.attr("rasad-taqrir-id"),
+							url : 'http://iicss.iq/app/rasad/marakiz/json_get_markaz_data.php?id='+this_element.attr("sec-id"),
 							async : false,
-							jsonpCallback : 'alrasadTaqrirTextCallBack',
+							jsonpCallback : 'alrasadMarkazTextCallBack',
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").css({backgroundColor : "#1ccacc"});
-								$("#alrasad_taqarir-inside-content #alrasad_taqarir-win-title").text("الرصد / تقارير وتحقيقات");
-								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").html(json['text']);
-								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +this_element.children('span.investigator').text() +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +this_element.children('span.source').text() +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +this_element.children('span.t_date').text() +'</bdi></span></div></div>');
-								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text").prepend('<div class="taqrir-title">' +this_element.children("span.title").text() +'</div>');
-								//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
-								//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
-								//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
-
-								$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").each(function(){
-									if($(this).attr("src").indexOf("http://iicss") > -1 ){
-										$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
-									}else{
-										$(this).attr("src", "http://iicss.iq/" +$(this).attr("src"));
-										$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
-									}
-								});
-
-								this_element.siblings(".loading2").remove();
-								$.afui.loadContent("#alrasad_taqarir-inside-content",false,false,"up");
+								$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").css({backgroundColor : "#1aae88"});
+								$("#alrasad_marakiz-inside-content #alrasad_markaz-win-title").text("الرصد / مراكز الدراسات والبحوث");
+								$("#alrasad_marakiz-inside-content #alrasad_markaz-text").html(json['text']);
+								$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div style="text-align:center"><img src="' +this_element.children("img").attr("src") +'" style="border:1px solid #cfcece;padding:1px" />');
+								$("#alrasad_marakiz-inside-content #alrasad_markaz-text").prepend('<div class="markaz-title">' +this_element.children("h3.title").text() +'</div>');
+								this_element.children(".loading2").remove();
+								$.afui.loadContent("#alrasad_marakiz-inside-content",false,false,"up");
 							},
 							error: function(e){
 								//console.log(e.message);
@@ -518,30 +491,12 @@ $("#alrasad-marakiz").bind('panelload', function(){
 
 					$("#marakiz_list_page .nano").nanoScroller({ alwaysVisible: true });
 
-
-
-
-
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 				},
 				error: function(e, errorReason){
 					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					$("#marakiz_list_page").find(".inside-loading.top").hide();
+					$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
 				}
 			});
-			
 			
 		}
 			
