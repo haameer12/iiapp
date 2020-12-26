@@ -118,9 +118,9 @@
 			<div class="colored-win"><div class="c-w-title icon pin" style="background-color:#1aae88">مراكز الدراسات والبحوث</div>
 
 				<div id="alrasad_marakiz_contaner" style="position:relative">
-					<img style="display:none;margin:0 auto;" src="img/loading.gif" class="inside-loading top">
+					<img style="display:none;margin:0 auto;" src="img/loading.gif" class="inside-loading top alrasad_marakiz">
 					<div id="alrasad_marakiz_contaner_in" lastMarkazIdBySort="" lastMarkazId=""></div>
-					<img style="display:none;margin:0 auto;" src="img/loading.gif" class="inside-loading bottom">
+					<img style="display:block;opacity:0;margin:0 auto;" src="img/loading.gif" class="inside-loading bottom alrasad_marakiz">
 				</div>
 
 			</div>
@@ -151,7 +151,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 		if($("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazIdBySort") == ""){
 			//window.alert("hi");
 			
-			$("#marakiz_list_page").find(".inside-loading.top").css("display","block");
+			$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","block");
 			$.ajax({
 				type : 'get',
 				url : 'http://iicss.iq/app/rasad/marakiz/json_marakiz__new.php',
@@ -160,7 +160,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 				contentType : "application/json",
 				dataType : 'jsonp',
 				success : function(json){
-					$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
+					$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","none");
 					var i = 0;
 					$.each(json, function(index, value){
 						i++;
@@ -239,9 +239,9 @@ $("#alrasad-marakiz").bind('panelload', function(){
 					$("#marakiz_list_page .nano").bind("scrollend", function(e){
 						//window.alert("current HTMLDivElement", e.currentTarget);
 						
-						if($("#marakiz_list_page").find(".inside-loading.bottom").css("display") != "none"){ }else{
+						if($("#marakiz_list_page").find(".inside-loading.bottom.alrasad_marakiz").css("opacity") != "0"){ }else{
 							
-							$("#marakiz_list_page").find(".inside-loading.bottom").css("display","block");
+							$("#marakiz_list_page").find(".inside-loading.bottom.alrasad_marakiz").css("opacity","1");
 							$.ajax({
 								type : 'get',
 								url : 'http://iicss.iq/app/rasad/marakiz/json_marakiz__new.php?last_item_by_sort='+$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").attr("lastMarkazIdBySort"),
@@ -250,7 +250,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 								contentType : "application/json",
 								dataType : 'jsonp',
 								success : function(json){
-									$("#marakiz_list_page").find(".inside-loading.bottom").css("display","none");
+									$("#marakiz_list_page").find(".inside-loading.bottom.alrasad_marakiz").css("opacity","0");
 									$.each(json, function(index, value){
 										$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").append('<span class="grid-item">\
 											<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +value['id'] +'">\
@@ -311,7 +311,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 								},
 								error: function(e, errorReason){
 									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									$("#marakiz_list_page").find(".inside-loading.bottom").css("display","none");
+									$("#marakiz_list_page").find(".inside-loading.bottom.alrasad_marakiz").css("opacity","0");
 								}
 							});
 							
@@ -326,9 +326,9 @@ $("#alrasad-marakiz").bind('panelload', function(){
 					$("#marakiz_list_page .nano").bind("scrolltop", function(e){
 						//window.alert("current HTMLDivElement", e.currentTarget);
 						
-						if($("#marakiz_list_page").find(".inside-loading.top").css("display") != "none"){ }else{
+						if($("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display") != "none"){ }else{
 
-							$("#marakiz_list_page").find(".inside-loading.top").css("display","block");
+							$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","block");
 							
 							$.ajax({
 								type : 'get',
@@ -338,7 +338,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 								contentType : "application/json",
 								dataType : 'jsonp',
 								success : function(json){
-									$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
+									$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","none");
 									$.each(json, function(index, value){
 										$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").prepend('<span class="grid-item">\
 											<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +value['id'] +'">\
@@ -399,7 +399,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 								},
 								error: function(e, errorReason){
 									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
+									$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","none");
 								}
 							});
 						
@@ -416,14 +416,14 @@ $("#alrasad-marakiz").bind('panelload', function(){
 				},
 				error: function(e, errorReason){
 					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
+					$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","none");
 				}
 			});
 			
 			
 		}else{
 			
-			$("#marakiz_list_page").find(".inside-loading.top").css("display","block");
+			$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","block");
 			
 			$.ajax({
 				type : 'get',
@@ -433,7 +433,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 				contentType : "application/json",
 				dataType : 'jsonp',
 				success : function(json){
-					$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
+					$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","none");
 					$.each(json, function(index, value){
 						$("#alrasad_marakiz_contaner #alrasad_marakiz_contaner_in").prepend('<span class="grid-item">\
 							<div class="in ' +((value['type'] == 2 && value['protected'] == 0)? 'open-alrasad_marakiz' : 'not-open-alrasad_marakiz') +'" sec-id="' +value['id'] +'">\
@@ -494,7 +494,7 @@ $("#alrasad-marakiz").bind('panelload', function(){
 				},
 				error: function(e, errorReason){
 					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					$("#marakiz_list_page").find(".inside-loading.top").css("display","none");
+					$("#marakiz_list_page").find(".inside-loading.top.alrasad_marakiz").css("display","none");
 				}
 			});
 			

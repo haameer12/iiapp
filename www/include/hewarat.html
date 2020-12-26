@@ -73,7 +73,7 @@
 			</div>
 
 
-			<div class="inside-loading bottom hewarat" style="margin:7px 0 11px 0;">
+			<div class="inside-loading bottom hewarat" style="margin:7px 0 11px 0;display:block;opacity:0;">
 				<img src="img/loading3.gif" />
 			</div>
 
@@ -269,9 +269,9 @@ $("#hewarat").bind('panelload', function(){
 				$("#hewarat_list_page .nano").bind("scrollend", function(e){
 					//window.alert("current HTMLDivElement", e.currentTarget);
 					
-					if($("#hewarat_list_page").find(".inside-loading.bottom.hewarat").css("display") != "none"){ }else{
+					if($("#hewarat_list_page").find(".inside-loading.bottom.hewarat").css("opacity") != "0"){ }else{
 						
-						$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").show();
+						$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").css("opacity", "1");
 						$.ajax({
 							type : 'get',
 							url : 'http://iicss.iq/app/hewarat/json_hewarat.php?last_item_by_sort='+$("#hewarat_contaner #hewarat_contaner_in").attr("lastNewsIdBySort"),
@@ -280,7 +280,7 @@ $("#hewarat").bind('panelload', function(){
 							contentType : "application/json",
 							dataType : 'jsonp',
 							success : function(json){
-								$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").hide();
+								$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").css("opacity", "0");
 								$.each(json, function(index, value){
 									$("#hewarat_contaner #hewarat_contaner_in").append('\
 										<div class="list-pic_item">\
@@ -445,7 +445,7 @@ $("#hewarat").bind('panelload', function(){
 							},
 							error: function(e, errorReason){
 								notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-								$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").hide();
+								$("#hewarat_list_page").find(".inside-loading.bottom.hewarat").css("opacity", "0");
 							}
 						});
 						

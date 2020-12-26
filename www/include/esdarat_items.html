@@ -24,17 +24,7 @@
 		}
 	}
 
-	.inside-loading.esdarat_items{
-		border: 1px solid #ebf6fd;
-		border-left: 0;
-		border-right: 0;
-		box-shadow:none;
-		position:absolute;
-		left:0px;
-		right:0px;
-		opacity:0.85;
-		z-index:+15000;
-	}
+
 </style>
 <div class="nano">
 	<div class="overthrow nano-content">
@@ -50,11 +40,7 @@
 				</div>
 			</div>
 
-			<div class="inside-loading fisrt_load esdarat_items" style="position:static;">
-				<img src="img/loading3.gif" />
-			</div>
-
-			<div class="inside-loading top esdarat_items" style="top:70px;">
+			<div class="inside-loading top esdarat_items">
 				<img src="img/loading3.gif" />
 			</div>
 			
@@ -66,7 +52,7 @@
 				</div>
 			</div>
 
-			<div class="inside-loading bottom esdarat_items" style="bottom:0px;">
+			<div class="inside-loading bottom esdarat_items" style="display:block;opacity:0;">
 				<img src="img/loading3.gif" />
 			</div>
 		</div>
@@ -88,7 +74,7 @@ $("#esdarat-item-list").bind('panelload', function(){
 			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsIdBySort", "");
 			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsId", "");
 
-			$("#esdarat-item-list").find(".inside-loading.fisrt_load.esdarat_items").show();
+			$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").show();
 			$.ajax({
 				type : 'get',
 				url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl"),
@@ -97,7 +83,7 @@ $("#esdarat-item-list").bind('panelload', function(){
 				contentType : "application/json",
 				dataType : 'jsonp',
 				success : function(json){
-					$("#esdarat-item-list").find(".inside-loading.fisrt_load.esdarat_items").hide();
+					$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").hide();
 					var i = 0;
 					$.each(json, function(index, value){
 						i++;
@@ -185,9 +171,9 @@ $("#esdarat-item-list").bind('panelload', function(){
 					$("#esdarat-item-list .nano").bind("scrollend", function(e){
 						//window.alert("current HTMLDivElement", e.currentTarget);
 						
-						if($("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").css("display") != "none"){ }else{
+						if($("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").css("opacity") != "0"){ }else{
 							
-							$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").show();
+							$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").css("opacity", "1");
 							$.ajax({
 								type : 'get',
 								url : $("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("itemListUrl") +'?last_item_by_sort='+$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").attr("lastNewsIdBySort"),
@@ -196,7 +182,7 @@ $("#esdarat-item-list").bind('panelload', function(){
 								contentType : "application/json",
 								dataType : 'jsonp',
 								success : function(json){
-									$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").hide();
+									$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").css("opacity", "0");
 									$.each(json, function(index, value){
 										$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").append('\
 											<span class="grid-item">\
@@ -280,7 +266,7 @@ $("#esdarat-item-list").bind('panelload', function(){
 								},
 								error: function(e, errorReason){
 									notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-									$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").hide();
+									$("#esdarat-item-list").find(".inside-loading.bottom.esdarat_items").css("opacity", "0");
 								}
 							});
 							
@@ -424,7 +410,7 @@ $("#esdarat-item-list").bind('panelload', function(){
 				},
 				error: function(e, errorReason){
 					notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
-					$("#esdarat-item-list").find(".inside-loading.fisrt_load.esdarat_items").hide();
+					$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").hide();
 				}
 			});
 			
