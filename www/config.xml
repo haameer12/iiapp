@@ -114,7 +114,7 @@
 			<application android:allowBackup="false"/>
 		</edit-config>
 
-		<config-file parent="/*" target="AndroidManifest.xml">
+		<config-file parent="/*" target="AndroidManifest.xml" mode="delete">
 			<!--<uses-permission android:name="android.permission.BLUETOOTH" />
 			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
