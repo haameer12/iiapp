@@ -14,9 +14,9 @@
 		MWD Hassan Haddad
 	</author>
 
-	<content src="index.html" />
+	<content src="index.html"></content>
 
-	<access origin="*" /> <!--allow local pages -->
+	<access origin="*"></access> <!--allow local pages -->
 
 	<!-- Customize your app and platform with the preference element. -->
 	<preference name="permissions" value="none"/>
@@ -218,6 +218,8 @@
 		<preference name="Windows.Universal-MinVersion" value="10.0.0.0" />
 	</platform>
 
+	<engine name="android" spec="https://github.com/apache/cordova-android.git#5.1.1" />
+	
 	<engine name="ios" spec="latest" />
 
 	<engine name="windows" spec="latest" />
