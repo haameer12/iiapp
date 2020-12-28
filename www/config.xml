@@ -114,15 +114,15 @@
 			<application android:allowBackup="false"/>
 		</edit-config>
 
-		<!--<config-file parent="/*" target="AndroidManifest.xml">
+		<config-file parent="/*" target="AndroidManifest.xml">
 			<uses-permission android:name="android.permission.BLUETOOTH" />
 			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 			<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-			<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			<!--<uses-permission android:name="android.permission.RECORD_AUDIO" />-->
 			<uses-permission android:name="android.permission.CAMERA" />
-			<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+			<!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
 			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 			<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 			<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -132,9 +132,6 @@
 			<uses-permission android:name="android.permission.READ_CALENDAR" />
 			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
 			<uses-permission android:name="android.permission.GET_ACCOUNTS" />
-		</config-file>-->
-		<config-file parent="/manifest" target="AndroidManifest.xml" mode="delete">
-			<uses-permission android:name="android.permission.RECORD_AUDIO" />
 		</config-file>
 
 		<icon src="img/splash/icon.png" />
