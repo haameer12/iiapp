@@ -93,6 +93,7 @@ $("#esdarat-item-list").bind('panelload', function(){
 				dataType : 'jsonp',
 				success : function(json){
 					$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").hide();
+					$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").show();
 					var i = 0;
 					$.each(json, function(index, value){
 						i++;
@@ -456,6 +457,7 @@ $("#esdarat-item-list").bind('panelload', function(){
 
 		}else{
 			
+			$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").show();
 			$("#esdarat-item-list").find(".inside-loading.top.esdarat_items").show();
 			$.ajax({
 				type : 'get',
@@ -583,5 +585,6 @@ $("#esdarat-item-list").bind('panelload', function(){
 })
 $("#esdarat-item-list").bind('panelunload', function() {
 	//alert("news_list end");
+	$("#esdarat-item-list_contaner #esdarat-item-list_contaner_in").hide();
 });
 </script>
