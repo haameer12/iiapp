@@ -257,9 +257,6 @@
 
 			case 'message':
 			
-			
-			
-			
 				//هنا نعالج الإشعار القادم و نحلله
 				noty_button_function = "";
 				if(e.payload.noty_type > 0){
@@ -274,14 +271,6 @@
 					}
 				}
 				
-
-
-
-
-
-			
-			
-			
 				// if this flag is set, this notification happened while we were in the foreground.
 				// you might want to play a sound to get the user's attention, throw up a dialog, etc.
 				if(e.foreground){
@@ -292,21 +281,9 @@
 					
 					//notify(e.payload.message, 'information', 8000, 'topCenter');
 					
-					
-					
-					
-
-						
 					var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
 					notify(text_a, 'information', 20000, 'top', 'Left', 'Right');
-				
-					
-					
-					
 
-					
-					
-					
 				}else{  // otherwise we were launched because the user touched a notification in the notification tray.
 					
 					if(e.coldstart){
@@ -314,23 +291,27 @@
 						$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
 						//window.alert('coldstart');
 						
-						var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
-						notify(text_a, 'information', 20000, 'top', 'Left', 'Right');
+						if(!e.payload.button_clicked_auto){
+							var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
+							notify(text_a, 'information', 20000, 'top', 'Left', 'Right');
+						}
 
 					}else{
 
 						$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
 						//window.alert('background');
 						
-						var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
-						notify(text_a, 'information', 20000, 'top', 'Left', 'Right');
-						
+						if(!e.payload.button_clicked_auto){
+							var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
+							notify(text_a, 'information', 20000, 'top', 'Left', 'Right');
+						}
+
 					}
 
-					window.setTimeout(function(){
+					if(e.payload.button_clicked_auto){
 						eval(noty_button_function);
-					}, 3000);
-					
+					}
+
 				}
 				
 
