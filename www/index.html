@@ -288,6 +288,7 @@
 					
 					$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
 					//must have vibration
+					navigator.vibrate(3000);
 					
 					//notify(e.payload.message, 'information', 8000, 'topCenter');
 					
@@ -310,7 +311,7 @@
 					
 					if(e.coldstart){
 						$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-						//window.alert('coldstart');
+						window.alert('coldstart');
 						
 						
 						var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
@@ -320,7 +321,7 @@
 						
 					}else{
 						$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-						//window.alert('background');
+						window.alert('background');
 						
 						
 						var text_a = "<div class='noty-icon icon message message'>&nbsp;</div><div class='noty-close icon close message'>&nbsp;</div><div class='noty-text'><h4 class='noty-title'>" +e.payload.title +"</h4>" +e.payload.message +((noty_button_function != '')? " <a class='open_content_link' href='#' onclick=\"" +noty_button_function +"return false;\">" +((e.payload.button_text != "")? e.payload.button_text : "متابعة...") +"</a>" : "") +"</div>";
