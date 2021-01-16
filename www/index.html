@@ -230,6 +230,7 @@
 		function onDeviceReady() {
 			//FastClick.attach(document.body);
 			console.log('3H Developer ::::::::::::::::::::::::::::::::::::    start onDeviceReady');
+			window.alert('start onDeviceReady');
 
 			const push = PushNotification.init({
 				android: {
@@ -250,6 +251,7 @@
 
 			push.on('registration', (data) => {
 				// data.registrationId
+				window.alert('REGID:' +data.registrationId);
 
 				if( data.registrationId.length > 0){
 					///Android
@@ -284,7 +286,7 @@
 				// data.sound,
 				// data.image,
 				// data.additionalData
-
+				window.alert(data.title);
 
 
 
