@@ -193,23 +193,166 @@
 			success : function(json){
 				//$("#taqarir-content #taqrir-win-title").css({backgroundColor : "#1ccacc"});
 				$("#taqrir-content #taqrir-win-title").text(panel_title);
-				$("#taqrir-content #taqrir-text").html(json['text']);
-				
-				$("#taqrir-content #taqrir-text").prepend('<div class="details"><div class="p-item"><span class="icon camera"><bdi>' +json['investigator'] +'</bdi></span></div><div class="p-item"><span class="icon paper"><bdi>' +json['source'] +'</bdi></span></div><div class="p-item"><span class="icon calendar"><bdi>' +json['t_date'] +'</bdi></span></div></div>');
+
 				
 				
-				$("#taqrir-content #taqrir-text").prepend("<div style='text-align:center;padding:8px 0 0 0'><img id='taqrir-pic' src='' /></div>");
-				$("#taqrir-content #taqrir-text img#taqrir-pic").attr("src", json['pic']);
-				
-				$("#taqrir-content #taqrir-text").prepend('<div class="taqrir-title">' +json['title'] +'</div>');
-				
-				
-				
-				//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text img").attr("src",  this_element.children("img").attr("src"));
-				//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("onClick", "openUrl('http://iicss.iq/" +$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href") +"', 'system');return false;");
-				//$("#alrasad_taqarir-inside-content #alrasad_taqarir-text a").attr("href", "#");
-				//this_element.children(".loading2").remove();
+
+
+				$("#taqrir-content #taqrir-text").html('\
+					<div class="taqrir-text">\
+					' +json['text'] +'\
+					</div>\
+				');
+				$("#taqrir-content #taqrir-text").prepend('\
+					<div class="pic-con"></div>\
+					<div class="details"></div>\
+				');
+				if( json['pic'].length != 0 ){
+					$("#taqrir-content #taqrir-text .pic-con").append('\
+						<img class="taqrir-pic" src="http://iicss.iq/rpic.php?i=files/taqarir/images/' +json['pic'] +'&w=420&h=267" style="display:none" />\
+						<span class="taqrir-img-loading">\
+							<img src="img/small-pic.jpg" />\
+						</span>\
+					');
+				}
+				$("#taqrir-content #taqrir-text .pic-con img.taqrir-pic").on("load", function(){
+					$(this).show();
+					$(this).siblings("span.taqrir-img-loading").remove();
+				});
+
+				$("#taqrir-content #taqrir-text .pic-con").before('\
+					<div class="taqrir-title">\
+						' +json['title'] +'\
+					</div>\
+				');
+				if( json['investigator'].length != 0 ){
+					$("#taqrir-content #taqrir-text .details").append('\
+						<div class="p-item">\
+							<span class="icon camera">\
+								<bdi>' +json['investigator'] +'</bdi>\
+							</span>\
+						</div>\
+					');
+				}
+				if( json['source'].length != 0 ){
+					$("#taqrir-content #taqrir-text .details").append('\
+						<div class="p-item">\
+							<span class="icon paper">\
+								<bdi>' +json['source'] +'</bdi>\
+							</span>\
+						</div>\
+					');
+				}
+				if( json['t_date'].length != 0 ){
+					$("#taqrir-content #taqrir-text .details").append('\
+						<div class="p-item">\
+							<span class="icon calendar">\
+								<bdi>' +json['t_date'] +'</bdi>\
+							</span>\
+						</div>\
+					');
+				}
+
+				$("#taqrir-content #taqrir-text .taqrir-text img").each(function(){
+					if($(this).attr("src").indexOf("http://iicss") > -1 ){
+						$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
+					}else{
+						$(this).attr("src", "http://iicss.iq/" +$(this).attr("src"));
+						$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
+					}
+				});
+
+
+
+
+
 				$.afui.loadContent("#taqrir-content",false,false,"up");
+			},
+			error: function(e){
+				//console.log(e.message);
+				$.afui.goBack();
+				notify('لم يتم التحميل بنجاح! تفحص وسائل الإتصال', 'error', 4000, 'bottom', 'Up', 'Down');
+			}
+		});
+	}
+
+	function get_hewar(site_num, hewarId, panel_title){
+		$.ajax({
+			type : 'get',
+			url : 'http://iicss.iq/app/get_data/get_hewar.php?site='+site_num +'&id=' +hewarId,
+			async : false,
+			jsonpCallback : 'hewarCallBack',
+			contentType : "application/json",
+			dataType : 'jsonp',
+			success : function(json){
+				//$("#taqarir-content #taqrir-win-title").css({backgroundColor : "#1ccacc"});
+				$("#hewar-content #hewar-win-title").text(panel_title);
+
+				$("#hewar-content #hewar-text").html('\
+					<div class="hewar-text">\
+					' +json['text'] +'\
+					</div>\
+				');
+				$("#hewar-content #hewar-text").prepend('\
+					<div class="pic-con"></div>\
+					<div class="details"></div>\
+				');
+				if( json['pic'].length != 0 ){
+					$("#hewar-content #hewar-text .pic-con").append('\
+						<img class="hewar-pic" src="http://iicss.iq/rpic.php?i=files/discussion/images/' +json['pic'] +'&w=420&h=267" style="display:none" />\
+						<span class="hewar-img-loading">\
+							<img src="img/small-pic.jpg" />\
+						</span>\
+					');
+				}
+				$("#hewar-content #hewar-text .pic-con img.hewar-pic").on("load", function(){
+					$(this).show();
+					$(this).siblings("span.hewar-img-loading").remove();
+				});
+
+				$("#hewar-content #hewar-text .pic-con").before('\
+					<div class="hewar-title">\
+						' +json['title'] +'\
+					</div>\
+				');
+				if( json['interlocutor'].length != 0 ){
+					$("#hewar-content #hewar-text .details").append('\
+						<div class="p-item">\
+							<span class="icon camera">\
+								<bdi>' +json['interlocutor'] +'</bdi>\
+							</span>\
+						</div>\
+					');
+				}
+				if( json['main_person'].length != 0 ){
+					$("#hewar-content #hewar-text .details").append('\
+						<div class="p-item">\
+							<span class="icon mic">\
+								<bdi>' +json['main_person'] +'</bdi>\
+							</span>\
+						</div>\
+					');
+				}
+				if( json['t_date'].length != 0 ){
+					$("#hewar-content #hewar-text .details").append('\
+						<div class="p-item">\
+							<span class="icon calendar">\
+								<bdi>' +json['t_date'] +'</bdi>\
+							</span>\
+						</div>\
+					');
+				}
+
+				$("#hewar-content #hewar-text .hewar-text img").each(function(){
+					if($(this).attr("src").indexOf("http://iicss") > -1 ){
+						$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
+					}else{
+						$(this).attr("src", "http://iicss.iq/" +$(this).attr("src"));
+						$(this).css({width : "95%", border : "1px solid rgb(230, 228, 228)", padding : "1px"});
+					}
+				});
+
+				$.afui.loadContent("#hewar-content",false,false,"up");
 			},
 			error: function(e){
 				//console.log(e.message);
@@ -268,6 +411,8 @@
 						noty_button_function = "get_taqrir(" +e.payload.site +", " +e.payload.item_id +", '" +e.payload.page_title +"');";
 					}else if(e.payload.noty_type == 3 && e.payload.hyperlink != '' && e.payload.hyperlink_target != ''){
 						noty_button_function = "openUrl('" +e.payload.hyperlink +"', '" +e.payload.hyperlink_target +"');";
+					}else if(e.payload.noty_type == 4 && e.payload.site > 0 && e.payload.item_id > 0){
+						noty_button_function = "get_hewar(" +e.payload.site +", " +e.payload.item_id +", '" +e.payload.page_title +"');";
 					}
 				}
 				
@@ -412,6 +557,8 @@
 					noty_button_function = "get_taqrir(" +event.site +", " +event.item_id +", '" +event.page_title +"');";
 				}else if(event.noty_type == 3 && event.hyperlink != '' && event.hyperlink_target != ''){
 					noty_button_function = "openUrl('" +event.hyperlink +"', '" +event.hyperlink_target +"');";
+				}else if(event.noty_type == 4 && event.site > 0 && event.item_id > 0){
+					noty_button_function = "get_hewar(" +event.site +", " +event.item_id +", '" +event.page_title +"');";
 				}
 			}
 			
@@ -495,7 +642,7 @@
 
 
 
-	function init(){           
+	function init(){      get_taqrir(1, 394, 'السلام');
 		console.log('SMGROUP ::::::::::::::::::::::::::::::::::::    start init()');
 		document.addEventListener("deviceready", onDeviceReady, false);
 	}
@@ -741,7 +888,7 @@
 	<style>
 	/*مشاهدة الإصدار - esdarat-inside-content*/
 	@import url(engine/build/fonts/DroidArabicNaskh/DroidArabicNaskh.css);
-	#esdarat-inside-content .esdar-title, #sec-type-text-content .sec-type-text-title, #alrasad_marakiz-inside-content .markaz-title, #hewarat-inside-content .hewar-title, #hewar-content .taqrir-title, #alrasad_taqarir-inside-content .taqrir-title, #taqrir-content .taqrir-title{
+	#esdarat-inside-content .esdar-title, #sec-type-text-content .sec-type-text-title, #alrasad_marakiz-inside-content .markaz-title, #hewarat-inside-content .hewar-title, #hewar-content .hewar-title, #hewar-content .taqrir-title, #alrasad_taqarir-inside-content .taqrir-title, #taqrir-content .taqrir-title{
 		font-family:"hacen_screen";
 		font-size:16px;
 		text-align:center;
@@ -951,7 +1098,7 @@
 		display:none;
 	}
 
-	#hewarat-inside-content .details, #hewar-content .details{
+	#hewarat-inside-content .details, #hewar-content .details,{
 		background:#fcfdfd;
 		margin:3px -10px 13px -10px;
 		padding:5px 0;
@@ -970,7 +1117,27 @@
 		font-size:15px;
 		color:#5a5e64;
 	}
+	#hewarat-inside-content #hewarat-text .pic-con, #hewar-content #hewar-text .pic-con{
+		background: url(img/loading4.gif) no-repeat center center;
+		background-size: 25px;
+		font-size:0;
+		line-height:0;
+		width:70%;
+		margin:0 auto;
+	}
+	#hewarat-inside-content #hewarat-text .pic-con img, #hewar-content #hewar-text .pic-con img{
+		border:1px solid rgb(230, 228, 228);
+		padding:1px;
+		width:100%;
+	}
+	#hewarat-inside-content #hewarat-text .pic-con .hewar-img-loading, #hewar-content #hewar-text .pic-con .hewar-img-loading{
+		opacity:0.45;
+	}
+	#hewarat-inside-content #hewarat-text .pic-con .hewar-img-loading img, #hewar-content #hewar-text .pic-con .hewar-img-loading img{
+		border:1px solid #c7c7c7;
+	}
 	
+
 	#alrasad_taqarir-inside-content .details, #taqrir-content .details{
 		background:#fcfdfd;
 		margin:3px -10px 13px -10px;
@@ -989,6 +1156,25 @@
 		padding:0 10px 0 0;
 		font-size:15px;
 		color:#5a5e64;
+	}
+	#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con, #taqrir-content #taqrir-text .pic-con{
+		background: url(img/loading4.gif) no-repeat center center;
+		background-size: 25px;
+		font-size:0;
+		line-height:0;
+		width:70%;
+		margin:0 auto;
+	}
+	#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con img, #taqrir-content #taqrir-text .pic-con img{
+		border:1px solid rgb(230, 228, 228);
+		padding:1px;
+		width:100%;
+	}
+	#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con .taqrir-img-loading, #taqrir-content #taqrir-text .pic-con .taqrir-img-loading{
+		opacity:0.45;
+	}
+	#alrasad_taqarir-inside-content #alrasad_taqarir-text .pic-con .taqrir-img-loading img, #taqrir-content #taqrir-text .pic-con .taqrir-img-loading img{
+		border:1px solid #c7c7c7;
 	}
 	
 	.noty_message{
@@ -1253,6 +1439,16 @@
 				
 				<div class="colored-win"><div class="c-w-title icon pin" id="taqrir-win-title">&nbsp;</div>
 					<div id="taqrir-text" class="app-text">
+						
+					</div>
+				</div>
+				
+			</div>
+
+			<div data-left-drawer="left" class="panel" id="hewar-content" data-title="عرض حوار" >
+				
+				<div class="colored-win"><div class="c-w-title icon pin" id="hewar-win-title">&nbsp;</div>
+					<div id="hewar-text" class="app-text">
 						
 					</div>
 				</div>
